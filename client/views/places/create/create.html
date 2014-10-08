@@ -1,0 +1,44 @@
+<template name="createPlace">
+  <div class="container">
+    <div class="row">
+
+      <form class="form-horizontal">
+        <fieldset>
+
+          <legend>Inscrivez votre restaurant</legend>
+
+          <div class="form-group">
+            <label class="col-xs-2 control-label" for="inputName">Nom</label>
+            <div class="col-xs-8">
+              <input id="inputName" name="inputName" type="text" placeholder="Nom de votre restaurant" class="form-control input-xs">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-xs-2 control-label" for="inputPhone">Numéro de téléphone</label>
+            <div class="col-xs-8">
+              <input id="inputPhone" name="inputPhone" type="phone" placeholder="Numéro de téléphone de votre restaurant" class="form-control input-xs">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-xs-2 control-label" for="inputMail">Adresse mail</label>
+            <div class="col-xs-8">
+              <input id="inputMail" name="inputMail" type="mail" placeholder="Adresse mail de votre restaurant" class="form-control input-xs">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-xs-2 control-label"></label>
+            <div class="col-xs-8">
+              <button  class="btn btn-primary addPlace"><span class="glyphicon glyphicon-check"></span> Inscription</button>
+              <a href="{{pathFor 'resto'}}" class="btn">Annuler</a>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+
+    </div>
+  </div>
+</template>
