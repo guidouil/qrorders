@@ -8,8 +8,8 @@ iron:router
 accounts-password
 ian:bootstrap-3
 jquery
-ian:accounts-ui-bootstrap-3
 alanning:roles
 mrt:accounts-admin-ui-bootstrap-3
 kevohagan:sweetalert
-
+joshowens:accounts-entry
+tap:i18n

@@ -14,9 +14,9 @@
             {{#if isOwnerUser}}
             <li class="{{ activeIfTemplateIs 'owner' }}"><a href="{{pathFor 'owner'}}" title="owner"><span class="glyphicon glyphicon-cutlery"></span></a></li>
             {{else}}
-            <li class="{{ activeIfTemplateIs 'resto' }}"><a href="{{pathFor 'resto'}}" title="owner"><span class="glyphicon glyphicon-cutlery"></span></a></li>
+            <li class="{{ activeIfTemplateIs 'resto' }}"><a href="{{pathFor 'resto'}}" title="resto"><span class="glyphicon glyphicon-cutlery"></span></a></li>
             {{/if}}
-            {{> loginButtons right}}
+            <li class="{{ activeIfTemplateIs 'entrySignIn' }}"><a href="{{pathFor 'entrySignIn'}}" title="connexion"><span class="glyphicon glyphicon-user"></span></a></li>
         </ul>
     </div>
 
