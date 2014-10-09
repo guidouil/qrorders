@@ -1,6 +1,4 @@
-Accounts.ui.config({
-   passwordSignupFields: 'USERNAME_AND_EMAIL'
-});
+Meteor.subscribe('Places');
 
 Template.layout.rendered = function () {
   Meteor.call('user_profile_name');
@@ -17,11 +15,15 @@ getUserLanguage = function () {
 
 
 Meteor.startup(function () {
+  Accounts.ui.config({
+    passwordSignupFields: 'USERNAME_AND_EMAIL'
+  });
+
   getUserLanguage();
 
   AccountsEntry.config({
     homeRoute: '/',                 // mandatory - path to redirect to after sign-out
-    dashboardRoute: '/dash',      // mandatory - path to redirect to after successful sign-in
+    dashboardRoute: '/',      // mandatory - path to redirect to after successful sign-in
     wrapLinks: true,
     passwordSignupFields: 'USERNAME_AND_EMAIL',
     language: Session.get('language'),

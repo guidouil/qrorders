@@ -9,5 +9,11 @@ Template.navbar.helpers({
   },
   isOwnerUser: function() {
     return Roles.userIsInRole(Meteor.user(), ['owner']);
+  },
+  isNotLoggedIn: function () {
+    if (!this.userId) {
+      return true;
+    }
+    return false;
   }
 });

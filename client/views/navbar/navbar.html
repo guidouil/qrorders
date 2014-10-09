@@ -1,25 +1,29 @@
 <template name="navbar">
+
   <nav role="navigation" class="navbar navbar-default navbar-inverse">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+    <div class="container">
+        <div class="navbar-header">
 
-        <a href="{{pathFor 'home'}}" class="navbar-brand" title="QodeResto">q<strong>r</strong></a>
-        <ul class="nav navbar-nav nav-pills">
-            <li class="{{ activeIfTemplateIs 'home' }}"><a href="{{pathFor 'home'}}" title="QodeResto"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="{{ activeIfTemplateIs 'search' }}"><a href="{{pathFor 'search'}}" title="search"><span class="glyphicon glyphicon-search"></span></a></li>
-            <li class="{{ activeIfTemplateIs 'cart' }}"><a href="{{pathFor 'cart'}}" title="cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
-            {{#if isWaiterUser}}
-            <li class="{{ activeIfTemplateIs 'waiter' }}"><a href="{{pathFor 'waiter'}}" title="waiter"><span class="glyphicon glyphicon-phone"></span></a></li>
-            {{/if}}
-            {{#if isOwnerUser}}
-            <li class="{{ activeIfTemplateIs 'owner' }}"><a href="{{pathFor 'owner'}}" title="owner"><span class="glyphicon glyphicon-cutlery"></span></a></li>
-            {{else}}
-            <li class="{{ activeIfTemplateIs 'resto' }}"><a href="{{pathFor 'resto'}}" title="resto"><span class="glyphicon glyphicon-cutlery"></span></a></li>
-            {{/if}}
-            <li class="{{ activeIfTemplateIs 'entrySignIn' }}"><a href="{{pathFor 'entrySignIn'}}" title="connexion"><span class="glyphicon glyphicon-user"></span></a></li>
-        </ul>
+          <a href="{{pathFor 'home'}}" class="navbar-brand" title="QodeResto"><span class="glyphicon glyphicon-search"></span></a>
+            <ul class="nav navbar-nav nav-pills">
+              <li class="{{ activeIfTemplateIs 'home' }}"><a href="{{pathFor 'home'}}" title="QodeResto"><span class="glyphicon glyphicon-home"></span></a></li>
+              <!-- <li class="{{ activeIfTemplateIs 'search' }}"><a href="{{pathFor 'search'}}" title="search"><span class="glyphicon glyphicon-search"></span></a></li> -->
+              <li class="{{ activeIfTemplateIs 'entrySignIn' }}"><a href="{{pathFor 'entrySignIn'}}" title="connexion"><span class="glyphicon glyphicon-user"></span></a></li>
+              {{#if isWaiterUser}}
+              <li class="{{ activeIfTemplateIs 'waiter' }}"><a href="{{pathFor 'waiter'}}" title="waiter"><span class="glyphicon glyphicon-phone"></span></a></li>
+              {{/if}}
+              {{#if isOwnerUser}}
+              <li class="{{ activeIfTemplateIs 'owner' }}"><a href="{{pathFor 'owner'}}" title="owner"><span class="glyphicon glyphicon-cutlery"></span></a></li>
+              {{else}}
+              <li class="{{ activeIfTemplateIs 'resto' }}"><a href="{{pathFor 'resto'}}" title="resto"><span class="glyphicon glyphicon-cutlery"></span></a></li>
+              {{/if}}
+              <li class="{{ activeIfTemplateIs 'cart' }}"><a href="{{pathFor 'cart'}}" title="cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+          </ul>
+        </div>
+
     </div>
 
-</nav>
+  </nav>
 
 </template>

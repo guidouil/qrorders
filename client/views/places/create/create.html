@@ -2,34 +2,51 @@
   <div class="container">
     <div class="row">
 
-      <form class="form-horizontal">
-        <fieldset>
+      <form class="form-horizontal entry">
 
-          <legend>Inscrivez votre restaurant</legend>
-
-          <div class="form-group">
-            <label class="col-xs-2 control-label" for="inputName">Nom</label>
-            <div class="col-xs-8">
-              <input id="inputName" name="inputName" type="text" placeholder="Nom de votre restaurant" class="form-control input-xs">
-            </div>
+        {{#if isNotLoggedIn}}
+        <legend>Créez votre compte</legend>
+        <div class="form-group" id="mail">
+          <label class="col-xs-3 control-label" for="inputMail">Mail</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" id="inputMail" placeholder="Adresse email de contact">
           </div>
-
-          <div class="form-group">
-            <label class="col-xs-2 control-label" for="inputPhone">Numéro de téléphone</label>
-            <div class="col-xs-8">
-              <input id="inputPhone" name="inputPhone" type="phone" placeholder="Numéro de téléphone de votre restaurant" class="form-control input-xs">
-            </div>
+        </div>
+        <div class="form-group" id="password">
+          <label class="col-xs-3 control-label" for="inputPassword">Mot de passe</label>
+          <div class="col-xs-8">
+            <input type="password" class="form-control" id="inputPassword" placeholder="sept caractères minimum">
           </div>
-
-          <div class="form-group">
-            <label class="col-xs-2 control-label"></label>
-            <div class="col-xs-8">
-              <button  class="btn btn-primary addPlace"><span class="glyphicon glyphicon-check"></span> Inscription</button>
-              <a href="{{pathFor 'resto'}}" class="btn">Annuler</a>
-            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-3 control-label"></label>
+          <div class="col-xs-8">
+            <button  class="btn btn-primary addUser"><span class="glyphicon glyphicon-user"></span> Valider</button>
           </div>
+        </div>
+        {{/if}}
 
-        </fieldset>
+        <legend>Inscrivez votre restaurant</legend>
+        <div class="form-group" id="name">
+          <label class="col-xs-3 control-label" for="inputName">Nom</label>
+          <div class="col-xs-8">
+            <input id="inputName" name="inputName" type="text" placeholder="Nom de votre restaurant" class="form-control input-xs">
+          </div>
+        </div>
+        <div class="form-group" id="phone">
+          <label class="col-xs-3 control-label" for="inputPhone">Téléphone</label>
+          <div class="col-xs-8">
+            <input id="inputPhone" name="inputPhone" type="phone" placeholder="Numéro de téléphone de votre restaurant" class="form-control input-xs">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-3 control-label"></label>
+          <div class="col-xs-8">
+            <button  class="btn btn-primary addPlace"><span class="glyphicon glyphicon-cutlery"></span> Valider</button>
+            <a href="{{pathFor 'resto'}}" class="btn">Annuler</a>
+          </div>
+        </div>
+
       </form>
 
     </div>
