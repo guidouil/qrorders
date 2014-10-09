@@ -9,7 +9,11 @@
             <ul class="nav navbar-nav nav-pills">
               <li class="{{ activeIfTemplateIs 'home' }}"><a href="{{pathFor 'home'}}" title="QodeResto"><span class="glyphicon glyphicon-home"></span></a></li>
               <!-- <li class="{{ activeIfTemplateIs 'search' }}"><a href="{{pathFor 'search'}}" title="search"><span class="glyphicon glyphicon-search"></span></a></li> -->
+              {{#if isNotLoggedIn}}
               <li class="{{ activeIfTemplateIs 'entrySignIn' }}"><a href="{{pathFor 'entrySignIn'}}" title="connexion"><span class="glyphicon glyphicon-user"></span></a></li>
+              {{else}}
+              <li class="{{ activeIfTemplateIs 'profile' }}"><a href="{{pathFor 'profile'}}" title="profile"><span class="glyphicon glyphicon-user"></span></a></li>
+              {{/if}}
               {{#if isWaiterUser}}
               <li class="{{ activeIfTemplateIs 'waiter' }}"><a href="{{pathFor 'waiter'}}" title="waiter"><span class="glyphicon glyphicon-phone"></span></a></li>
               {{/if}}
