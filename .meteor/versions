@@ -49,6 +49,7 @@ mobile-status-bar@1.0.0
 mongo@1.0.6
 mrt:accounts-admin-ui-bootstrap-3@0.2.7
 mrt:accounts-t9n@0.0.13
+mrt:iron-router-progress@0.9.2
 mrt:underscore-string-latest@2.3.3
 npm-bcrypt@0.7.7
 observe-sequence@1.0.2

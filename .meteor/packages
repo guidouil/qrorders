@@ -16,4 +16,5 @@ tap:i18n
 zimme:bootstrap-growl
 accounts-ui
 coffeescript
+mrt:iron-router-progress
 
