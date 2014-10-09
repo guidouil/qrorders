@@ -88,6 +88,7 @@ Template.createPlace.events({
           name: inputName,
           phone: inputPhone,
           owner: [Meteor.userId()],
+          waiter: [Meteor.userId()],
           created: now
         });
         swal("Impec !", "Le restaurant " + inputName + " à été créé!", "success");

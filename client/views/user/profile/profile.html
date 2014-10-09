@@ -1,7 +1,25 @@
 <template name="profile">
   <div class="container">
     <div class="row">
-      <a class="btn btn-danger logout">Déconnexion</a>
+      <form class="form-horizontal entry">
+        <legend>Éditer votre profile</legend>
+        <div class="form-group" id="name">
+          <label class="col-xs-3 control-label" for="inputName">Nom</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" id="inputName" placeholder="votre nom d'utilisateur" value="{{user.profile.name}}">
+          </div>
+        </div>
+        <div class="form-group" id="mail">
+          <label class="col-xs-3 control-label" for="inputMail">Mail</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" id="inputMail" placeholder="Adresse email de contact" value="{{user.emails.[0].address}}">
+          </div>
+        </div>
+
+        <a class="btn btn-success save">Enregiter</a>
+
+        <a class="btn btn-danger logout">Déconnexion</a>
+      </form>
     </div>
   </div>
 </template>
