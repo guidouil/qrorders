@@ -1,6 +1,10 @@
 /* CSS declarations go here */
 body {
   background-color: #DEDEDE;
+  font-family: 'Open Sans', sans-serif;
+}
+.navbar-brand {
+  color: whitesmoke!important;
 }
 
 .form-qr {
@@ -8,7 +12,7 @@ body {
   margin: auto;
   overflow: auto;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 7px;
   padding: 15px;
   color: #444;
 }
