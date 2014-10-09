@@ -16,7 +16,7 @@ getUserLanguage = function () {
 
 Meteor.startup(function () {
   Accounts.ui.config({
-    passwordSignupFields: 'USERNAME_AND_EMAIL'
+    passwordSignupFields: 'EMAIL_ONLY'
   });
 
   getUserLanguage();
@@ -25,7 +25,7 @@ Meteor.startup(function () {
     homeRoute: '/',                 // mandatory - path to redirect to after sign-out
     dashboardRoute: '/',      // mandatory - path to redirect to after successful sign-in
     wrapLinks: true,
-    passwordSignupFields: 'USERNAME_AND_EMAIL',
+    passwordSignupFields: 'EMAIL_ONLY',
     language: Session.get('language'),
     showOtherLoginServices: true//,     // Set to false to hide oauth login buttons on the signin/signup pages. Useful if you are using
   });

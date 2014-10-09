@@ -1,17 +1,17 @@
 <template name="profile">
   <div class="container">
     <div class="row">
-      <form class="form-horizontal entry">
+      <form class="form-horizontal form-qr">
         <legend>Éditer votre profile</legend>
         <div class="form-group" id="name">
           <label class="col-xs-3 control-label" for="inputName">Nom</label>
-          <div class="col-xs-8">
+          <div class="col-xs-9">
             <input type="text" class="form-control" id="inputName" placeholder="votre nom d'utilisateur" value="{{user.profile.name}}">
           </div>
         </div>
         <div class="form-group" id="mail">
           <label class="col-xs-3 control-label" for="inputMail">Mail</label>
-          <div class="col-xs-8">
+          <div class="col-xs-9">
             <input type="text" class="form-control" id="inputMail" placeholder="Adresse email de contact" value="{{user.emails.[0].address}}">
           </div>
         </div>

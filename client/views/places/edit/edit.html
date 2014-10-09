@@ -1,3 +1,51 @@
 <template name="editPlace">
+  <div class="container">
+    <div class="row">
+      <form class="form-horizontal form-qr">
+        <legend>Éditer {{name}}</legend>
+        <div class="form-group" id="name">
+          <label class="col-xs-3 control-label" for="inputName">Nom</label>
+          <div class="col-xs-9">
+            <input type="text" class="form-control" id="inputName" placeholder="Nom de votre restaurant" value="{{name}}">
+          </div>
+        </div>
+        <div class="form-group" id="phone">
+          <label class="col-xs-3 control-label" for="inputPhone">Téléphone</label>
+          <div class="col-xs-9">
+            <input type="text" class="form-control" id="inputPhone" placeholder="Numéro de téléphone de votre restaurant" value="{{phone}}">
+          </div>
+        </div>
+        <div class="form-group" id="street">
+          <label class="col-xs-3 control-label" for="inputStreet">Rue</label>
+          <div class="col-xs-9">
+            <input type="text" class="form-control" id="inputStreet" placeholder="Numéro et nom de rue" value="{{street}}">
+          </div>
+        </div>
 
+        <div class="form-group" id="town">
+          <label class="col-xs-3 control-label" for="inputTown">Ville</label>
+          <div class="col-xs-9">
+            <input type="text" class="form-control" id="inputTown" placeholder="Ville" value="{{town}}">
+          </div>
+        </div>
+
+        <div class="form-group" id="zip">
+          <label class="col-xs-3 control-label" for="inputZip">Code Postal</label>
+          <div class="col-xs-9">
+            <input type="text" class="form-control" id="inputZip" placeholder="Code Postal" value="{{zip}}">
+          </div>
+        </div>
+
+       <!--  <div class="form-group" id="desc">
+          <label class="col-xs-3 control-label" for="inputDesc">Description</label>
+          <div class="col-xs-9">
+            <textarea name="inputDesc" id="inputDesc" cols="30" rows="10">{{desc}}</textarea>
+          </div>
+        </div> -->
+
+        <a class="btn btn-success save">Enregiter</a>
+
+      </form>
+    </div>
+  </div>
 </template>

@@ -2,3 +2,13 @@
 body {
   background-color: #DEDEDE;
 }
+
+.form-qr {
+  float: none;
+  margin: auto;
+  overflow: auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  color: #444;
+}

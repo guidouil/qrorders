@@ -19,13 +19,7 @@ Template.createPlace.events({
         // email faux !
         $('#mail').addClass('has-error');
         $('#inputMail').focus();
-        $.growl({
-          icon:'glyphicon glyphicon-warning-sign',
-          title:'<strong> Erreur </strong>',
-          message: 'Adresse email invalide'
-        },{
-          type: 'warning'
-        });
+        growl('Erreur', 'Adresse email invalide');
         var valid = false;
       };
 
@@ -33,13 +27,7 @@ Template.createPlace.events({
         // mot de passe trop court
         $('#password').addClass('has-error');
         $('#inputPassword').focus();
-        $.growl({
-          icon:'glyphicon glyphicon-warning-sign',
-          title:'<strong> Erreur </strong>',
-          message: 'Mot de passe trop court'
-        },{
-          type: 'warning'
-        });
+        growl('Erreur', 'Mot de passe trop court');
         var valid = false;
       };
 
@@ -53,6 +41,9 @@ Template.createPlace.events({
           }
         });
       }
+    } else {
+      $('.form-group').addClass('has-error');
+      growl('Erreur', 'Tous les champs sont obligatoires');
     };
   },
   'click .addPlace': function (evt, tmpl) {
@@ -72,13 +63,7 @@ Template.createPlace.events({
         // téléphone faux !
         $('#phone').addClass('has-error');
         $('#inputPhone').focus();
-        $.growl({
-          icon:'glyphicon glyphicon-warning-sign',
-          title:'<strong> Erreur </strong>',
-          message: 'Numéro de téléphone invalide'
-        },{
-          type: 'warning'
-        });
+        growl('Erreur', 'Numéro de téléphone invalide');
         var valid = false;
       };
 
@@ -98,13 +83,7 @@ Template.createPlace.events({
       };
     } else {
       $('.form-group').addClass('has-error');
-      $.growl({
-        icon:'glyphicon glyphicon-warning-sign',
-        title:'<strong> Erreur </strong>',
-        message: 'Tous les champs sont obligatoires'
-      },{
-        type: 'warning'
-      });
+      growl('Erreur', 'Tous les champs sont obligatoires');
     };
   }
 });
