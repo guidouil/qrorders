@@ -17,4 +17,7 @@ zimme:bootstrap-growl
 accounts-ui
 coffeescript
 mrt:iron-router-progress
-
+fastclick
+geolocation
+aldeed:collection2
+aldeed:simple-schema
