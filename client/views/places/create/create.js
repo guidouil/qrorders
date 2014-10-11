@@ -76,7 +76,7 @@ Template.createPlace.events({
           waiter: [Meteor.userId()],
           created: now
         });
-        swal("Impec !", "Le restaurant " + inputName + " à été créé!", "success");
+        swal("Génial !", "Le restaurant " + inputName + " a été créé!", "success");
         Meteor.call('user_set_owner');
         Meteor.call('user_set_waiter');
         Router.go('owner');
