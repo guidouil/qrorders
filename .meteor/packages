@@ -16,8 +16,9 @@ tap:i18n
 zimme:bootstrap-growl
 accounts-ui
 coffeescript
-mrt:iron-router-progress
 fastclick
 geolocation
 aldeed:collection2
 aldeed:simple-schema
+mrt:iron-router-progress
+

@@ -1,6 +1,11 @@
 <template name="owner">
   <div class="container">
     <div class="row">
+      <div class="col-xs-12">
+        <a href="{{pathFor 'createPlace'}}" class="btn btn-primary btn-lg btn-block">Créer un restaurant</a>
+      </div>
+    </div>
+    <div class="row">
       {{#each myPlaces}}
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
           <div class="offer offer-success">
