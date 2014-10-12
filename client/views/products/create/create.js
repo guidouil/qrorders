@@ -4,14 +4,14 @@ Template.createProduct.events({
     var inputName = tmpl.find('#inputName').value.trim();
     var inputPrice = tmpl.find('#inputPrice').value;
     var inputDesc = tmpl.find('#inputDesc').value.trim();
-    var inputTypes = tmpl.find('#inputTypes').value.split(',');
+    var inputTags = tmpl.find('#inputTags').value.split(',');
     if (inputName != '' && inputPrice != '') {
       inputPrice = parseFloat(inputPrice).toFixed(2);
       Products.insert({
         name: inputName,
         price: inputPrice,
         desc: inputDesc,
-        types: inputTypes,
+        tags: inputTags,
         place: this._id,
         owner: [Meteor.userId()]
       });

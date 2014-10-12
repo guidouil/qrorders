@@ -1,5 +1,5 @@
 Template.formProduct.rendered = function () {
-  $('#inputTypes').selectize({
+  $('#inputTags').selectize({
       delimiter: ',',
       persist: false,
       create: function(input) {
