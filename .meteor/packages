@@ -11,14 +11,15 @@ jquery
 alanning:roles
 mrt:accounts-admin-ui-bootstrap-3
 kevohagan:sweetalert
-joshowens:accounts-entry
 tap:i18n
 zimme:bootstrap-growl
 accounts-ui
 coffeescript
 fastclick
-geolocation
 aldeed:collection2
 aldeed:simple-schema
 mrt:iron-router-progress
+joshowens:accounts-entry
+patrickleet:tags
+jeremy:selectize
 

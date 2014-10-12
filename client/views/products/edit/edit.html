@@ -4,26 +4,7 @@
       <form class="form-horizontal form-qr">
         <legend>Éditer {{name}}</legend>
 
-        <div class="form-group" id="name">
-          <label class="col-xs-3 control-label" for="inputName">Nom</label>
-          <div class="col-xs-9">
-            <input type="text" class="form-control" id="inputName" placeholder="Nom du produit" value="{{name}}">
-          </div>
-        </div>
-
-        <div class="form-group" id="price">
-          <label class="col-xs-3 control-label" for="inputPrice">Prix</label>
-          <div class="col-xs-9">
-            <input type="number" step="any" class="form-control" id="inputPrice" placeholder="Prix du produit" value="{{price}}">
-          </div>
-        </div>
-
-        <div class="form-group" id="desc">
-          <label class="col-xs-3 control-label" for="inputDesc">Desc.</label>
-          <div class="col-xs-9">
-            <input type="text" class="form-control" id="inputDesc" placeholder="Description du produit" value="{{desc}}">
-          </div>
-        </div>
+        {{> formProduct}}
 
         <button type="submit" class="btn btn-success save">Enregister</button>
         <a href="{{pathFor 'productsPlace' _id=place_id}}" class="btn">Annuler</a>

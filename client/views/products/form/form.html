@@ -1,0 +1,32 @@
+<template name="formProduct">
+
+  <div class="form-group" id="name">
+    <label class="col-xs-3 control-label" for="inputName">Nom</label>
+    <div class="col-xs-9">
+      <input type="text" class="form-control" id="inputName" placeholder="Nom du produit" value="{{name}}">
+    </div>
+  </div>
+
+  <div class="form-group" id="price">
+    <label class="col-xs-3 control-label" for="inputPrice">Prix</label>
+    <div class="col-xs-9">
+      <input type="number" step="any" class="form-control" id="inputPrice" placeholder="Prix du produit" value="{{price}}">
+    </div>
+  </div>
+
+  <div class="form-group" id="desc">
+    <label class="col-xs-3 control-label" for="inputDesc">Desc.</label>
+    <div class="col-xs-9">
+      <input type="text" class="form-control" id="inputDesc" placeholder="Description du produit" value="{{desc}}">
+    </div>
+  </div>
+
+  <div class="form-group" id="types">
+    <label class="col-xs-3 control-label" for="inputTypes">Types</label>
+    <div class="col-xs-9">
+      <input type="text"  id="inputTypes" placeholder="Types produit" value="{{types}}">
+      <p class="help">Tapez en plusieurs, séparés par des virgules</p>
+    </div>
+  </div>
+
+</template>
