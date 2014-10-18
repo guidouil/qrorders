@@ -7,14 +7,20 @@ Template.createProduct.events({
     var inputTags = tmpl.find('#inputTags').value.split(',');
     if (inputName != '' && inputPrice != '') {
       inputPrice = parseFloat(inputPrice).toFixed(2);
-      Products.insert({
+      var productId = Products.insert({
         name: inputName,
         price: inputPrice,
         desc: inputDesc,
-        tags: inputTags,
         place: this._id,
         owner: [Meteor.userId()]
       });
+      if (inputTags.length > 0) {
+        $.each(inputTags, function(index, value) {
+          if (value != '') {
+            Products.addTag(value, 'Products', {_id: productId});
+          };
+        });
+      };
       swal("Cool !", "Vous avez ajouté un(e) "+inputName, "success");
     };
     Router.go('productsPlace', {_id: this._id});

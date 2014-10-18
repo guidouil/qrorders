@@ -7,7 +7,8 @@ Template.editPlace.events({
     var inputStreet = tmpl.find('#inputStreet').value;
     var inputTown = tmpl.find('#inputTown').value;
     var inputZip = tmpl.find('#inputZip').value;
-    // var inputDesc = tmpl.find('#inputDesc').value;
+    var inputDesc = tmpl.find('#inputDesc').value;
+    var inputTags = tmpl.find('#inputTags').value.split(',');
     var valid = true;
     if (!validatePhone(inputPhone)) {
       // téléphone faux !
@@ -18,6 +19,7 @@ Template.editPlace.events({
     };
 
     if(valid === true) {
+      var placeId = this._id;
       Places.update(
         {_id: this._id},
         {$set:
@@ -26,7 +28,8 @@ Template.editPlace.events({
             phone: inputPhone,
             street: inputStreet,
             town: inputTown,
-            zip: inputZip
+            zip: inputZip,
+            desc: inputDesc
           }
         },
         function(error, result) {
@@ -40,6 +43,32 @@ Template.editPlace.events({
           };
         }
       );
+      if (inputTags.length > 0) {
+        $.each(inputTags, function(index, value) {
+          if (value != '') {
+            Places.addTag(value, 'Places', {_id: placeId});
+          };
+        });
+      };
     }
   }
 });
+
+Template.editPlace.rendered = function () {
+  $('#inputTags').selectize({
+    delimiter: ',',
+    persist: false,
+    create: function(input) {
+      return {
+        value: input,
+        text: input
+      }
+    },
+    onItemRemove: function(value) {
+      if (Router.current().path.search('edit/') == 1) {
+        var placeId = Router.current().params._id;
+        Places.removeTag(value, 'Places', {_id: placeId});
+      };
+    }
+  });
+};

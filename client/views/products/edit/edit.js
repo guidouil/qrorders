@@ -10,18 +10,32 @@ Template.editProduct.events({
       Products.update({_id: productId}, {$set: {
         name: inputName,
         price: inputPrice,
-        desc: inputDesc,
-        tags: inputTags
+        desc: inputDesc
       }});
+      //console.log(inputTags);
+      if (inputTags.length > 0) {
+        $.each(inputTags, function(index, value) {
+          if (value != '') {
+            Products.addTag(value, 'Products', {_id: productId});
+          };
+        });
+      };
       growl('OK', inputName+' mis à jour', 'success');
       var placeId = Router.current().params.place_id;
       Router.go('productsPlace', {_id: placeId});
     }
+  },
+  'click .delete': function (evt, tmpl) {
+    Products.remove({_id: this._id});
+    growl('OK', 'Produit supprimé', 'danger');
+    var placeId = Router.current().params.place_id;
+    Router.go('productsPlace', {_id: placeId});
   }
 });
 
 Template.editProduct.helpers({
   place_id: function () {
     return Router.current().params.place_id;
+
   }
 });

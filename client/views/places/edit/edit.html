@@ -36,12 +36,20 @@
           </div>
         </div>
 
-       <!--  <div class="form-group" id="desc">
+        <div class="form-group" id="desc">
           <label class="col-xs-3 control-label" for="inputDesc">Description</label>
           <div class="col-xs-9">
-            <textarea name="inputDesc" id="inputDesc" cols="30" rows="10">{{desc}}</textarea>
+            <textarea class="form-control" rows="3" name="inputDesc" id="inputDesc">{{desc}}</textarea>
           </div>
-        </div> -->
+        </div>
+
+        <div class="form-group" id="tags">
+          <label class="col-xs-3 control-label" for="inputTags">Types</label>
+          <div class="col-xs-9">
+            <input type="text"  id="inputTags" placeholder="Types de votre restaurant" value="{{PlacesTags}}">
+            <p class="help">Tapez en plusieurs, séparés par des virgules. Ex : Kebab, Pizzeria, Boulangerie ...</p>
+          </div>
+        </div>
 
         <button type="submit" class="btn btn-success save">Enregister</button>
         <a href="{{pathFor 'owner'}}" class="btn">Annuler</a>
