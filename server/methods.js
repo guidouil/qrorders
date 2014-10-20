@@ -15,5 +15,26 @@ Meteor.methods({
     if (Meteor.userId()) {
       Roles.addUsersToRoles(Meteor.userId(), ['waiter']);
     };
+  },
+  add_order_line: function(placeId, orderId, productId, productName, qty) {
+    check(placeId, String);
+    check(orderId, String);
+    check(productId, String);
+    check(productName, String);
+    check(qty, Number);
+    var product = Products.findOne({_id: productId});
+    var linePrice = product.price * qty;
+    Lines.insert({
+      order: orderId,
+      place: placeId,
+      waiter: Meteor.userId(),
+      productId: productId,
+      productName: productName,
+      quantity: qty,
+      price: linePrice,
+      created: Date.now()
+    });
+    Orders.update({_id: orderId}, {$inc:{total: linePrice}});
+    return true;
   }
 });

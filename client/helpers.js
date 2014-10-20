@@ -2,11 +2,11 @@ UI.registerHelper('formatPrice', function(price) {
   if(price) {
     switch(Session.get('language')) {
       case 'fr' :
-        return parseFloat(price).toMoney(2,',',' ');
+        return parseFloat(price).toMoney(2,',',' ') + '€';
         break;
       case 'en' :
       default :
-        return parseFloat(price).toMoney(2,'.',',');
+        return '€' + parseFloat(price).toMoney(2,'.',',');
         break;
     }
   }

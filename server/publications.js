@@ -9,3 +9,7 @@ Meteor.publish('Products', function(placeId){
 Meteor.publish('Orders', function(placeId){
   return Orders.find({place: placeId});
 });
+
+Meteor.publish('Lines', function(placeId){
+  return Orders.find({place: placeId});
+});
