@@ -33,7 +33,7 @@ Template.createOrder.helpers({
 Template.createOrder.events({
   'click .addProduct': function (evt,tmpl) {
     evt.preventDefault();
-    var placeId = tmpl.data.place._id;
+    var placeId = tmpl.data._id;
     var orderId = Session.get('orderId');
     var productId = evt.currentTarget.attributes.id.value;
     var productName = evt.currentTarget.attributes.name.value;
@@ -73,5 +73,6 @@ Template.createOrder.events({
 
 Deps.autorun(function () {
   var placeId = Session.get('placeId');
+  var lines = Lines.find({place: placeId});
   Meteor.subscribe('Lines', placeId);
 });
