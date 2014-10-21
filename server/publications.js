@@ -11,9 +11,5 @@ Meteor.publish('Orders', function(placeId){
 });
 
 Meteor.publish('Lines', function(placeId){
-  return Orders.find({place: placeId});
-});
-
-Meteor.publish('orderLines', function(orderId){
-  return Orders.find({order: orderId});
+  return Lines.find({place: placeId});
 });

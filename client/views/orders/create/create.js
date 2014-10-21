@@ -57,9 +57,7 @@ Template.createOrder.events({
             if (qty > 0) {
               Meteor.call('add_order_line', placeId, orderId, productId, productName, parseFloat(qty), function (error, result) {
                 if(!error) {
-                  // Meteor.subscribe('Lines', placeId);
-                  Session.set('placeId', placeId);
-                  growl(qty, productName+'(s) added', 'success');
+                  growl(qty, productName+'(s) ajouté(e)(s)', 'success');
                 }
               });
             };
@@ -69,10 +67,4 @@ Template.createOrder.events({
     });
 
   }
-});
-
-Deps.autorun(function () {
-  var placeId = Session.get('placeId');
-  var lines = Lines.find({place: placeId});
-  Meteor.subscribe('Lines', placeId);
 });
