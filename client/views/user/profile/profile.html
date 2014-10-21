@@ -9,10 +9,22 @@
             <input type="text" class="form-control" id="inputName" placeholder="votre nom d'utilisateur" value="{{user.profile.name}}">
           </div>
         </div>
+        {{#if isWaiter}}
+        <div class="form-group">
+          <label class="col-xs-3 control-label" for="selectplace">Restaurant actuel</label>
+          <div class="col-xs-9">
+            <select id="selectplace" name="selectplace" class="form-control">
+              {{#each places}}
+              <option value="{{_id}}">{{name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        {{/if}}
         <div class="form-group" id="mail">
           <label class="col-xs-3 control-label" for="inputMail">Mail</label>
           <div class="col-xs-9">
-            <input type="text" class="form-control" id="inputMail" placeholder="Adresse email de contact" value="{{user.emails.[0].address}}">
+            <input type="text" class="form-control" id="inputMail" placeholder="Adresse email de contact" value="{{user.emails.[0].address}}" disabled>
           </div>
         </div>
 

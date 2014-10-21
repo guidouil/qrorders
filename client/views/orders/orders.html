@@ -1,0 +1,27 @@
+<template name="orders">
+
+  <form class="form-horizontal form-qr" id="{{order._id}}">
+    <legend>{{name}} : Commandes en cours</legend>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Date</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each orders}}
+        <tr>
+          <td>{{number}}</td>
+          <td>{{created}}</td>
+          <td>{{formatPrice total}}</td>
+          <td class="text-right"><button class="btn btn-primary editOrder" id="{{_id}}"><span class="glyphicon glyphicon-edit"></span></button></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </form>
+
+</template>

@@ -2,10 +2,14 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <a href="{{pathFor 'createOrder' _id=place._id}}" class="btn btn-primary btn-lg btn-block">Nouvelle commande</a>
+        <a href="{{pathFor 'createOrder' _id=currentUser.profile.place}}" class="btn btn-primary btn-lg btn-block">Nouvelle commande</a>
       </div>
     </div>
+    <br>
     <div class="row">
+      <div class="col-xs-12">
+        {{> orders}}
+      </div>
     </div>
   </div>
 </template>

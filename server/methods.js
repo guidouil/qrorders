@@ -16,6 +16,18 @@ Meteor.methods({
       Roles.addUsersToRoles(Meteor.userId(), ['waiter']);
     };
   },
+  createOrder: function (placeId) {
+    check(placeId, String);
+    var orderNumber = Orders.find({place: placeId}).count()+1;
+    orderId = Orders.insert({
+      number: orderNumber,
+      total: 0.00,
+      created: Date.now(),
+      place: placeId,
+      waiter: [Meteor.userId()]
+    });
+    return orderId;
+  },
   add_order_line: function(placeId, orderId, productId, productName, qty) {
     check(placeId, String);
     check(orderId, String);

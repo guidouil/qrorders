@@ -13,7 +13,7 @@
             <li class="{{ activeIfTemplateIs 'profile' }}"><a href="{{pathFor 'profile'}}" title="profile"><span class="glyphicon glyphicon-user"></span></a></li>
             {{/if}}
             {{#if isWaiterUser}}
-            <li class="{{ activeIfTemplateIs 'waiter' }}"><a href="{{pathFor 'waiter'}}" title="waiter"><span class="glyphicon glyphicon-phone"></span></a></li>
+            <li class="{{ activeIfTemplateIs 'waiter' }}"><a href="{{pathFor 'waiter' _id=currentUser.profile.place}}" title="waiter"><span class="glyphicon glyphicon-phone"></span></a></li>
             {{/if}}
             {{#if isOwnerUser}}
             <li class="{{ activeIfTemplateIs 'owner' }}"><a href="{{pathFor 'owner'}}" title="owner"><span class="glyphicon glyphicon-cutlery"></span></a></li>

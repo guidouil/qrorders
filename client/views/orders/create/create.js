@@ -1,12 +1,10 @@
 Template.createOrder.rendered = function () {
-  // console.log(Date.now(), Router.current().params._id, Meteor.userId());
-  orderId = Orders.insert({
-    total: 0,
-    created: Date.now(),
-    place: Router.current().params._id,
-    waiter: [Meteor.userId()]
+  var placeId = Router.current().params._id;
+  Meteor.call('createOrder', placeId, function (error, result) {
+    if (!error) {
+      Session.set('orderId', result);
+    };
   });
-  Session.set('orderId', orderId);
 };
 
 Template.createOrder.helpers({
@@ -53,7 +51,7 @@ Template.createOrder.events({
           className: "btn-success",
           callback: function () {
             var qty = $('#qty').val();
-            console.log(placeId, orderId,productId, productName, parseFloat(qty));
+            // console.log(placeId, orderId,productId, productName, parseFloat(qty));
             if (qty > 0) {
               Meteor.call('add_order_line', placeId, orderId, productId, productName, parseFloat(qty), function (error, result) {
                 if(!error) {
@@ -65,6 +63,8 @@ Template.createOrder.events({
         }
       }
     });
-
+    if (tmpl.find('#qty')) {
+      tmpl.find('#qty').focus();
+    };
   }
 });
