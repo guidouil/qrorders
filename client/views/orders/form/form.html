@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6">
         <form class="form-horizontal form-qr">
-          <legend>{{place.name}} <small class="pull-right">{{currentDate}}</small></legend>
+          <legend>{{place.name}} <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
           <table class="table table-striped">
             <thead>
               <tr>
