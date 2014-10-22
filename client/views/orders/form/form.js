@@ -18,46 +18,65 @@ Template.formOrder.helpers({
   },
   currentDate: function () {
     return moment().format("DD/MM/YYYY HH:mm");
+  },
+  number: function() {
+    var placeId = Router.current().params.place_id;
+    var orderNumber = OrdersNumbers.findOne({_id: placeId});
+    if (!orderNumber || !orderNumber.seq) {
+      return 1;
+    } else {
+      return parseFloat(orderNumber.seq+1);
+    }
   }
 });
 
 Template.formOrder.events({
+  'click .decQty': function (evt, tmpl) {
+    var productId = evt.currentTarget.attributes.id.value;
+    var value = $('#qty-'+productId).val();
+    if (value > 1) {
+      $('#qty-'+productId).val(parseFloat(value) - 1);
+    }
+  },
+  'click .incQty': function (evt, tmpl) {
+    var productId = evt.currentTarget.attributes.id.value;
+    var value = $('#qty-'+productId).val();
+    $('#qty-'+productId).val(parseFloat(value) + 1);
+  },
   'click .addProduct': function (evt,tmpl) {
     evt.preventDefault();
-    var placeId = tmpl.data._id;
+    var placeId = Router.current().params.place_id;
     var orderId = Session.get('orderId');
+    if (!orderId) {
+      OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
+      orderNumber = OrdersNumbers.findOne({_id: placeId});
+
+      orderId = Orders.insert({
+        number: orderNumber.seq,
+        total: 0.00,
+        created: Date.now(),
+        place: placeId,
+        waiter: [Meteor.userId()]
+      });
+      Session.set('orderId', orderId);
+    };
     var productId = evt.currentTarget.attributes.id.value;
     var productName = evt.currentTarget.attributes.name.value;
-    //@TODO product options
-    bootbox.dialog({
-      title: "Quantity",
-      message: '<div class="row">  ' +
-              '<div class="col-xs-12"> ' +
-              '<form class="form-horizontal"> ' +
-              '<div class="form-group"> ' +
-              '<input id="qty" name="qty" type="number" placeholder="Quantity" class="form-control input-md" value="1"> ' +
-              '</div>' +
-              '</form></div></div>',
-      buttons: {
-        success: {
-          label: "Add",
-          className: "btn-success",
-          callback: function () {
-            var qty = $('#qty').val();
-            // console.log(placeId, orderId,productId, productName, parseFloat(qty));
-            if (qty > 0) {
-              Meteor.call('add_order_line', placeId, orderId, productId, productName, parseFloat(qty), function (error, result) {
-                if(!error) {
-                  growl(qty, productName+'(s) ajouté(e)(s)', 'success');
-                }
-              });
-            };
-          }
-        }
-      }
+    var quantity = $('#qty-'+productId).val();
+    // console.log(placeId, orderId, productId, productName, quantity);
+    var product = Products.findOne({_id: productId});
+    var linePrice = product.price * quantity;
+    Lines.insert({
+      order: orderId,
+      place: placeId,
+      waiter: Meteor.userId(),
+      productId: productId,
+      productName: productName,
+      quantity: quantity,
+      price: linePrice,
+      created: Date.now()
     });
-    if (tmpl.find('#qty')) {
-      tmpl.find('#qty').focus();
-    };
+    Orders.update({_id: orderId}, {$inc: {total: linePrice}});
+    growl(quantity, productName+'(s) ajouté(e)(s)', 'success');
   }
 });

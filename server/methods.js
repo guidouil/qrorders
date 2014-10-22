@@ -21,11 +21,6 @@ Meteor.methods({
     check(placeId, String);
 
     // managing order number
-    var orderNumber = OrdersNumbers.findOne({_id: placeId});
-    if (orderNumber == null) {
-      OrdersNumbers.insert({_id: placeId, seq: 0});
-    };
-    // finaly inc and reload
     OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
     orderNumber = OrdersNumbers.findOne({_id: placeId});
 
@@ -65,10 +60,10 @@ Meteor.methods({
     if (localOrder) {
       Lines.remove({order: localOrder._id});
       Orders.remove({_id: localOrder._id});
-      // console.log(localOrder, 'OK');
+      console.log(localOrder, 'Deleted');
       return true;
     } else {
-      // console.log(localOrder, 'KO');
+      console.log(localOrder, 'Not Deleted');
       return false;
     };
   }

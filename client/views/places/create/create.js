@@ -76,6 +76,7 @@ Template.createPlace.events({
           waiter: [Meteor.userId()],
           created: now
         });
+        OrdersNumbers.insert({_id: placeId, seq: 0});
         swal("Génial !", "Le restaurant " + inputName + " a été créé!", "success");
         Meteor.call('user_set_owner');
         Meteor.call('user_set_waiter', placeId);
