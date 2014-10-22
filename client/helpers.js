@@ -36,4 +36,8 @@ Number.prototype.toMoney = function(decimals, decimal_sep, thousands_sep)
 
    j = ((j = i.length) > 3) ? j % 3 : 0;
    return sign + (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : '');
-}
+};
+
+UI.registerHelper('formatDate', function(date){
+  return moment(date).format('DD/MM/YYYY HH:mm');
+});

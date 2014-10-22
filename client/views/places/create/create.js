@@ -69,7 +69,7 @@ Template.createPlace.events({
 
       if (valid === true) {
         var now = Date.now();
-        Places.insert({
+        var placeId = Places.insert({
           name: inputName,
           phone: inputPhone,
           owner: [Meteor.userId()],
@@ -78,7 +78,7 @@ Template.createPlace.events({
         });
         swal("Génial !", "Le restaurant " + inputName + " a été créé!", "success");
         Meteor.call('user_set_owner');
-        Meteor.call('user_set_waiter');
+        Meteor.call('user_set_waiter', placeId);
         Router.go('owner');
       };
     } else {

@@ -11,9 +11,10 @@ Meteor.methods({
       Roles.addUsersToRoles(Meteor.userId(), ['owner']);
     };
   },
-  user_set_waiter: function() {
+  user_set_waiter: function(placeId) {
     if (Meteor.userId()) {
       Roles.addUsersToRoles(Meteor.userId(), ['waiter']);
+      Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': placeId}});
     };
   },
   createOrder: function (placeId) {
