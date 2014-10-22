@@ -50,9 +50,14 @@ Template.formOrder.events({
     if (!orderId) {
       OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
       orderNumber = OrdersNumbers.findOne({_id: placeId});
-
+      var user = Meteor.user();
+      var orderName = user.profile.name;
+      if (!orderName) {
+        orderName = user.emails[0].address;
+      }
       orderId = Orders.insert({
         number: orderNumber.seq,
+        name: orderName,
         total: 0.00,
         created: Date.now(),
         place: placeId,
@@ -77,6 +82,7 @@ Template.formOrder.events({
       created: Date.now()
     });
     Orders.update({_id: orderId}, {$inc: {total: linePrice}});
+    $('#qty-'+productId).val(1);
     growl(quantity, productName+'(s) ajouté(e)(s)', 'success');
   }
 });
