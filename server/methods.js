@@ -1,27 +1,36 @@
 Meteor.methods({
   user_profile_name: function () {
     var user = Meteor.user();
-    if(user && user.username !== undefined && user.profile.name === undefined) {
+    if (user && user.username !== undefined && user.profile.name === undefined) {
       var name = user.username.charAt(0).toUpperCase() + user.username.slice(1).toLowerCase();
-      Meteor.users.update({_id: Meteor.userId()}, {$set:{'profile.name': name}});
+      Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.name': name}});
     }
   },
-  user_set_owner: function() {
+  user_set_owner: function () {
     if (Meteor.userId()) {
       Roles.addUsersToRoles(Meteor.userId(), ['owner']);
     };
   },
-  user_set_waiter: function(placeId) {
+  user_set_waiter: function (placeId) {
     if (Meteor.userId()) {
       Roles.addUsersToRoles(Meteor.userId(), ['waiter']);
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': placeId}});
     };
   },
-  createOrder: function (placeId) {
+  create_order: function (placeId) {
     check(placeId, String);
-    var orderNumber = Orders.find({place: placeId}).count()+1;
+
+    // managing order number
+    var orderNumber = OrdersNumbers.findOne({_id: placeId});
+    if (orderNumber == null) {
+      OrdersNumbers.insert({_id: placeId, seq: 0});
+    };
+    // finaly inc and reload
+    OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
+    orderNumber = OrdersNumbers.findOne({_id: placeId});
+
     orderId = Orders.insert({
-      number: orderNumber,
+      number: orderNumber.seq,
       total: 0.00,
       created: Date.now(),
       place: placeId,
@@ -47,7 +56,20 @@ Meteor.methods({
       price: linePrice,
       created: Date.now()
     });
-    Orders.update({_id: orderId}, {$inc:{total: linePrice}});
+    Orders.update({_id: orderId}, {$inc: {total: linePrice}});
     return true;
+  },
+  delete_order: function(orderId) {
+    check(orderId, String);
+    var localOrder = Orders.findOne({_id: orderId, waiter: Meteor.userId()});
+    if (localOrder) {
+      Lines.remove({order: localOrder._id});
+      Orders.remove({_id: localOrder._id});
+      // console.log(localOrder, 'OK');
+      return true;
+    } else {
+      // console.log(localOrder, 'KO');
+      return false;
+    };
   }
 });
