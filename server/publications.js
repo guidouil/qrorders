@@ -10,6 +10,10 @@ Meteor.publish('Orders', function(placeId){
   return Orders.find({place: placeId});
 });
 
+Meteor.publish('OrdersNumbers', function(placeId){
+  return OrdersNumbers.find({_id: placeId});
+});
+
 Meteor.publish('Lines', function(placeId){
   return Lines.find({place: placeId});
 });

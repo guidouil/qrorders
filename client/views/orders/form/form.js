@@ -1,4 +1,9 @@
 Template.formOrder.helpers({
+  place: function() {
+    var placeId = Router.current().params.place_id;
+    Session.set('placeId', placeId);
+    return Places.findOne({_id: placeId});
+  },
   products: function () {
     return Products.find().fetch();
   },
