@@ -1,0 +1,56 @@
+<template name="formOrder">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <form class="form-horizontal form-qr">
+          <legend>{{name}} <small class="pull-right">{{currentDate}}</small></legend>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each products}}
+              <tr>
+                <td>{{name}}</td>
+                <td>{{formatPrice price}}</td>
+                <td class="text-right"><button class="btn btn-primary addProduct" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <div class="col-xs-6">
+        <form class="form-horizontal form-qr">
+          <legend>#{{order.number}} <small class="pull-right">{{formatPrice order.total}}</small></legend>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Quantité</th>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each lines}}
+              <tr>
+                <td>{{quantity}}</td>
+                <td>{{productName}}</td>
+                <td>{{formatPrice price}}</td>
+                <td class="text-right">
+                  <button class="btn btn-primary editLine" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-edit"></span> Éditer</button>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
