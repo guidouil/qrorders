@@ -3,7 +3,7 @@ Meteor.publish('Places', function () {
 });
 
 Meteor.publish('Products', function(placeId){
-  return Products.find({place: placeId});
+  return Products.find({places: placeId});
 });
 
 Meteor.publish('Orders', function(placeId){
@@ -20,4 +20,8 @@ Meteor.publish('OrdersNumbers', function(placeId){
 
 Meteor.publish('Lines', function(placeId){
   return Lines.find({place: placeId});
+});
+
+Meteor.publish('Options', function(placeId){
+  return Options.find({places: placeId});
 });

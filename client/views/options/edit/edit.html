@@ -1,0 +1,15 @@
+<template name="editOption">
+  <div class="container">
+    <div class="row">
+      <form class="form-horizontal form-qr">
+        <legend>Éditer l'option {{name}}</legend>
+
+        {{> formOption}}
+
+        <button type="submit" class="btn btn-success save">Enregister</button>
+        <a href="{{pathFor 'optionsPlace' _id=place_id}}" class="btn">Annuler</a>
+        <p class="text-right"><a href="" class="btn btn-danger delete">Supprimer</a></p>
+      </form>
+    </div>
+  </div>
+</template>

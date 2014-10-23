@@ -11,8 +11,8 @@ Template.createProduct.events({
         name: inputName,
         price: inputPrice,
         desc: inputDesc,
-        place: this._id,
-        owner: [Meteor.userId()]
+        places: [this._id],
+        owners: [Meteor.userId()]
       });
       if (inputTags.length > 0) {
         $.each(inputTags, function(index, value) {

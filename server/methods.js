@@ -17,43 +17,6 @@ Meteor.methods({
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': placeId}});
     };
   },
-  create_order: function (placeId) {
-    check(placeId, String);
-
-    // managing order number
-    OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
-    orderNumber = OrdersNumbers.findOne({_id: placeId});
-
-    orderId = Orders.insert({
-      number: orderNumber.seq,
-      total: 0.00,
-      created: Date.now(),
-      place: placeId,
-      waiter: [Meteor.userId()]
-    });
-    return orderId;
-  },
-  add_order_line: function(placeId, orderId, productId, productName, qty) {
-    check(placeId, String);
-    check(orderId, String);
-    check(productId, String);
-    check(productName, String);
-    check(qty, Number);
-    var product = Products.findOne({_id: productId});
-    var linePrice = product.price * qty;
-    Lines.insert({
-      order: orderId,
-      place: placeId,
-      waiter: Meteor.userId(),
-      productId: productId,
-      productName: productName,
-      quantity: qty,
-      price: linePrice,
-      created: Date.now()
-    });
-    Orders.update({_id: orderId}, {$inc: {total: linePrice}});
-    return true;
-  },
   delete_order: function(orderId) {
     check(orderId, String);
     var localOrder = Orders.findOne({_id: orderId, waiter: Meteor.userId()});

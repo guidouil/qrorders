@@ -1,0 +1,32 @@
+<template name="formOption">
+
+  <div class="form-group" id="name">
+    <label class="col-xs-3 control-label" for="inputName">Nom</label>
+    <div class="col-xs-9">
+      <input type="text" class="form-control" id="inputName" placeholder="Nom du l'option" value="{{name}}">
+    </div>
+  </div>
+
+  <div class="form-group" id="choices">
+    <label class="col-xs-3 control-label" for="inputChoices">Choix de l'option </label>
+    <div class="col-xs-9">
+      <input type="text"  id="inputChoices" placeholder="Types produit" value="{{OptionsTags}}">
+      <p class="help">Tapez en plusieurs, séparés par des virgules</p>
+    </div>
+  </div>
+
+  <div class="form-group" id="min">
+    <label class="col-xs-3 control-label" for="inputMin">Minimum</label>
+    <div class="col-xs-9">
+      <input type="number" class="form-control" id="inputMin" placeholder="Nombre de choix minimum" value="{{min}}">
+    </div>
+  </div>
+
+  <div class="form-group" id="max">
+    <label class="col-xs-3 control-label" for="inputMax">Maximum</label>
+    <div class="col-xs-9">
+      <input type="number" class="form-control" id="inputMax" placeholder="Nombre de choix maximum" value="{{max}}">
+    </div>
+  </div>
+
+</template>
