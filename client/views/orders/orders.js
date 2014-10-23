@@ -21,9 +21,6 @@ Template.orders.events({
     var order = Orders.findOne({_id: orderId});
     if ( _.contains(order.waiter, Meteor.userId()) ) {
       Orders.update({_id: orderId}, {$set: {status: newStatus}});
-      Session.set('orderStatus', newStatus);
-    } else {
-      Session.set('orderStatus', order.status);
     };
   },
   'click .deleteOrder': function (evt, tmpl) {

@@ -43,27 +43,28 @@
           <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}}&nbsp;
             {{#if isActiveOrder}}
             <div class="btn-group text-center" data-toggle="buttons">
-              <label class="btn btn-danger {{isStatusActive 0}} changeStatus" for="status-0" value="0">
+              <label class="btn btn-danger btn-sm {{isStatusActive 0}} changeStatus" for="status-0" value="0">
                 <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0}}>
                 <span class="glyphicon glyphicon-remove"></span>
               </label>
-              <label class="btn btn-warning {{isStatusActive 1}} changeStatus" for="status-1" value="1">
+              <label class="btn btn-warning btn-sm {{isStatusActive 1}} changeStatus" for="status-1" value="1">
                 <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1}}>
                 <span class="glyphicon glyphicon-question-sign"></span>
               </label>
-              <label class="btn btn-primary {{isStatusActive 2}} changeStatus" for="status-2"  id="defaultStatusLabel" value="2">
+              <label class="btn btn-primary btn-sm {{isStatusActive 2}} changeStatus" for="status-2"  id="defaultStatusLabel" value="2">
                 <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2}}>
                 <span class="glyphicon glyphicon-ok"></span>
               </label>
-              <label class="btn btn-info {{isStatusActive 3}} changeStatus" for="status-3" value="3">
+              <label class="btn btn-info btn-sm {{isStatusActive 3}} changeStatus" for="status-3" value="3">
                 <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3}}>
                 <span class="glyphicon glyphicon-refresh"></span>
               </label>
-              <label class="btn btn-success {{isStatusActive 4}} changeStatus" for="status-4" value="4">
+              <label class="btn btn-success btn-sm {{isStatusActive 4}} changeStatus" for="status-4" value="4">
                 <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4}}>
                 <span class="glyphicon glyphicon-cutlery"></span>
               </label>
             </div>
+            <small>{{textStatus order.status}}</small>
             {{/if}}
             <small class="pull-right">{{formatPrice order.total}}</small>
           </legend>

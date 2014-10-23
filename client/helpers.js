@@ -41,3 +41,23 @@ Number.prototype.toMoney = function(decimals, decimal_sep, thousands_sep)
 UI.registerHelper('formatDate', function(date){
   return moment(date).format('DD/MM/YYYY HH:mm');
 });
+
+UI.registerHelper('textStatus', function(status) {
+  switch (status) {
+    case 0:
+      return 'Annulée';
+      break;
+    case 1:
+      return 'En attente';
+      break;
+    case 2:
+      return 'Validée';
+      break;
+    case 3:
+      return 'En cours';
+      break;
+    case 4:
+      return 'Servie';
+      break;
+  }
+});
