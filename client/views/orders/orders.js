@@ -21,7 +21,7 @@ Template.orders.events({
         confirmButtonText: "Supprimer",
         cancelButtonText: "Annuler",
         closeOnConfirm: false,
-        closeOnCancel: false
+        closeOnCancel: true
       },
       function(){
         var orderId = evt.currentTarget.attributes.id.value;

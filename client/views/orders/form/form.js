@@ -27,6 +27,25 @@ Template.formOrder.helpers({
     } else {
       return parseFloat(orderNumber.seq+1);
     }
+  },
+  isActiveOrder: function () {
+    return Session.get('orderId');
+  },
+  isStatusActive: function (status) {
+    if (!Session.get('orderStatus')) {
+      var orderId = Session.get('orderId');
+      order = Orders.findOne({_id: orderId});
+      Session.set('orderStatus', order.status);
+    }
+    return (status == Session.get('orderStatus')?'active':'');
+  },
+  isStatusChecked: function (status) {
+    if (!Session.get('orderStatus')) {
+      var orderId = Session.get('orderId');
+      order = Orders.findOne({_id: orderId});
+      Session.set('orderStatus', order.status);
+    }
+    return (status == Session.get('orderStatus')?'checked':'');
   }
 });
 
@@ -42,6 +61,11 @@ Template.formOrder.events({
     var productId = evt.currentTarget.attributes.id.value;
     var value = $('#qty-'+productId).val();
     $('#qty-'+productId).val(parseFloat(value) + 1);
+  },
+  'click .changeStatus': function (evt, tmpl) {
+    evt.preventDefault();
+    var newStatus = evt.currentTarget.attributes.value.value;
+    console.log('yo',newStatus);
   },
   'click .addProduct': function (evt,tmpl) {
     evt.preventDefault();

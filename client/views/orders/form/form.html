@@ -41,6 +41,30 @@
       <div class="col-md-6">
         <form class="form-horizontal form-qr">
           <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}} <small class="pull-right">{{formatPrice order.total}}</small></legend>
+          {{#if isActiveOrder}}
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-danger btn-lg {{isStatusActive 0}} changeStatus" for="status-0" value="0">
+              <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0}}>
+              <span class="glyphicon glyphicon-remove"></span>
+            </label>
+            <label class="btn btn-warning btn-lg {{isStatusActive 2}} changeStatus" for="status-2" value="2">
+              <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2}}>
+              <span class="glyphicon glyphicon-question-sign"></span>
+            </label>
+            <label class="btn btn-primary btn-lg {{isStatusActive 1}} changeStatus" for="status-1"  id="defaultStatusLabel" value="1">
+              <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1}}>
+              <span class="glyphicon glyphicon-ok"></span>
+            </label>
+            <label class="btn btn-info btn-lg {{isStatusActive 3}} changeStatus" for="status-3" value="3">
+              <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3}}>
+              <span class="glyphicon glyphicon-refresh"></span>
+            </label>
+            <label class="btn btn-success btn-lg {{isStatusActive 4}} changeStatus" for="status-4" value="4">
+              <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4}}>
+              <span class="glyphicon glyphicon-cutlery"></span>
+            </label>
+          </div>
+          {{/if}}
           <table class="table table-striped">
             <thead>
               <tr>
