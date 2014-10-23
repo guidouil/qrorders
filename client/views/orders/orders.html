@@ -21,7 +21,7 @@
           <td>{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
           <td class="text-right">
             <button class="btn btn-danger deletOrder" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
-            <a class="btn btn-primary editOrder" href="{{pathFor 'editOrder' place_id=placeId order_id=_id}}"><span class="glyphicon glyphicon-edit"></span> Éditer</a>
+            <a class="btn btn-primary editOrder" href="{{pathFor 'editOrder' place_id=place order_id=_id}}"><span class="glyphicon glyphicon-edit"></span> Éditer</a>
           </td>
         </tr>
         {{/each}}
