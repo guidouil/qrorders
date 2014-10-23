@@ -4,11 +4,29 @@ Template.orders.helpers({
   },
   placeId: function () {
     return Router.current().params._id;
+  },
+  isStatusActive: function (status, orderStatus) {
+    return (status == orderStatus?'active':'');
+  },
+  isStatusChecked: function (status, orderStatus) {
+    return (status == orderStatus?'checked':'');
   }
 });
 
 Template.orders.events({
-  'click .deletOrder': function (evt, tmpl) {
+  'click .changeStatus': function (evt, tmpl) {
+    evt.preventDefault();
+    var newStatus = evt.currentTarget.attributes.value.value;
+    var orderId = evt.currentTarget.attributes.id.value;
+    var order = Orders.findOne({_id: orderId});
+    if ( _.contains(order.waiter, Meteor.userId()) ) {
+      Orders.update({_id: orderId}, {$set: {status: newStatus}});
+      Session.set('orderStatus', newStatus);
+    } else {
+      Session.set('orderStatus', order.status);
+    };
+  },
+  'click .deleteOrder': function (evt, tmpl) {
     evt.preventDefault();
 
     swal(

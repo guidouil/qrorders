@@ -16,3 +16,12 @@ Template.formProduct.rendered = function () {
     }
   });
 };
+
+Template.formProduct.helpers({
+  name: function () {
+    var currentRoute = Router.current()
+    if (currentRoute.lookupTemplate() === 'createProduct') {
+      return '';
+    };
+  }
+});

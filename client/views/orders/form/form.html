@@ -40,31 +40,34 @@
       </div>
       <div class="col-md-6">
         <form class="form-horizontal form-qr">
-          <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}} <small class="pull-right">{{formatPrice order.total}}</small></legend>
-          {{#if isActiveOrder}}
-          <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-danger btn-lg {{isStatusActive 0}} changeStatus" for="status-0" value="0">
-              <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0}}>
-              <span class="glyphicon glyphicon-remove"></span>
-            </label>
-            <label class="btn btn-warning btn-lg {{isStatusActive 2}} changeStatus" for="status-2" value="2">
-              <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2}}>
-              <span class="glyphicon glyphicon-question-sign"></span>
-            </label>
-            <label class="btn btn-primary btn-lg {{isStatusActive 1}} changeStatus" for="status-1"  id="defaultStatusLabel" value="1">
-              <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1}}>
-              <span class="glyphicon glyphicon-ok"></span>
-            </label>
-            <label class="btn btn-info btn-lg {{isStatusActive 3}} changeStatus" for="status-3" value="3">
-              <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3}}>
-              <span class="glyphicon glyphicon-refresh"></span>
-            </label>
-            <label class="btn btn-success btn-lg {{isStatusActive 4}} changeStatus" for="status-4" value="4">
-              <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4}}>
-              <span class="glyphicon glyphicon-cutlery"></span>
-            </label>
-          </div>
-          {{/if}}
+          <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}}&nbsp;
+            {{#if isActiveOrder}}
+            <div class="btn-group text-center" data-toggle="buttons">
+              <label class="btn btn-danger {{isStatusActive 0}} changeStatus" for="status-0" value="0">
+                <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0}}>
+                <span class="glyphicon glyphicon-remove"></span>
+              </label>
+              <label class="btn btn-warning {{isStatusActive 1}} changeStatus" for="status-1" value="1">
+                <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1}}>
+                <span class="glyphicon glyphicon-question-sign"></span>
+              </label>
+              <label class="btn btn-primary {{isStatusActive 2}} changeStatus" for="status-2"  id="defaultStatusLabel" value="2">
+                <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2}}>
+                <span class="glyphicon glyphicon-ok"></span>
+              </label>
+              <label class="btn btn-info {{isStatusActive 3}} changeStatus" for="status-3" value="3">
+                <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3}}>
+                <span class="glyphicon glyphicon-refresh"></span>
+              </label>
+              <label class="btn btn-success {{isStatusActive 4}} changeStatus" for="status-4" value="4">
+                <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4}}>
+                <span class="glyphicon glyphicon-cutlery"></span>
+              </label>
+            </div>
+            {{/if}}
+            <small class="pull-right">{{formatPrice order.total}}</small>
+          </legend>
+
           <table class="table table-striped">
             <thead>
               <tr>
@@ -81,7 +84,7 @@
                 <td>{{productName}}</td>
                 <td>{{formatPrice price}}</td>
                 <td class="text-right">
-                  <button class="btn btn-primary editLine" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-edit"></span> Éditer</button>
+                  <button class="btn btn-danger deleteLine" id="{{_id}}" name="{{productName}}"><span class="glyphicon glyphicon-trash"></span></button>
                 </td>
               </tr>
               {{/each}}

@@ -65,7 +65,23 @@ Template.formOrder.events({
   'click .changeStatus': function (evt, tmpl) {
     evt.preventDefault();
     var newStatus = evt.currentTarget.attributes.value.value;
-    console.log('yo',newStatus);
+    var orderId = Session.get('orderId');
+    var order = Orders.findOne({_id: orderId});
+    if ( _.contains(order.waiter, Meteor.userId()) ) {
+      Orders.update({_id: orderId}, {$set: {status: newStatus}});
+      Session.set('orderStatus', newStatus);
+    } else {
+      Session.set('orderStatus', order.status);
+    };
+  },
+  'click .deleteLine': function (evt, tmpl) {
+    evt.preventDefault();
+    var lineId = evt.currentTarget.attributes.id.value;
+    var line = Lines.findOne({_id: lineId});
+    if (line.waiter == Meteor.userId() || line.user == Meteor.userId()) {
+      Orders.update({_id: line.order}, {$inc: {total: -line.price}});
+      Lines.remove({_id: lineId});
+    }
   },
   'click .addProduct': function (evt,tmpl) {
     evt.preventDefault();
