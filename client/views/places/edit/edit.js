@@ -24,7 +24,7 @@ Template.editPlace.events({
         {_id: this._id},
         {$set:
           {
-            name: inputName,
+            placename: inputName,
             phone: inputPhone,
             street: inputStreet,
             town: inputTown,

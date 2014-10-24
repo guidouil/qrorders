@@ -29,4 +29,18 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label class="col-xs-3 control-label" for="inputOptions">Option(s)</label>
+    <div class="col-xs-9">
+      {{#each options}}
+      <div class="checkbox">
+        <label for="{{_id}}">
+          <input type="checkbox" name="inputOptions" id="{{_id}}" value="{{_id}}" class="inputOptions" checked="{{isCheckedOption _id}}">
+          <strong>{{title}}</strong> ({{min}}-{{max}}) {{arrayToString choices}}
+        </label>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
 </template>

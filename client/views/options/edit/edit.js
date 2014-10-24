@@ -1,14 +1,14 @@
 Template.editOption.events({
   'click .save': function (evt, tmpl) {
     evt.preventDefault();
-    var inputName = tmpl.find('#inputName').value.trim();
+    var inputTitle = tmpl.find('#inputTitle').value.trim();
     var inputMin = tmpl.find('#inputMin').value;
     var inputMax = tmpl.find('#inputMax').value;
     var inputChoices = tmpl.find('#inputChoices').value.split(',');
-    if (inputName != '' && inputChoices != '') {
+    if (inputTitle != '' && inputChoices != '') {
       var optionId = Router.current().params.option_id;
       Options.update({_id: optionId}, {$set: {
-        name: inputName,
+        title: inputTitle,
         min: inputMin,
         max: inputMax,
         choices: inputChoices
@@ -21,14 +21,14 @@ Template.editOption.events({
           };
         });
       };
-      growl('OK', 'L\'option '+inputName+' est à jour', 'success');
+      growl('OK', 'L\'option '+inputTitle+' est à jour', 'success');
       var placeId = Router.current().params.place_id;
       Router.go('optionsPlace', {_id: placeId});
     }
   },
   'click .delete': function (evt, tmpl) {
     Options.remove({_id: this._id});
-    growl('OK', 'Produit supprimé', 'danger');
+    growl('OK', 'Option supprimée', 'danger');
     var placeId = Router.current().params.place_id;
     Router.go('optionsPlace', {_id: placeId});
   }

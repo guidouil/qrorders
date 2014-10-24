@@ -9,8 +9,9 @@ Template.formProduct.rendered = function () {
       }
     },
     onItemRemove: function(value) {
-      if (Router.current().path.search('editproduct/') == 1) {
-        var productId = Router.current().params.product_id;
+      var currentRoute = Router.current()
+      if (currentRoute.path.search('editproduct/') == 1) {
+        var productId = currentRoute.params.product_id;
         Products.removeTag(value, 'Products', {_id: productId});
       };
     }
@@ -18,10 +19,14 @@ Template.formProduct.rendered = function () {
 };
 
 Template.formProduct.helpers({
-  name: function () {
+  options: function () {
+    return Options.find().fetch();
+  },
+  isCheckedOption: function (optionId) {
     var currentRoute = Router.current()
-    if (currentRoute.lookupTemplate() === 'createProduct') {
-      return '';
+    var productId = currentRoute.params.product_id;
+    if (Options.findOne({_id: optionId, products: productId})) {
+      return 'checked';
     };
   }
 });

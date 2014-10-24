@@ -61,3 +61,11 @@ UI.registerHelper('textStatus', function(status) {
       break;
   }
 });
+
+UI.registerHelper('arrayToString', function (array) {
+  return array.toString();
+});
+
+UI.registerHelper('arrayLength', function (array) {
+  return array.length;
+});

@@ -4,8 +4,5 @@ Template.optionsPlace.helpers({
   },
   place_id: function () {
     return Router.current().params._id;
-  },
-  stringChoices: function (choices) {
-    return choices.toString();
   }
 });

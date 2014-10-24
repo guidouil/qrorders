@@ -38,6 +38,7 @@ Template.createPlace.events({
             swal("Oops...", "Problème avec la création du compte", "error");
           } else {
             swal("Impec !", "Le compte à été créé!", "success");
+            $('#inputName').focus();
           }
         });
       }
@@ -70,14 +71,14 @@ Template.createPlace.events({
       if (valid === true) {
         var now = Date.now();
         var placeId = Places.insert({
-          name: inputName,
+          placename: inputName,
           phone: inputPhone,
           owner: [Meteor.userId()],
           waiter: [Meteor.userId()],
           created: now
         });
         OrdersNumbers.insert({_id: placeId, seq: 0});
-        swal("Génial !", "Le restaurant " + inputName + " a été créé!", "success");
+        swal("Génial !", "Le restaurant " + inputName + " à été créé!", "success");
         Meteor.call('user_set_owner');
         Meteor.call('user_set_waiter', placeId);
         Router.go('owner');

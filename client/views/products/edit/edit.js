@@ -5,14 +5,29 @@ Template.editProduct.events({
     var inputPrice = tmpl.find('#inputPrice').value;
     var inputDesc = tmpl.find('#inputDesc').value.trim();
     var inputTags = tmpl.find('#inputTags').value.split(',');
+    var inputOptions = [];
+    if ($('.inputOptions:checked')) {
+      $('.inputOptions:checked').each(function(){
+        inputOptions.push(this.id);
+      });
+    };
+    console.log(inputOptions);
     if (inputName != '' && inputPrice != '') {
       var productId = Router.current().params.product_id;
       Products.update({_id: productId}, {$set: {
         name: inputName,
         price: inputPrice,
-        desc: inputDesc
+        desc: inputDesc,
+        options: inputOptions
       }});
-      //console.log(inputTags);
+      if (inputOptions.length > 0) {
+        $('.inputOptions:checkbox').each(function(){
+          Options.update({_id: this.id}, {$pull: {products: productId}});
+        });
+        $.each(inputOptions, function(index, optionId) {
+           Options.update({_id: optionId}, {$push: {products: productId}});
+        });
+      };
       if (inputTags.length > 0) {
         $.each(inputTags, function(index, value) {
           if (value != '') {

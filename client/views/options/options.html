@@ -16,9 +16,9 @@
             </div>
             <div class="offer-content">
               <h3 class="lead">
-                {{name}} <small></small>
+                {{title}} <small>utilisée {{arrayLength products}} fois</small>
               </h3>
-              <h4>{{stringChoices choices}}</h4>
+              <p>{{arrayToString choices}}</p>
               <p>
                 <a href="/editoption/{{place_id}}/{{_id}}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Éditer</a>
               </p>
