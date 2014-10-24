@@ -7,10 +7,10 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th class="col-xs-5">Produit</th>
-                <th class="col-xs-2">Prix</th>
-                <th class="col-xs-4">Quantité</th>
-                <th class="col-xs-1">&nbsp;</th>
+                <th class="col-xs-5 col-md-6">Produit</th>
+                <th class="col-xs-2 col-md-2">Prix</th>
+                <th class="col-xs-4 col-md-3">Quantité</th>
+                <th class="col-xs-1 col-md-1">&nbsp;</th>
               </tr>
             </thead>
             <tbody>
@@ -23,14 +23,14 @@
                     <span class="input-group-btn">
                       <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
                     </span>
-                    <input type="text" class="form-control input-sm" name="quantity" id="qty-{{_id}}" value="1">
+                    <input type="text" class="form-control input-sm text-center" name="quantity" id="qty-{{_id}}" value="1">
                     <span class="input-group-btn">
                       <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus"></span></button>
                     </span>
                   </div>
                 </td>
                 <td>
-                  <button class="btn btn-primary btn-sm addProduct" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                  <button class="btn btn-success btn-sm addProduct" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
                 </td>
               </tr>
               {{/each}}

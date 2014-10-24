@@ -24,10 +24,31 @@ Template.editOption.events({
     }
   },
   'click .delete': function (evt, tmpl) {
-    Options.remove({_id: this._id});
-    growl('OK', 'Option supprimée', 'danger');
-    var placeId = Router.current().params.place_id;
-    Router.go('optionsPlace', {_id: placeId});
+    var optionId = this._id;
+
+    swal(
+      {
+        title: "Êtes vous sur ?",
+        text: "La suppression d'une option entraine son retrait de tous les produit associés",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Supprimer",
+        cancelButtonText: "Annuler",
+        closeOnConfirm: true,
+        closeOnCancel: true
+      },
+      function(){
+        Options.remove({_id: optionId});
+        var products = Products.find({options: optionId}).fetch();
+        $.each(products, function(index, product) {
+           Products.update({_id: product._id}, {$pull: {options: optionId}});
+        });
+        var placeId = Router.current().params.place_id;
+        Router.go('optionsPlace', {_id: placeId});
+        growl('OK', 'Option supprimée', 'danger');
+      }
+    );
   }
 });
 

@@ -42,10 +42,26 @@ Template.editProduct.events({
     }
   },
   'click .delete': function (evt, tmpl) {
-    Products.remove({_id: this._id});
-    growl('OK', 'Produit supprimé', 'danger');
-    var placeId = Router.current().params.place_id;
-    Router.go('productsPlace', {_id: placeId});
+    var productId = this._id;
+    swal(
+      {
+        title: "Êtes vous sur ?",
+        text: "La suppression d'un produit est définitive.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Supprimer",
+        cancelButtonText: "Annuler",
+        closeOnConfirm: true,
+        closeOnCancel: true
+      },
+      function(){
+        Products.remove({_id: productId});
+        growl('OK', 'Produit supprimé', 'danger');
+        var placeId = Router.current().params.place_id;
+        Router.go('productsPlace', {_id: placeId});
+      }
+    );
   }
 });
 
