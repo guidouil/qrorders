@@ -2,15 +2,13 @@ Template.editOption.events({
   'click .save': function (evt, tmpl) {
     evt.preventDefault();
     var inputTitle = tmpl.find('#inputTitle').value.trim();
-    var inputMin = tmpl.find('#inputMin').value;
-    var inputMax = tmpl.find('#inputMax').value;
+    var inputType = tmpl.find('input:radio[name=radioType]:checked').value;
     var inputChoices = tmpl.find('#inputChoices').value.split(',');
     if (inputTitle != '' && inputChoices != '') {
       var optionId = Router.current().params.option_id;
       Options.update({_id: optionId}, {$set: {
         title: inputTitle,
-        min: inputMin,
-        max: inputMax,
+        type: inputType,
         choices: inputChoices
       }});
       if (inputChoices.length > 0) {

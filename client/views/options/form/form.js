@@ -17,3 +17,12 @@ Template.formOption.rendered = function () {
     }
   });
 };
+
+Template.formOption.helpers({
+  isTypeRadio: function (type) {
+    return ('radio' === type?'checked':false);
+  },
+  isTypeCheckbox: function (type) {
+    return ('checkbox' === type?'checked':false);
+  }
+});

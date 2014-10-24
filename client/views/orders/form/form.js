@@ -125,30 +125,45 @@ Template.formOrder.events({
     var quantity = $('#qty-'+productId).val();
     var product = Products.findOne({_id: productId});
 
+    var linePrice = product.price * quantity;
+    var now = Date.now();
+    var lineId = Lines.insert({
+      order: orderId,
+      place: placeId,
+      waiter: currentWaiter,
+      productId: productId,
+      productName: productName,
+      quantity: quantity,
+      price: linePrice,
+      created: now,
+      status: 1,
+      user: userId
+    });
+    Orders.update({_id: orderId}, {$inc: {total: linePrice}});
+    $('#qty-'+productId).val(1);
+    growl(quantity, productName+'(s) ajouté(e)(s)', 'success');
+
     // Product Options Mgmt
     var selectedOptions = [];
     var optionChoices = [];
     if (product.options.length > 0) {
+
       var optionMessage = '<form class="form-horizontal">';
       $.each(product.options, function(index, optionId) {
         var option = Options.findOne({_id: optionId});
         optionMessage += '<div class="form-group">';
         optionMessage += '<label class="col-xs-3 control-label" for="'+option.title+'">'+option.title+'</label>';
         optionMessage += '<div class="col-xs-9">';
-        if (option.max === 1) {
-          var type='radio';
-        } else {
-          var type='checkbox';
-        };
         $.each(option.choices, function(i, choice) {
-          optionMessage += '<label class="'+type+'-inline" for="'+option.title+'-'+i+'">';
-          optionMessage += '<input class="productOptions" type="'+type+'" name="'+option.title+'" id="'+option.title+'-'+i+'" value="'+choice+'">'+choice;
+          optionMessage += '<label class="'+option.type+'-inline" for="'+option.title+'-'+i+'">';
+          optionMessage += '<input class="productOptions" type="'+option.type+'" name="'+option.title+'" id="'+option.title+'-'+i+'" value="'+choice+'">'+choice;
           optionMessage += '</label>';
         });
         optionMessage += '</div>';
         optionMessage += '</div>';
       });
       optionMessage += '</form>';
+
       bootbox.dialog({
         message: optionMessage,
         title: '<strong>'+productName+'</strong> Options',
@@ -164,55 +179,26 @@ Template.formOrder.events({
               var selectedOptions = {};
               var prevOption = '';
               if($('.productOptions:checked')) {
-
+                var optionsString = '';
                 $('.productOptions:checked').each(function(index, choice) {
                   var currentOption = choice.name;
                   if (currentOption != prevOption) {
-                    var optionChoices = [];
+                    if (prevOption != '') {
+                      optionsString += ' | ';
+                    };
+                    optionsString += currentOption+' : '
                     prevOption = currentOption;
                   } else {
-                    var optionChoices = selectedOptions[currentOption];
+                    optionsString += ', ';
                   };
-                  optionChoices.push(choice.value);
-                  selectedOptions[currentOption] = optionChoices;
-                  // console.log(choice.name,choice.value);
-                  // selectedOptions[choice.name] = choice.value;
+                  optionsString += choice.value;
                 });
-
               }
-              // console.log(selectedOptions.Sauce.toString());
-              writeOrderLine(selectedOptions);
+              Lines.update({_id: lineId}, {$set: { options: optionsString }});
             }
           }
         }
       });
-    } else {
-      writeOrderLine();
-    }
-
-    function writeOrderLine (selectedOptions) {
-      if (selectedOptions == '') {
-        selectedOptions = {};
-      };
-      // console.log(selectedOptions.Sauce.toString());
-      var linePrice = product.price * quantity;
-      var now = Date.now();
-      Lines.insert({
-        order: orderId,
-        place: placeId,
-        waiter: currentWaiter,
-        productId: productId,
-        productName: productName,
-        quantity: quantity,
-        price: linePrice,
-        created: now,
-        status: 1,
-        user: userId,
-        options: selectedOptions
-      });
-      Orders.update({_id: orderId}, {$inc: {total: linePrice}});
-      $('#qty-'+productId).val(1);
-      growl(quantity, productName+'(s) ajouté(e)(s)', 'success');
     }
   }
 });

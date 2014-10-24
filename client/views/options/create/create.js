@@ -2,16 +2,14 @@ Template.createOption.events({
   'click .save': function (evt, tmpl) {
     evt.preventDefault();
     var inputTitle = tmpl.find('#inputTitle').value.trim();
-    var inputMin = tmpl.find('#inputMin').value;
-    var inputMax = tmpl.find('#inputMax').value;
+    var inputType = tmpl.find('input:radio[name=radioType]:checked').value;
     var inputChoices = tmpl.find('#inputChoices').value.split(',');
     if (inputTitle != '' && inputChoices != '') {
 
       var optionId = Options.insert({
         products: [],
         title: inputTitle,
-        min: inputMin,
-        max: inputMax,
+        type: inputType,
         choices: inputChoices,
         places: [this._id],
         owners: [Meteor.userId()]
@@ -26,20 +24,5 @@ Template.createOption.events({
       swal("Cool !", "Vous avez ajouté une option "+inputTitle, "success");
     };
     Router.go('optionsPlace', {_id: this._id});
-  }
-});
-
-Template.createOption.helpers({
-  min: function () {
-    var currentRoute = Router.current()
-    if (currentRoute.lookupTemplate() === 'createOption') {
-      return 0;
-    };
-  },
-  max: function () {
-    var currentRoute = Router.current()
-    if (currentRoute.lookupTemplate() === 'createOption') {
-      return 1;
-    };
   }
 });

@@ -15,17 +15,22 @@
     </div>
   </div>
 
-  <div class="form-group" id="min">
-    <label class="col-xs-3 control-label" for="inputMin">Minimum</label>
+  <div class="form-group" id="type">
+    <label class="col-xs-3 control-label" for="radioType">Type de choix</label>
     <div class="col-xs-9">
-      <input type="number" class="form-control" id="inputMin" placeholder="Nombre de choix minimum" value="{{min}}">
-    </div>
-  </div>
-
-  <div class="form-group" id="max">
-    <label class="col-xs-3 control-label" for="inputMax">Maximum</label>
-    <div class="col-xs-9">
-      <input type="number" class="form-control" id="inputMax" placeholder="Nombre de choix maximum" value="{{max}}">
+      <div class="radio">
+        <label for="type-0">
+          <input type="radio" name="radioType" id="type-0" value="radio" checked="{{isTypeRadio type}}">
+          Unique
+        </label>
+      </div>
+      <div class="radio">
+        <label for="type-1">
+          <input type="radio" name="radioType" id="type-1" value="checkbox"  checked="{{isTypeCheckbox type}}">
+          Multiple
+        </label>
+      </div>
+      <p class="help">ex: Cuisson -> Unique, Sauces -> Multiple</p>
     </div>
   </div>
 
