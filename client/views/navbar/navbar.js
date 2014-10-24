@@ -15,5 +15,11 @@ Template.navbar.helpers({
       return true;
     };
     return false;
+  },
+  isLoggedIn: function () {
+    if (Meteor.userId()) {
+      return true;
+    };
+    return false;
   }
 });
