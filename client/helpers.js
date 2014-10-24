@@ -45,19 +45,22 @@ UI.registerHelper('formatDate', function(date){
 UI.registerHelper('textStatus', function(status) {
   switch (status) {
     case 0:
-      return 'Annulée';
+      return '<span class="text-danger"><strong>Annulée</strong></span>';
       break;
     case 1:
-      return 'En attente';
+      return '<span class="text-warning"><strong>En attente</strong></span>';
       break;
     case 2:
-      return 'Validée';
+      return '<span class="text-primary"><strong>Validée</strong></span>';
       break;
     case 3:
-      return 'En cours';
+      return '<span class="text-info"><strong>En cours</strong></span>';
       break;
     case 4:
-      return 'Servie';
+      return '<span class="text-success"><strong>Servie</strong></span>';
+      break;
+    default :
+      return '<span class="text-muted"><strong>houston</strong></span>';
       break;
   }
 });
