@@ -60,7 +60,7 @@ UI.registerHelper('textStatus', function(status) {
       return '<span class="text-success"><strong>Servie</strong></span>';
       break;
     default :
-      return '<span class="text-muted"><strong>houston</strong></span>';
+      return '<span class="text-muted"><strong>Houston</strong></span>';
       break;
   }
 });
