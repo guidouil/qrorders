@@ -77,7 +77,8 @@ Template.formOrder.events({
     evt.preventDefault();
     var lineId = evt.currentTarget.attributes.id.value;
     var line = Lines.findOne({_id: lineId});
-    if (line.waiter == Meteor.userId() || line.user == Meteor.userId()) {
+    var order = Orders.findOne({_id: line.order});
+    if (line.waiter == Meteor.userId() || (line.user == Meteor.userId() && order.status <= 1)) {
       Orders.update({_id: line.order}, {$inc: {total: -line.price}});
       Lines.remove({_id: lineId});
     }

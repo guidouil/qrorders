@@ -42,8 +42,9 @@ Template.orders.events({
         var orderId = evt.currentTarget.attributes.id.value;
         Meteor.call('delete_order', orderId, function (error, result) {
           if (result) {
-            swal("Supprimée", "La commande à été supprimée.", "error");
+            swal("Supprimée", "La commande à été supprimée.", "success");
           } else {
+            swal("Oups...", "La commande n'à pas été supprimée. Vous n'avez peut être pas le droit ou vous êtes déconnecté...", "error");
             console.log(error);
           };
         });
