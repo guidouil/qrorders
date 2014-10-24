@@ -42,7 +42,7 @@ Template.orders.events({
         var orderId = evt.currentTarget.attributes.id.value;
         Meteor.call('delete_order', orderId, function (error, result) {
           if (result) {
-            swal("Supprimée", "La commande à été supprimée.", "success");
+            swal("Supprimée", "La commande à été supprimée.", "error");
           } else {
             console.log(error);
           };
