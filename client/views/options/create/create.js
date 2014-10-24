@@ -28,3 +28,18 @@ Template.createOption.events({
     Router.go('optionsPlace', {_id: this._id});
   }
 });
+
+Template.createOption.helpers({
+  min: function () {
+    var currentRoute = Router.current()
+    if (currentRoute.lookupTemplate() === 'createOption') {
+      return 0;
+    };
+  },
+  max: function () {
+    var currentRoute = Router.current()
+    if (currentRoute.lookupTemplate() === 'createOption') {
+      return 1;
+    };
+  }
+});

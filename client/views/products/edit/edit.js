@@ -11,7 +11,11 @@ Template.editProduct.events({
         inputOptions.push(this.id);
       });
     };
-    console.log(inputOptions);
+    if ($('.inputOptions:checkbox')) {
+      $('.inputOptions:checkbox').each(function(){
+        Options.update({_id: this.id}, {$pull: {products: productId}});
+      });
+    };
     if (inputName != '' && inputPrice != '') {
       var productId = Router.current().params.product_id;
       Products.update({_id: productId}, {$set: {
@@ -21,9 +25,6 @@ Template.editProduct.events({
         options: inputOptions
       }});
       if (inputOptions.length > 0) {
-        $('.inputOptions:checkbox').each(function(){
-          Options.update({_id: this.id}, {$pull: {products: productId}});
-        });
         $.each(inputOptions, function(index, optionId) {
            Options.update({_id: optionId}, {$push: {products: productId}});
         });

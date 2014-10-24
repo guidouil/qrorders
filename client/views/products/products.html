@@ -1,8 +1,11 @@
 <template name="productsPlace">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-6">
         <a href="{{pathFor 'createProduct'}}" class="btn btn-primary btn-lg btn-block">Créer un produit</a>
+      </div>
+      <div class="col-xs-6">
+        <a href="{{pathFor 'optionsPlace'}}" class="btn btn-warning btn-lg btn-block">Options des produits</a>
       </div>
     </div>
     <div class="row">
@@ -26,11 +29,6 @@
           </div>
         </div>
       {{/each}}
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <a href="{{pathFor 'optionsPlace'}}" class="btn btn-warning btn-lg btn-block">Options des produits</a>
-      </div>
     </div>
   </div>
 </template>

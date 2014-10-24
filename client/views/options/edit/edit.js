@@ -13,7 +13,6 @@ Template.editOption.events({
         max: inputMax,
         choices: inputChoices
       }});
-      //console.log(inputTags);
       if (inputChoices.length > 0) {
         $.each(inputChoices, function(index, value) {
           if (value != '') {

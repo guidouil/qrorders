@@ -21,7 +21,6 @@ Template.profile.events({
 
 Template.profile.helpers({
   user: function () {
-    //console.log(Meteor.user());
     return Meteor.user();
   },
   isWaiter: function() {

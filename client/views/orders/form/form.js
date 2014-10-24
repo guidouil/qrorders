@@ -9,7 +9,6 @@ Template.formOrder.helpers({
   },
   order: function () {
     var orderId = Session.get('orderId');
-    // console.log(orderId);
     return Orders.findOne({_id: orderId});
   },
   lines: function() {
@@ -124,8 +123,15 @@ Template.formOrder.events({
     var productId = evt.currentTarget.attributes.id.value;
     var productName = evt.currentTarget.attributes.name.value;
     var quantity = $('#qty-'+productId).val();
-    // console.log(placeId, orderId, productId, productName, quantity);
     var product = Products.findOne({_id: productId});
+
+    if (product.options.length > 0) {
+      $.each(product.options, function(index, optionId) {
+        var option = Options.findOne({_id: optionId});
+        console.log(option);
+      });
+    };
+
     var linePrice = product.price * quantity;
     var now = Date.now();
     Lines.insert({
