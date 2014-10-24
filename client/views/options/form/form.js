@@ -19,12 +19,6 @@ Template.formOption.rendered = function () {
 };
 
 Template.formOption.helpers({
-  name: function () {
-    var currentRoute = Router.current()
-    if (currentRoute.lookupTemplate() === 'createOption') {
-      return '';
-    };
-  },
   min: function () {
     var currentRoute = Router.current()
     if (currentRoute.lookupTemplate() === 'createOption') {
