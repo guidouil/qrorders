@@ -20,7 +20,7 @@ Meteor.methods({
   delete_order: function(orderId) {
     check(orderId, String);
     var localOrder = Orders.findOne({_id: orderId});
-    if ( localOrder.waiter = Meteor.userId() || (localOrder.user = Meteor.userId() && localOrder.status <= 1) ) {
+    if ( _.contains(localOrder.waiter, Meteor.userId()) || (localOrder.user == Meteor.userId() && localOrder.status <= 1) ) {
       Lines.remove({order: localOrder._id});
       Orders.remove({_id: localOrder._id});
       // console.log(localOrder, 'Deleted');
