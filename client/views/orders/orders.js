@@ -10,6 +10,15 @@ Template.orders.helpers({
   },
   isStatusChecked: function (status, orderStatus) {
     return (status == orderStatus?'checked':'');
+  },
+  sayMyName: function (name, placeId) {
+    var currentRoute = Router.current()
+    if (currentRoute.lookupTemplate() === 'cart') {
+      var place = Places.findOne({_id: placeId});
+      return place.placename;
+    } else {
+      return name;
+    }
   }
 });
 

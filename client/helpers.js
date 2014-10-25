@@ -60,7 +60,7 @@ UI.registerHelper('textStatus', function(status) {
       return '<span class="text-success"><strong>Servie</strong></span>';
       break;
     default :
-      return '<span class="text-muted"><strong>Houston</strong></span>';
+      return '<span class="text-muted"><strong>Houston?</strong></span>';
       break;
   }
 });
@@ -71,4 +71,17 @@ UI.registerHelper('arrayToString', function (array) {
 
 UI.registerHelper('arrayLength', function (array) {
   return array.length;
+});
+
+UI.registerHelper('isNotLoggedIn', function () {
+  if (!Meteor.userId()) {
+    return true;
+  };
+  return false;
+});
+UI.registerHelper('isLoggedIn', function () {
+  if (Meteor.userId()) {
+    return true;
+  };
+  return false;
 });

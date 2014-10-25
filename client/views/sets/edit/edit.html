@@ -1,0 +1,15 @@
+<template name="editSet">
+  <div class="container">
+    <div class="row">
+      <form class="form-horizontal form-qr">
+        <legend>Éditer {{name}}</legend>
+
+        {{> formSet}}
+
+        <button type="submit" class="btn btn-success save">Enregister</button>
+        <a href="{{pathFor 'setsPlace' _id=place_id}}" class="btn">Annuler</a>
+        <p class="text-right"><a href="" class="btn btn-danger delete">Supprimer</a></p>
+      </form>
+    </div>
+  </div>
+</template>

@@ -1,29 +1,30 @@
-<template name="optionsPlace">
+<template name="setsPlace">
   <div class="container">
     <div class="row">
       <div class="col-xs-6">
         <a href="{{pathFor 'productsPlace'}}" class="btn btn-primary btn-lg btn-block">Retour aux produits</a>
       </div>
       <div class="col-xs-6">
-        <a href="{{pathFor 'createOption'}}" class="btn btn-warning btn-lg btn-block">Créer une option</a>
+        <a href="{{pathFor 'createSet'}}" class="btn btn-info btn-lg btn-block">Créer une formule</a>
       </div>
+
     </div>
     <div class="row">
-      {{#each options}}
+      {{#each sets}}
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="offer offer-warning">
+          <div class="offer offer-info">
             <div class="shape">
               <div class="shape-text">
-                {{type}}
+                {{setsTags.[0]}}
               </div>
             </div>
             <div class="offer-content">
               <h3 class="lead">
-                {{title}} <small>utilisée {{arrayLength products}} fois</small>
+                {{name}} <small>{{formatPrice price}}</small>
               </h3>
-              <p>{{arrayToString choices}}</p>
+              <h4>{{desc}}</h4>
               <p>
-                <a href="/editoption/{{place_id}}/{{_id}}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Éditer</a>
+                <a href="/editset/{{place_id}}/{{_id}}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span> Éditer</a>
               </p>
             </div>
           </div>

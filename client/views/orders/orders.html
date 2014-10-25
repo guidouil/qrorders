@@ -17,7 +17,7 @@
         {{#each orders}}
         <tr>
           <td>{{number}}</td>
-          <td>{{name}}</td>
+          <td>{{sayMyName name place}}</td>
           <td>{{formatDate created}}</td>
           <td>{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
           <td>{{{textStatus status}}}</td>

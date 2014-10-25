@@ -1,0 +1,14 @@
+<template name="createSet">
+  <div class="container">
+    <div class="row">
+      <form class="form-horizontal form-qr">
+        <legend>Créer une formule <small>pour {{placename}}</small></legend>
+
+        {{> formSet}}
+
+        <button type="submit" class="btn btn-success save">Enregister</button>
+        <a href="{{pathFor 'setsPlace'}}" class="btn">Annuler</a>
+      </form>
+    </div>
+  </div>
+</template>

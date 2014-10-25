@@ -1,5 +1,13 @@
 <template name="formOrder">
   <div class="container">
+    {{#if isNotLoggedIn}}
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="{{pathFor 'entrySignIn'}}" class="btn btn-success btn-lg btn-block">Connectez vous pour commander <span class="glyphicon glyphicon-cutlery"></span></a>
+      </div>
+    </div>
+    <br>
+    {{/if}}
     <div class="row">
       <div class="col-md-6">
         <form class="form-horizontal form-qr">
@@ -30,7 +38,9 @@
                   </div>
                 </td>
                 <td>
+                  {{#if isLoggedIn}}
                   <button class="btn btn-success btn-sm addProduct" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                  {{/if}}
                 </td>
               </tr>
               {{/each}}
