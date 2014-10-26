@@ -7,6 +7,9 @@ Template.formOrder.helpers({
   products: function () {
     return Products.find().fetch();
   },
+  sets: function () {
+    return Sets.find().fetch();
+  },
   order: function () {
     var orderId = Session.get('orderId');
     return Orders.findOne({_id: orderId});
@@ -126,24 +129,6 @@ Template.formOrder.events({
     var quantity = $('#qty-'+productId).val();
     var product = Products.findOne({_id: productId});
 
-    var linePrice = product.price * quantity;
-    var now = Date.now();
-    var lineId = Lines.insert({
-      order: orderId,
-      place: placeId,
-      waiter: currentWaiter,
-      productId: productId,
-      productName: productName,
-      quantity: quantity,
-      price: linePrice,
-      created: now,
-      status: 1,
-      user: userId
-    });
-    Orders.update({_id: orderId}, {$inc: {total: linePrice}});
-    $('#qty-'+productId).val(1);
-    growl(quantity, productName+'(s) ajouté(e)(s)', 'success');
-
     // Product Options Mgmt
     var selectedOptions = [];
     var optionChoices = [];
@@ -195,11 +180,167 @@ Template.formOrder.events({
                   optionsString += choice.value;
                 });
               }
-              Lines.update({_id: lineId}, {$set: { options: optionsString }});
+              addOrderLine(optionsString );
             }
           }
         }
       });
+    } else {
+      addOrderLine();
+    }
+
+    function addOrderLine (optionsString) {
+
+      var linePrice = product.price * quantity;
+      var now = Date.now();
+      var lineId = Lines.insert({
+        order: orderId,
+        place: placeId,
+        waiter: currentWaiter,
+        productId: productId,
+        productName: productName,
+        quantity: quantity,
+        price: linePrice,
+        created: now,
+        status: 1,
+        user: userId,
+        options: optionsString
+      });
+      Orders.update({_id: orderId}, {$inc: {total: linePrice}});
+      $('#qty-'+productId).val(1);
+      growl(quantity, productName+'(s) ajouté(e)(s)', 'success');
+    }
+
+  },
+  'click .addSet': function (evt,tmpl) {
+    evt.preventDefault();
+    var placeId = Router.current().params.place_id;
+    var orderId = Session.get('orderId');
+
+    var currentWaiter = '';
+    var userId = Meteor.userId();
+    if (!Roles.userIsInRole(Meteor.user(), ['waiter'])) {
+      currentWaiter = tmpl.data.owner[0];
+    } else {
+      // this place waiter ?
+      if (_.contains(tmpl.data.waiter, userId)) {
+        currentWaiter = userId;
+      } else {
+        currentWaiter = tmpl.data.owner[0];
+      };
+    };
+    if (!orderId) {
+      OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
+      orderNumber = OrdersNumbers.findOne({_id: placeId});
+      var user = Meteor.user();
+      var orderName = user.profile.name;
+      if (!orderName) {
+        orderName = user.emails[0].address;
+      }
+      var now = Date.now();
+      orderId = Orders.insert({
+        number: orderNumber.seq,
+        name: orderName,
+        total: 0.00,
+        created: now,
+        place: placeId,
+        waiter: [currentWaiter],
+        status: 1,
+        user: userId
+      });
+      Session.set('orderId', orderId);
+    };
+    var setId = evt.currentTarget.attributes.id.value;
+    var setName = evt.currentTarget.attributes.name.value;
+    var quantity = $('#qty-'+setId).val();
+    var set = Sets.findOne({_id: setId});
+
+    // Sets Options Mgmt
+    var optionFound = false;
+    var optionMessage = '<form class="form-horizontal">';
+    $.each(set.products, function(index, productId) {
+      var product = Products.findOne({_id: productId});
+      if (product.options.length > 0) {
+        optionFound = true;
+        optionMessage += '<legend>'+product.name+' options</legend>';
+        $.each(product.options, function(index, optionId) {
+          var option = Options.findOne({_id: optionId});
+          optionMessage += '<div class="form-group">';
+          optionMessage += '<label class="col-xs-3 control-label" for="'+option.title+'">'+option.title+'</label>';
+          optionMessage += '<div class="col-xs-9">';
+          $.each(option.choices, function(i, choice) {
+            optionMessage += '<label class="'+option.type+'-inline" for="'+option.title+'-'+i+'">';
+            optionMessage += '<input class="productOptions" type="'+option.type+'" name="'+option.title+'" id="'+option.title+'-'+i+'" value="'+choice+'">'+choice;
+            optionMessage += '</label>';
+          });
+          optionMessage += '</div>';
+          optionMessage += '</div>';
+        });
+      }
+    });
+    optionMessage += '</form>';
+
+    if(optionFound === true) {
+      bootbox.dialog({
+        message: optionMessage,
+        title: 'Options de la formule <strong>'+setName+'</strong>',
+        buttons: {
+          danger: {
+            label: "Annuler",
+            className: "btn-danger"
+          },
+          success: {
+            label: "Valider",
+            className: "btn-success",
+            callback: function() {
+              var selectedOptions = {};
+              var prevOption = '';
+              if($('.productOptions:checked')) {
+                var optionsString = '';
+                $('.productOptions:checked').each(function(index, choice) {
+                  var currentOption = choice.name;
+                  if (currentOption != prevOption) {
+                    if (prevOption != '') {
+                      optionsString += ' | ';
+                    };
+                    optionsString += currentOption+' : '
+                    prevOption = currentOption;
+                  } else {
+                    optionsString += ', ';
+                  };
+                  optionsString += choice.value;
+                });
+              }
+              addOrderLine(optionsString );
+            }
+          }
+        }
+      });
+    } else {
+      addOrderLine();
+    }
+
+
+    function addOrderLine (optionsString) {
+
+      var linePrice = set.price * quantity;
+      var now = Date.now();
+      var lineId = Lines.insert({
+        order: orderId,
+        place: placeId,
+        waiter: currentWaiter,
+        setId: setId,
+        setName: setName,
+        quantity: quantity,
+        price: linePrice,
+        created: now,
+        status: 1,
+        user: userId,
+        options: optionsString
+      });
+      Orders.update({_id: orderId}, {$inc: {total: linePrice}});
+      $('#qty-'+setId).val(1);
+      growl(quantity, setName+'(s) ajouté(e)(s)', 'success');
     }
   }
 });

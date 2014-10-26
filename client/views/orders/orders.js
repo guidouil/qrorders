@@ -19,6 +19,18 @@ Template.orders.helpers({
     } else {
       return name;
     }
+  },
+  dontSayMyName: function (placename) {
+    if (placename != null) {
+      return placename;
+    } else {
+      var user = Meteor.user();
+      if (user.profile && user.profile.name != '') {
+        return user.profile.name;
+      } else {
+        return user.emails[0].address;
+      };
+    };
   }
 });
 

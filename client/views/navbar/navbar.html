@@ -4,9 +4,9 @@
         <div class="navbar-header">
           <a href="{{pathFor 'home'}}" class="navbar-brand" title="QRorders">Q<strong>R</strong></a>
           <ul class="nav navbar-nav nav-pills">
-            {{#if isLoggedIn}}
+            <!-- {{#if isLoggedIn}}
             <li ><a href="" onclick="window.history.back()" title="Retour"><span class="glyphicon glyphicon-arrow-left"></span></a></li>
-            {{/if}}
+            {{/if}} -->
             <li class="{{ activeIfTemplateIs 'home' }}"><a href="{{pathFor 'home'}}" title="QodeResto"><span class="glyphicon glyphicon-home"></span></a></li>
             <!-- <li class="{{ activeIfTemplateIs 'search' }}"><a href="{{pathFor 'search'}}" title="search"><span class="glyphicon glyphicon-search"></span></a></li> -->
             {{#if isNotLoggedIn}}

@@ -11,21 +11,21 @@ Template.formSet.rendered = function () {
     onItemRemove: function(value) {
       var currentRoute = Router.current()
       if (currentRoute.path.search('editproduct/') == 1) {
-        var productId = currentRoute.params.product_id;
-        Products.removeTag(value, 'Products', {_id: productId});
+        var setId = currentRoute.params.set_id;
+        Sets.removeTag(value, 'Sets', {_id: setId});
       };
     }
   });
 };
 
-Template.formProduct.helpers({
-  options: function () {
-    return Options.find().fetch();
+Template.formSet.helpers({
+  products: function () {
+    return Products.find().fetch();
   },
-  isCheckedOption: function (optionId) {
+  isCheckedProduct: function (productId) {
     var currentRoute = Router.current()
-    var productId = currentRoute.params.product_id;
-    if (Options.findOne({_id: optionId, products: productId})) {
+    var setId = currentRoute.params.set_id;
+    if (Sets.findOne({_id: setId, products: productId})) {
       return 'checked';
     };
   }

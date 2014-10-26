@@ -3,7 +3,7 @@
     {{#if isNotLoggedIn}}
     <div class="row">
       <div class="col-xs-12">
-        <a href="{{pathFor 'entrySignIn'}}" class="btn btn-success btn-lg btn-block">Connectez vous pour commander <span class="glyphicon glyphicon-cutlery"></span></a>
+        <a href="{{pathFor 'entrySignIn'}}" class="btn btn-success btn-block">Se connecter pour commander <span class="glyphicon glyphicon-shopping-cart"></span></a>
       </div>
     </div>
     <br>
@@ -22,6 +22,28 @@
               </tr>
             </thead>
             <tbody>
+              {{#each sets}}
+              <tr>
+                <td>{{name}}</td>
+                <td>{{formatPrice price}}</td>
+                <td>
+                  <div class="input-group">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
+                    </span>
+                    <input type="text" class="form-control input-sm text-center" name="quantity" id="qty-{{_id}}" value="1">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus"></span></button>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  {{#if isLoggedIn}}
+                  <button class="btn btn-success btn-sm addSet" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                  {{/if}}
+                </td>
+              </tr>
+              {{/each}}
               {{#each products}}
               <tr>
                 <td>{{name}}</td>
@@ -74,7 +96,7 @@
                 <span class="glyphicon glyphicon-cutlery"></span>
               </label>
             </div>
-            <small>{{{textStatus order.status}}}</small>
+            {{{textStatus order.status}}}&nbsp;
             {{/if}}
             <small class="pull-right">{{formatPrice order.total}}</small>
           </legend>
@@ -93,7 +115,7 @@
               {{#each lines}}
               <tr>
                 <td>{{quantity}}</td>
-                <td>{{productName}}</td>
+                <td>{{productName}}{{setName}}</td>
                 <td>{{options}}</td>
                 <td>{{formatPrice price}}</td>
                 <td class="text-right">
