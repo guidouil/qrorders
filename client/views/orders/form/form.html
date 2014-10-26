@@ -24,7 +24,7 @@
             <tbody>
               {{#each sets}}
               <tr>
-                <td>{{name}}</td>
+                <td>{{name}} {{{showTags SetsTags}}}</td>
                 <td>{{formatPrice price}}</td>
                 <td>
                   <div class="input-group">
@@ -46,7 +46,7 @@
               {{/each}}
               {{#each products}}
               <tr>
-                <td>{{name}}</td>
+                <td>{{name}} {{{showTags ProductsTags}}}</td>
                 <td>{{formatPrice price}}</td>
                 <td>
                   <div class="input-group">

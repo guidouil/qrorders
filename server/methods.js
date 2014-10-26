@@ -29,5 +29,8 @@ Meteor.methods({
       // console.log(localOrder, 'Not Deleted');
       return false;
     };
+  },
+  onlineUsersCount: function() {
+    return Meteor.users.find({ "status.online": true }).count();
   }
 });

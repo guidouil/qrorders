@@ -1,45 +1,32 @@
 <template name="home">
   <div class="container">
-    <!-- <div class="row">
-      <div id="custom-search-input">
-        <div class="input-group col-xs-12">
-          <input type="text" class="  search-query form-control" placeholder="Rechercher" />
-          <span class="input-group-btn">
-            <button class="btn btn-success" type="button">
-              <span class=" glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-        </div>
-      </div>
-    </div> -->
     <div class="row">
       <div class="well">
         <h1>Bienvenue sur Q<strong>R</strong>orders</h1>
-        <h3>Le système de commandes temps réel.</h3>
-        <p>Ou comment attendre le moins possible à la caisse.</p>
+        <h3>Le système de commandes temps réel <small>ou comment attendre le moins possible.</small></h3>
+
         <p><a href="{{pathFor 'resto'}}" class="btn btn-primary">Gérant d'un établissement ?</a></p>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <form class="form-horizontal" role="form">
+          <div class="input-group btn-block">
+            <input type="text" class="search-query form-control" placeholder="Rechercher une ville, un restaurant, un commerce, un code postal..." />
+            <span class="input-group-btn">
+              <button class="btn btn-success search" type="submit">
+                <span class=" glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="row">
       {{#each places}}
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="offer offer-success">
-            <div class="shape">
-              <div class="shape-text">
-                {{PlacesTags.[0]}}
-              </div>
-            </div>
-            <div class="offer-content">
-              <h3 class="lead">
-                {{placename}} <small>{{phone}}</small>
-              </h3>
-              <h4>{{street}} <small>{{town}}</small></h4>
-              <p>
-                <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-lg">La Carte <span class="glyphicon glyphicon-cutlery"></span></a>
-              </p>
-            </div>
-          </div>
-        </div>
+        {{> onePlace}}
       {{/each}}
     </div>
   </div>
