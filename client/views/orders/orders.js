@@ -1,6 +1,6 @@
 Template.orders.helpers({
   orders: function () {
-    return Orders.find({}).fetch();
+    return Orders.find({},{sort: {created: -1}}).fetch();
   },
   placeId: function () {
     return Router.current().params._id;
