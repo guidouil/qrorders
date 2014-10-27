@@ -3,17 +3,22 @@
     <div class="offer offer-success">
       <div class="shape">
         <div class="shape-text">
-          &nbsp;|
+          &nbsp;<span class="glyphicon glyphicon-star"></span>
         </div>
       </div>
       <div class="offer-content">
-        <h3 class="lead">
+        <h3 >
           {{placename}} <small>{{phone}}</small>
         </h3>
-        <h4>{{street}} <small>{{town}}</small></h4>
+        <h4 >{{street}} <small>{{town}}</small></h4>
         <p>{{{showTags PlacesTags}}}</p>
         <p>
+          {{#if isOwner}}
+          <a href="/products/{{_id}}" class="btn btn-success">La carte <span class="glyphicon glyphicon-cutlery"></span></a>&nbsp;
+          <a href="/edit/{{_id}}" class="btn btn-warning">Éditer <span class="glyphicon glyphicon-cog"></span></a>
+          {{else}}
           <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-lg">La Carte <span class="glyphicon glyphicon-cutlery"></span></a>
+          {{/if}}
         </p>
       </div>
     </div>
