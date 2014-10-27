@@ -4,7 +4,7 @@ Template.search.helpers({
   },
   places: function () {
     var query = decodeURI(Router.current().params.query);
-    return Places.find({$or: [{placename: { $regex: query, $options: 'i' }}, {phone: { $regex: query, $options: 'i' }}, {street: { $regex: query, $options: 'i' }}, {town: { $regex: query, $options: 'i' }}, {zip: { $regex: query, $options: 'i' }}, {desc: { $regex: query, $options: 'i' }}, {tags: { $regex: query, $options: 'i' }}]}).fetch();
+    return Places.find({$or: [{placename: { $regex: query, $options: 'i' }}, {phone: { $regex: query, $options: 'i' }}, {street: { $regex: query, $options: 'i' }}, {town: { $regex: query, $options: 'i' }}, {zip: { $regex: query, $options: 'i' }}, {desc: { $regex: query, $options: 'i' }}, {PlacesTags: { $regex: query, $options: 'i' }}]}).fetch();
   }
 });
 
