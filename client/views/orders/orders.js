@@ -1,6 +1,14 @@
 Template.orders.helpers({
   orders: function () {
-    return Orders.find({},{sort: {created: -1}}).fetch();
+    var statusFilter = Session.get('statusFilter');
+    if (statusFilter == undefined) {
+      statusFilter = $('#selectStatus').val();
+    }
+    if (statusFilter == 'all') {
+      return Orders.find({},{sort: {created: -1}}).fetch();
+    } else {
+      return Orders.find({status: parseFloat(statusFilter)},{sort: {created: -1}}).fetch();
+    }
   },
   placeId: function () {
     return Router.current().params._id;
@@ -31,6 +39,13 @@ Template.orders.helpers({
         return user.emails[0].address;
       };
     };
+  },
+  selectedStatus: function(status) {
+    if (Session.get('statusFilter') == status) {
+      return 'selected'
+    } else {
+      return false;
+    }
   }
 });
 
@@ -43,6 +58,10 @@ Template.orders.events({
     if ( _.contains(order.waiter, Meteor.userId()) ) {
       Orders.update({_id: orderId}, {$set: {status: newStatus}});
     };
+  },
+  'change #selectStatus' :function (evt, tmpl) {
+    var status = tmpl.find('#selectStatus').value;
+    Session.set('statusFilter', status);
   },
   'click .deleteOrder': function (evt, tmpl) {
     evt.preventDefault();
