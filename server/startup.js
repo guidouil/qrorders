@@ -1,4 +1,4 @@
 Meteor.startup(function () {
-  if (Meteor.users.findOne("euuYQNWWHP89HSesg"))
-    Roles.addUsersToRoles("euuYQNWWHP89HSesg", ['admin']);
+  if (Meteor.users.findOne("WQSeovurxLMkkWmz9"))
+    Roles.addUsersToRoles("WQSeovurxLMkkWmz9", ['admin']);
 });

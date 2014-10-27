@@ -1,9 +1,6 @@
 Template.orders.helpers({
   orders: function () {
     var statusFilter = Session.get('statusFilter');
-    if (statusFilter == undefined) {
-      statusFilter = $('#selectStatus').val();
-    }
     if (statusFilter == 'all') {
       return Orders.find({},{sort: {created: -1}}).fetch();
     } else {
@@ -33,10 +30,12 @@ Template.orders.helpers({
       return placename;
     } else {
       var user = Meteor.user();
-      if (user.profile && user.profile.name != '') {
-        return user.profile.name;
-      } else {
-        return user.emails[0].address;
+      if (user) {
+        if (user.profile && user.profile.name != '') {
+          return user.profile.name;
+        } else {
+          return user.emails[0].address;
+        };
       };
     };
   },
@@ -92,3 +91,9 @@ Template.orders.events({
     );
   }
 });
+
+Template.orders.rendered = function () {
+  if (!Session.get('statusFilter')) {
+    Session.set('statusFilter', 'all');
+  };
+};
