@@ -55,20 +55,29 @@ Template.editPlace.events({
 });
 
 Template.editPlace.rendered = function () {
-  $('#inputTags').selectize({
-    delimiter: ',',
-    persist: false,
-    create: function(input) {
-      return {
-        value: input,
-        text: input
+  Meteor.call('getTags', 'Places', function (error, result) {
+    if (!result || result.length == 0) {
+      result = [];
+    };
+    $('#inputTags').selectize({
+      valueField: 'name',
+      labelField: 'name',
+      searchField: ['name'],
+      delimiter: ',',
+      persist: false,
+      create: function(input) {
+        return {
+          value: input,
+          text: input
+        }
+      },
+      options: result,
+      onItemRemove: function(value) {
+        if (Router.current().path.search('edit/') == 1) {
+          var placeId = Router.current().params._id;
+          Places.removeTag(value, 'Places', {_id: placeId});
+        };
       }
-    },
-    onItemRemove: function(value) {
-      if (Router.current().path.search('edit/') == 1) {
-        var placeId = Router.current().params._id;
-        Places.removeTag(value, 'Places', {_id: placeId});
-      };
-    }
+    });
   });
 };

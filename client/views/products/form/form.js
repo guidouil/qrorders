@@ -1,20 +1,29 @@
 Template.formProduct.rendered = function () {
-  $('#inputTags').selectize({
-    delimiter: ',',
-    persist: false,
-    create: function(input) {
-      return {
-        value: input,
-        text: input
+  Meteor.call('getTags', 'Products', function (error, result) {
+    if (!result || result.length == 0) {
+      result = [];
+    };
+    $('#inputTags').selectize({
+      valueField: 'name',
+      labelField: 'name',
+      searchField: ['name'],
+      delimiter: ',',
+      persist: true,
+      create: function(input) {
+        return {
+          value: input,
+          text: input
+        }
+      },
+      options: result,
+      onItemRemove: function(value) {
+        var currentRoute = Router.current()
+        if (currentRoute.path.search('editproduct/') == 1) {
+          var productId = currentRoute.params.product_id;
+          Products.removeTag(value, 'Products', {_id: productId});
+        };
       }
-    },
-    onItemRemove: function(value) {
-      var currentRoute = Router.current()
-      if (currentRoute.path.search('editproduct/') == 1) {
-        var productId = currentRoute.params.product_id;
-        Products.removeTag(value, 'Products', {_id: productId});
-      };
-    }
+    });
   });
 };
 

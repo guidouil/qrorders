@@ -30,6 +30,6 @@ Meteor.publish('Options', function(placeId){
   return Options.find({places: placeId});
 });
 
-Meteor.publish('Meteor.tags', function(){
-  return Meteor.tags.find({});
+Meteor.publish('TheTags', function(tagsGroup){
+  return Meteor.tags.find({group: tagsGroup});
 });

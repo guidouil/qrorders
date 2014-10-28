@@ -32,5 +32,17 @@ Meteor.methods({
   },
   onlineUsersCount: function() {
     return Meteor.users.find({ "status.online": true }).count();
+  },
+  getTags: function(tagsGroup) {
+    var availableTags = Meteor.tags.find({group: tagsGroup}, {fields: {name: 1, _id: 0}}).fetch();
+    // console.log(availableTags);
+    source = [];
+    if (availableTags && availableTags.length >0) {
+      _.each(availableTags, function(tag) {
+        source.push(tag);
+      });
+      // console.log(source);
+      return source;
+    };
   }
 });
