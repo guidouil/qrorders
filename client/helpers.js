@@ -41,6 +41,13 @@ Number.prototype.toMoney = function(decimals, decimal_sep, thousands_sep)
 UI.registerHelper('formatDate', function(date){
   return moment(date).format('DD/MM/YYYY HH:mm');
 });
+UI.registerHelper('fromNow', function(date){
+  if(date != null) {
+    var oDate = moment(date);
+    oDate.lang('fr');
+    return oDate.fromNow();
+  }
+});
 
 UI.registerHelper('textStatus', function(status) {
   switch (status) {
@@ -48,7 +55,7 @@ UI.registerHelper('textStatus', function(status) {
       return '<span class="label label-danger">Annulée</span>';
       break;
     case 1:
-      return '<span class="label label-warning">En attente</span>';
+      return '<span class="label label-warning">En création</span>';
       break;
     case 2:
       return '<span class="label label-primary">Validée</span>';

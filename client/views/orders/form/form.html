@@ -81,7 +81,7 @@
               </label>
               <label class="btn btn-warning btn-sm {{isStatusActive 1}} changeStatus" for="status-1" value="1">
                 <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1}}>
-                <span class="glyphicon glyphicon-question-sign"></span>
+                <span class="glyphicon glyphicon-plus"></span>
               </label>
               <label class="btn btn-primary btn-sm {{isStatusActive 2}} changeStatus" for="status-2"  id="defaultStatusLabel" value="2">
                 <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2}}>
@@ -128,5 +128,12 @@
         </form>
       </div>
     </div>
+    {{#if isNotWaiter}}
+    <div class="row">
+      <div class="col-xs-12">
+        <button class="btn btn-success btn-block customerValidation">Valider la commande <span class="glyphicon glyphicon-shopping-cart"></span></button>
+      </div>
+    </div>
+    {{/if}}
   </div>
 </template>

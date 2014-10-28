@@ -48,6 +48,22 @@ Template.formOrder.helpers({
       Session.set('orderStatus', order.status);
     }
     return (status == Session.get('orderStatus')?'checked':'');
+  },
+  isNotWaiter: function () {
+    var orderId = Router.current().params.order_id;
+    if (orderId) {
+      var order = Orders.findOne({_id: orderId});
+      if (order.status != 1) {
+        return false;
+      };
+    }
+    var placeId = Router.current().params.place_id;
+    var place = Places.findOne({_id: placeId});
+    if (place && _.contains(place.waiter, Meteor.userId())) {
+      return false;
+    } else {
+      return true;
+    };
   }
 });
 
@@ -70,7 +86,7 @@ Template.formOrder.events({
     var orderId = Session.get('orderId');
     var order = Orders.findOne({_id: orderId});
     if ( _.contains(order.waiter, Meteor.userId()) ) {
-      Orders.update({_id: orderId}, {$set: {status: newStatus}});
+      Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now()}});
       Session.set('orderStatus', newStatus);
     } else {
       Session.set('orderStatus', order.status);
@@ -82,9 +98,16 @@ Template.formOrder.events({
     var line = Lines.findOne({_id: lineId});
     var order = Orders.findOne({_id: line.order});
     if (line.waiter == Meteor.userId() || (line.user == Meteor.userId() && order.status <= 1)) {
-      Orders.update({_id: line.order}, {$inc: {total: -line.price}});
+      Orders.update({_id: line.order}, {$inc: {total: -line.price}, $set: { updated: Date.now()}});
       Lines.remove({_id: lineId});
     }
+  },
+  'click .customerValidation': function (evt, tmpl) {
+    evt.preventDefault();
+    var orderId = Session.get('orderId');
+    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now()}});
+    swal('Merci','Votre commande est validée','success');
+    Router.go('cart');
   },
   'click .addProduct': function (evt,tmpl) {
     evt.preventDefault();
@@ -94,6 +117,7 @@ Template.formOrder.events({
     var currentWaiter = '';
     var userId = Meteor.userId();
     if (!Roles.userIsInRole(Meteor.user(), ['waiter'])) {
+      // online cutomer order belong to place owner
       currentWaiter = tmpl.data.owner[0];
     } else {
       // this place waiter ?
@@ -206,7 +230,7 @@ Template.formOrder.events({
         user: userId,
         options: optionsString
       });
-      Orders.update({_id: orderId}, {$inc: {total: linePrice}});
+      Orders.update({_id: orderId}, {$inc: {total: linePrice}, $set: {updated: Date.now()}});
       $('#qty-'+productId).val(1);
       growl(quantity, productName+'(s) ajouté(e)(s)', 'success');
     }
@@ -338,7 +362,7 @@ Template.formOrder.events({
         user: userId,
         options: optionsString
       });
-      Orders.update({_id: orderId}, {$inc: {total: linePrice}});
+      Orders.update({_id: orderId}, {$inc: {total: linePrice}, $set: {updated: Date.now()}});
       $('#qty-'+setId).val(1);
       growl(quantity, setName+'(s) ajouté(e)(s)', 'success');
     }
