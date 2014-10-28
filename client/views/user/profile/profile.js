@@ -28,5 +28,13 @@ Template.profile.helpers({
   },
   places: function() {
     return Places.find({waiter: Meteor.userId()}).fetch();
+  },
+  isSelectedPlace: function (placeId) {
+    var user = Meteor.user();
+    if (user.profile.place === placeId) {
+      return 'selected';
+    } else {
+      return false;
+    };
   }
 });

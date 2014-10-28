@@ -29,7 +29,3 @@ Meteor.publish('Lines', function(placeId){
 Meteor.publish('Options', function(placeId){
   return Options.find({places: placeId});
 });
-
-Meteor.publish('TheTags', function(tagsGroup){
-  return Meteor.tags.find({group: tagsGroup});
-});

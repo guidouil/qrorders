@@ -15,7 +15,7 @@
           <div class="col-xs-9">
             <select id="selectplace" name="selectplace" class="form-control">
               {{#each places}}
-              <option value="{{_id}}">{{placename}}</option>
+              <option value="{{_id}}" selected="{{isSelectedPlace _id}}">{{placename}}</option>
               {{/each}}
             </select>
           </div>
