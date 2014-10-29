@@ -22,6 +22,13 @@
                 <option value="4" selected="{{selectedStatus 4}}" class="text-success">Servies</option>
               </select>
             </span>
+            <span class="pull-right">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default filterDateToday {{isActiveDate 'today'}}">24H</button>
+                <button type="button" class="btn btn-default filterDateAll {{isActiveDate 'all'}}">Toutes</button>
+              </div>
+              &nbsp;
+            </span>
           </th>
         </tr>
       </thead>

@@ -1,10 +1,21 @@
 Template.orders.helpers({
   orders: function () {
+    var dateFilter = Session.get('dateFilter');
     var statusFilter = Session.get('statusFilter');
-    if (statusFilter == 'all') {
-      return Orders.find({},{sort: {created: -1}}).fetch();
+    if (dateFilter == 'today') {
+      var yesterday = moment().subtract('days', 1).valueOf();
+      if (statusFilter == 'all') {
+        return Orders.find({created: {$gt: yesterday}},{sort: {created: -1}}).fetch();
+      } else {
+        return Orders.find({status: parseFloat(statusFilter), created: {$gt: yesterday}},{sort: {created: -1}}).fetch();
+      }
     } else {
-      return Orders.find({status: parseFloat(statusFilter)},{sort: {created: -1}}).fetch();
+      if (statusFilter == 'all') {
+        return Orders.find({},{sort: {created: -1}}).fetch();
+      } else {
+        return Orders.find({status: parseFloat(statusFilter)},{sort: {created: -1}}).fetch();
+      }
+
     }
   },
   placeId: function () {
@@ -15,6 +26,9 @@ Template.orders.helpers({
   },
   isStatusChecked: function (status, orderStatus) {
     return (status == orderStatus?'checked':'');
+  },
+  isActiveDate: function (filter) {
+    return (Session.get('dateFilter') == filter ?'active':'');
   },
   sayMyName: function (name, placeId) {
     var currentRoute = Router.current()
@@ -58,9 +72,15 @@ Template.orders.events({
       Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now()}});
     };
   },
-  'change #selectStatus' :function (evt, tmpl) {
+  'change #selectStatus': function (evt, tmpl) {
     var status = tmpl.find('#selectStatus').value;
     Session.set('statusFilter', status);
+  },
+  'click .filterDateToday': function () {
+    Session.set('dateFilter', 'today');
+  },
+  'click .filterDateAll': function () {
+    Session.set('dateFilter', 'all');
   },
   'click .deleteOrder': function (evt, tmpl) {
     evt.preventDefault();
@@ -95,5 +115,8 @@ Template.orders.events({
 Template.orders.rendered = function () {
   if (!Session.get('statusFilter')) {
     Session.set('statusFilter', 'all');
+  };
+  if (!Session.get('dateFilter')) {
+    Session.set('dateFilter', 'today');
   };
 };
