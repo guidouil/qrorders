@@ -18,8 +18,6 @@ coffeescript
 fastclick
 aldeed:collection2
 aldeed:simple-schema
-mrt:iron-router-progress
-joshowens:accounts-entry
 patrickleet:tags
 jeremy:selectize
 mrt:momentjs
@@ -28,3 +26,4 @@ mizzao:user-status
 accounts-facebook
 accounts-twitter
 accounts-google
+multiply:iron-router-progress

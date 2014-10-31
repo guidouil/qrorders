@@ -11,6 +11,7 @@ Template.payOrder.helpers({
 
 Template.payOrder.events({
   'click .cardPay': function (evt, tmpl) {
+    $('.cashForm').addClass('hidden');
     var orderId = Router.current().params.order_id;
     swal(
       {
@@ -33,6 +34,25 @@ Template.payOrder.events({
     );
   },
   'click .cashPay': function (evt, tmpl) {
-
+    $('.cashForm').removeClass('hidden');
+    $('#inputCash').focus();
+  },
+  'keyup .inputPay': function (evt, tmpl) {
+    var orderId = Router.current().params.order_id;
+    $('.creditNote').html('0.00€');
+    $('.cashBack').html('0.00€');
+    order = Orders.findOne({_id: orderId});
+    var cash = tmpl.find('#inputCash').value;
+    var ticket = tmpl.find('#inputTicket').value;
+    if (ticket > order.total && !cash) {
+      $('.creditNote').html(ticket - order.total);
+    }
+    if (cash > order.total && !ticket) {
+      $('.cashBack').html(cash - order.total);
+    }
+    if (cash + ticket > order.total) {
+      var cashNeeded = order.total - ticket;
+      $('.cashBack').html(cash - cashNeeded);
+    }
   }
 });

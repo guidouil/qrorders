@@ -21,14 +21,14 @@ Meteor.startup(function () {
 
   getUserLanguage();
 
-  AccountsEntry.config({
-    homeRoute: '/',                 // mandatory - path to redirect to after sign-out
-    dashboardRoute: '/',      // mandatory - path to redirect to after successful sign-in
-    wrapLinks: true,
-    passwordSignupFields: 'EMAIL_ONLY',
-    language: Session.get('language'),
-    showOtherLoginServices: true//,     // Set to false to hide oauth login buttons on the signin/signup pages. Useful if you are using
-  });
+  // AccountsEntry.config({
+  //   homeRoute: '/',                 // mandatory - path to redirect to after sign-out
+  //   dashboardRoute: '/',      // mandatory - path to redirect to after successful sign-in
+  //   wrapLinks: true,
+  //   passwordSignupFields: 'EMAIL_ONLY',
+  //   language: Session.get('language'),
+  //   showOtherLoginServices: true//,     // Set to false to hide oauth login buttons on the signin/signup pages. Useful if you are using
+  // });
 
   Session.set("showLoadingIndicator", true);
 

@@ -1,12 +1,8 @@
 <template name="payOrder">
   <div class="container">
-    <div class="row">
-      <div class="page-header">
-        <h1>{{placename}} #{{order.number}} <small>{{order.name}} {{formatDate order.created}}</small><span class='pull-right'>{{formatPrice order.total}}</span></h1>
-      </div>
-    </div>
     <div class='row'>
       <div class="well">
+        <h1>{{placename}} - #{{order.number}} <small>{{order.name}} {{formatDate order.created}}</small><span class='pull-right'>{{formatPrice order.total}}</span></h1>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -39,6 +35,28 @@
       </div>
       <div class='col-md-6'>
         <button class='btn btn-primary btn-block btn-lg cashPay'>Espèces ou tickets <span class='glyphicon glyphicon-euro'></span></button>
+      </div>
+    </div>
+    <br>
+    <div class='row'>
+      <div class='col-md-12'>
+        <form class="form-horizontal form-qr cashForm hidden">
+          <legend>Encaissement</legend>
+          <div class="form-group" id="cash">
+            <label class="col-xs-3 control-label" for="inputCash">Espèces</label>
+            <div class="col-xs-9">
+              <input type="number" step="any" class="form-control inputPay" id="inputCash" placeholder="Somme en espèces" value="">
+            </div>
+          </div>
+          <div class="form-group" id="ticket">
+            <label class="col-xs-3 control-label" for="inputTicket">Ticket</label>
+            <div class="col-xs-9">
+              <input type="number" step="any" class="form-control inputPay" id="inputTicket" placeholder="Valeur du ticket" value="">
+            </div>
+          </div>
+          <p class="lead">Rendu :<span class="pull-right cashBack">0.00€</span></p>
+          <p class="lead">Avoir :<span class="pull-right creditNote">0.00€</span></p>
+        </form>
       </div>
     </div>
   </div>
