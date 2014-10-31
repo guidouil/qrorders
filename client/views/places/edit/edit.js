@@ -15,8 +15,8 @@ Template.editPlace.events({
       $('#phone').addClass('has-error');
       $('#inputPhone').focus();
       growl('Erreur', 'Numéro de téléphone invalide');
-      var valid = false;
-    };
+      valid = false;
+    }
 
     if(valid === true) {
       var placeId = this._id;
@@ -37,28 +37,28 @@ Template.editPlace.events({
             for (var key in error.invalidKeys) {
               growl('KO', error.invalidKeys[key].name + ' is ' + error.invalidKeys[key].type);
               $('#'+error.invalidKeys[key].name).addClass('has-error');
-            };
+            }
           } else {
             growl('OK', 'Restaurant mis à jour','success');
-          };
+          }
         }
       );
       if (inputTags.length > 0) {
         $.each(inputTags, function(index, value) {
-          if (value != '') {
+          if (value !== '') {
             Places.addTag(value, 'Places', {_id: placeId});
-          };
+          }
         });
-      };
+      }
     }
   }
 });
 
 Template.editPlace.rendered = function () {
   Meteor.call('getTags', 'Places', function (error, result) {
-    if (!result || result.length == 0) {
+    if (!result || result.length === 0) {
       result = [];
-    };
+    }
     $('#inputTags').selectize({
       valueField: 'name',
       labelField: 'name',
@@ -67,16 +67,15 @@ Template.editPlace.rendered = function () {
       persist: false,
       create: function(input) {
         return {
-          value: input,
-          text: input
-        }
+          name: input
+        };
       },
       options: result,
       onItemRemove: function(value) {
         if (Router.current().path.search('edit/') == 1) {
           var placeId = Router.current().params._id;
           Places.removeTag(value, 'Places', {_id: placeId});
-        };
+        }
       }
     });
   });

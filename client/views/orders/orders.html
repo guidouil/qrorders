@@ -7,8 +7,7 @@
         <tr>
           <th>#</th>
           <th>Nom</th>
-          <th>Créée</th>
-          <th>Maj</th>
+          <th>Quand</th>
           <th>Total</th>
           <th>Statut</th>
           <th>
@@ -37,8 +36,7 @@
         <tr>
           <td>{{number}}</td>
           <td>{{sayMyName name place}}</td>
-          <td>{{fromNow created}}</td>
-          <td>{{fromNow updated}}</td>
+          <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
           <td>{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
           <td>{{{textStatus status}}}</td>
           <td class="text-right">

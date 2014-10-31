@@ -15,6 +15,7 @@ Template.profile.events({
     if (tmpl.find('#selectplace')) {
       var selectplace = tmpl.find('#selectplace').value.trim();
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': selectplace}});
+      growl('OK', 'Resto mise à jours', 'success');
     };
   }
 });
