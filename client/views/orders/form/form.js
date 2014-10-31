@@ -55,7 +55,7 @@ Template.formOrder.helpers({
       var order = Orders.findOne({_id: orderId});
       if (order.status != 1) {
         return false;
-      };
+      }
     }
     var placeId = Router.current().params.place_id;
     var place = Places.findOne({_id: placeId});
@@ -63,7 +63,22 @@ Template.formOrder.helpers({
       return false;
     } else {
       return true;
-    };
+    }
+  },
+  isWaiter: function () {
+    var placeId = Router.current().params.place_id;
+    var place = Places.findOne({_id: placeId});
+    if (place && _.contains(place.waiter, Meteor.userId())) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+  placeId: function () {
+    return Router.current().params.place_id;
+  },
+  orderId: function () {
+    return Router.current().params.order_id;
   }
 });
 
@@ -90,7 +105,7 @@ Template.formOrder.events({
       Session.set('orderStatus', newStatus);
     } else {
       Session.set('orderStatus', order.status);
-    };
+    }
   },
   'click .deleteLine': function (evt, tmpl) {
     evt.preventDefault();
@@ -125,8 +140,8 @@ Template.formOrder.events({
         currentWaiter = userId;
       } else {
         currentWaiter = tmpl.data.owner[0];
-      };
-    };
+      }
+    }
     if (!orderId) {
       OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
       orderNumber = OrdersNumbers.findOne({_id: placeId});
@@ -147,7 +162,7 @@ Template.formOrder.events({
         user: userId
       });
       Session.set('orderId', orderId);
-    };
+    }
     var productId = evt.currentTarget.attributes.id.value;
     var productName = evt.currentTarget.attributes.name.value;
     var quantity = $('#qty-'+productId).val();
@@ -188,23 +203,23 @@ Template.formOrder.events({
             callback: function() {
               var selectedOptions = {};
               var prevOption = '';
+              var optionsString = '';
               if($('.productOptions:checked')) {
-                var optionsString = '';
                 $('.productOptions:checked').each(function(index, choice) {
                   var currentOption = choice.name;
                   if (currentOption != prevOption) {
-                    if (prevOption != '') {
+                    if (prevOption !== '') {
                       optionsString += ' | ';
-                    };
-                    optionsString += currentOption+' : '
+                    }
+                    optionsString += currentOption+' : ';
                     prevOption = currentOption;
                   } else {
                     optionsString += ', ';
-                  };
+                  }
                   optionsString += choice.value;
                 });
               }
-              addOrderLine(optionsString );
+              addOrderLine(optionsString);
             }
           }
         }
@@ -251,8 +266,8 @@ Template.formOrder.events({
         currentWaiter = userId;
       } else {
         currentWaiter = tmpl.data.owner[0];
-      };
-    };
+      }
+    }
     if (!orderId) {
       OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
       orderNumber = OrdersNumbers.findOne({_id: placeId});
@@ -273,7 +288,7 @@ Template.formOrder.events({
         user: userId
       });
       Session.set('orderId', orderId);
-    };
+    }
     var setId = evt.currentTarget.attributes.id.value;
     var setName = evt.currentTarget.attributes.name.value;
     var quantity = $('#qty-'+setId).val();
@@ -319,23 +334,23 @@ Template.formOrder.events({
             callback: function() {
               var selectedOptions = {};
               var prevOption = '';
+              var optionsString = '';
               if($('.productOptions:checked')) {
-                var optionsString = '';
                 $('.productOptions:checked').each(function(index, choice) {
                   var currentOption = choice.name;
                   if (currentOption != prevOption) {
-                    if (prevOption != '') {
+                    if (prevOption !== '') {
                       optionsString += ' | ';
-                    };
-                    optionsString += currentOption+' : '
+                    }
+                    optionsString += currentOption+' : ';
                     prevOption = currentOption;
                   } else {
                     optionsString += ', ';
-                  };
+                  }
                   optionsString += choice.value;
                 });
               }
-              addOrderLine(optionsString );
+              addOrderLine(optionsString);
             }
           }
         }

@@ -1,0 +1,45 @@
+<template name="payOrder">
+  <div class="container">
+    <div class="row">
+      <div class="page-header">
+        <h1>{{placename}} #{{order.number}} <small>{{order.name}} {{formatDate order.created}}</small><span class='pull-right'>{{formatPrice order.total}}</span></h1>
+      </div>
+    </div>
+    <div class='row'>
+      <div class="well">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Quantité</th>
+              <th>Produit</th>
+              <th>Options</th>
+              <th>Prix</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each lines}}
+            <tr>
+              <td>{{quantity}}</td>
+              <td>{{productName}}{{setName}}</td>
+              <td>{{options}}</td>
+              <td>{{formatPrice price}}</td>
+              <td class="text-right">
+
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <button class='btn btn-primary btn-block btn-lg cardPay'>Carte <span class='glyphicon glyphicon-credit-card'></span></button>
+      </div>
+      <div class='col-md-6'>
+        <button class='btn btn-primary btn-block btn-lg cashPay'>Espèces ou tickets <span class='glyphicon glyphicon-euro'></span></button>
+      </div>
+    </div>
+  </div>
+</template>

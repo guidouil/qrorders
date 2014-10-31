@@ -135,5 +135,12 @@
       </div>
     </div>
     {{/if}}
+    {{#if isWaiter}}
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="{{pathFor 'payOrder' place_id=placeId order_id=orderId}}" class="btn btn-success btn-block">Encaisser la commande <span class="glyphicon glyphicon-euro"></span></a>
+      </div>
+    </div>
+    {{/if}}
   </div>
 </template>
