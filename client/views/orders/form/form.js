@@ -135,12 +135,11 @@ Template.formOrder.events({
       if (!orderName) {
         orderName = user.emails[0].address;
       }
-      var now = Date.now();
       orderId = Orders.insert({
         number: orderNumber.seq,
         name: orderName,
         total: 0.00,
-        created: now,
+        created: Date.now(),
         place: placeId,
         waiter: [currentWaiter],
         status: 1,
@@ -216,7 +215,6 @@ Template.formOrder.events({
     function addOrderLine (optionsString) {
 
       var linePrice = product.price * quantity;
-      var now = Date.now();
       var lineId = Lines.insert({
         order: orderId,
         place: placeId,
@@ -225,7 +223,7 @@ Template.formOrder.events({
         productName: productName,
         quantity: quantity,
         price: linePrice,
-        created: now,
+        created: Date.now(),
         status: 1,
         user: userId,
         options: optionsString
@@ -261,12 +259,11 @@ Template.formOrder.events({
       if (!orderName) {
         orderName = user.emails[0].address;
       }
-      var now = Date.now();
       orderId = Orders.insert({
         number: orderNumber.seq,
         name: orderName,
         total: 0.00,
-        created: now,
+        created: Date.now(),
         place: placeId,
         waiter: [currentWaiter],
         status: 1,
@@ -348,7 +345,6 @@ Template.formOrder.events({
     function addOrderLine (optionsString) {
 
       var linePrice = set.price * quantity;
-      var now = Date.now();
       var lineId = Lines.insert({
         order: orderId,
         place: placeId,
@@ -357,7 +353,7 @@ Template.formOrder.events({
         setName: setName,
         quantity: quantity,
         price: linePrice,
-        created: now,
+        created: Date.now(),
         status: 1,
         user: userId,
         options: optionsString

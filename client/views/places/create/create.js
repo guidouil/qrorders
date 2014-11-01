@@ -69,13 +69,12 @@ Template.createPlace.events({
       }
 
       if (valid === true) {
-        var now = Date.now();
         var placeId = Places.insert({
           placename: inputName,
           phone: inputPhone,
           owner: [Meteor.userId()],
           waiter: [Meteor.userId()],
-          created: now
+          created: Date.now()
         });
         OrdersNumbers.insert({_id: placeId, seq: 0});
         swal("Génial !", "Le restaurant " + inputName + " à été créé!", "success");

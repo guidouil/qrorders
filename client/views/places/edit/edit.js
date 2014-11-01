@@ -29,7 +29,8 @@ Template.editPlace.events({
             street: inputStreet,
             town: inputTown,
             zip: inputZip,
-            desc: inputDesc
+            desc: inputDesc,
+            updated: Date.now()
           }
         },
         function(error, result) {
