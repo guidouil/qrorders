@@ -40,22 +40,22 @@ Template.orders.helpers({
     }
   },
   dontSayMyName: function (placename) {
-    if (placename != null) {
+    if (placename !== null) {
       return placename;
     } else {
       var user = Meteor.user();
       if (user) {
-        if (user.profile && user.profile.name != '') {
+        if (user.profile && user.profile.name !== '') {
           return user.profile.name;
         } else {
           return user.emails[0].address;
-        };
-      };
-    };
+        }
+      }
+    }
   },
   selectedStatus: function(status) {
     if (Session.get('statusFilter') == status) {
-      return 'selected'
+      return 'selected';
     } else {
       return false;
     }
@@ -70,7 +70,7 @@ Template.orders.events({
     var order = Orders.findOne({_id: orderId});
     if ( _.contains(order.waiter, Meteor.userId()) ) {
       Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now()}});
-    };
+    }
   },
   'change #selectStatus': function (evt, tmpl) {
     var status = tmpl.find('#selectStatus').value;
@@ -105,7 +105,7 @@ Template.orders.events({
           } else {
             swal("Oups...", "La commande n'à pas été supprimée. Vous n'avez peut être pas le droit ou vous êtes déconnecté...", "error");
             console.log(error);
-          };
+          }
         });
       }
     );
@@ -115,8 +115,8 @@ Template.orders.events({
 Template.orders.rendered = function () {
   if (!Session.get('statusFilter')) {
     Session.set('statusFilter', 'all');
-  };
+  }
   if (!Session.get('dateFilter')) {
     Session.set('dateFilter', 'today');
-  };
+  }
 };

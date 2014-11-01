@@ -29,7 +29,6 @@ Template.payOrder.events({
       function(){
         Orders.update({_id: orderId}, {$set: {paid: true}});
         var placeId = Router.current().params.place_id;
-        console.log(Date.now(), placeId, Meteor.userId(), orderId, order.total, order.user);
         Payments.insert({
           date: Date.now(),
           card: true,

@@ -114,39 +114,6 @@ Template.formOrder.events({
     var placeId = Router.current().params.place_id;
     var orderId = Session.get('orderId');
 
-    var currentWaiter = '';
-    var userId = Meteor.userId();
-    if (!Roles.userIsInRole(Meteor.user(), ['waiter'])) {
-      // online cutomer order belong to place owner
-      currentWaiter = tmpl.data.owner[0];
-    } else {
-      // this place waiter ?
-      if (_.contains(tmpl.data.waiter, userId)) {
-        currentWaiter = userId;
-      } else {
-        currentWaiter = tmpl.data.owner[0];
-      }
-    }
-    if (!orderId) {
-      OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
-      orderNumber = OrdersNumbers.findOne({_id: placeId});
-      var user = Meteor.user();
-      var orderName = user.profile.name;
-      if (!orderName) {
-        orderName = user.emails[0].address;
-      }
-      orderId = Orders.insert({
-        number: orderNumber.seq,
-        name: orderName,
-        total: 0.00,
-        created: Date.now(),
-        place: placeId,
-        waiter: [currentWaiter],
-        status: 1,
-        user: userId
-      });
-      Session.set('orderId', orderId);
-    }
     var productId = evt.currentTarget.attributes.id.value;
     var productName = evt.currentTarget.attributes.name.value;
     var quantity = $('#qty-'+productId).val();
@@ -214,6 +181,41 @@ Template.formOrder.events({
 
     function addOrderLine (optionsString) {
 
+      var currentWaiter = '';
+      var userId = Meteor.userId();
+      if (!Roles.userIsInRole(Meteor.user(), ['waiter'])) {
+        // online cutomer order belong to place owner
+        currentWaiter = tmpl.data.owner[0];
+      } else {
+        // this place waiter ?
+        if (_.contains(tmpl.data.waiter, userId)) {
+          currentWaiter = userId;
+        } else {
+          currentWaiter = tmpl.data.owner[0];
+        }
+      }
+      if (!orderId) {
+        OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
+        orderNumber = OrdersNumbers.findOne({_id: placeId});
+        var user = Meteor.user();
+        var orderName = user.profile.name;
+        if (!orderName) {
+          orderName = user.emails[0].address;
+        }
+        orderId = Orders.insert({
+          number: orderNumber.seq,
+          name: orderName,
+          total: 0.00,
+          created: Date.now(),
+          place: placeId,
+          waiter: [currentWaiter],
+          status: 1,
+          user: userId,
+          paid: false
+        });
+        Session.set('orderId', orderId);
+      }
+
       var linePrice = product.price * quantity;
       var lineId = Lines.insert({
         order: orderId,
@@ -239,38 +241,6 @@ Template.formOrder.events({
     var placeId = Router.current().params.place_id;
     var orderId = Session.get('orderId');
 
-    var currentWaiter = '';
-    var userId = Meteor.userId();
-    if (!Roles.userIsInRole(Meteor.user(), ['waiter'])) {
-      currentWaiter = tmpl.data.owner[0];
-    } else {
-      // this place waiter ?
-      if (_.contains(tmpl.data.waiter, userId)) {
-        currentWaiter = userId;
-      } else {
-        currentWaiter = tmpl.data.owner[0];
-      }
-    }
-    if (!orderId) {
-      OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
-      orderNumber = OrdersNumbers.findOne({_id: placeId});
-      var user = Meteor.user();
-      var orderName = user.profile.name;
-      if (!orderName) {
-        orderName = user.emails[0].address;
-      }
-      orderId = Orders.insert({
-        number: orderNumber.seq,
-        name: orderName,
-        total: 0.00,
-        created: Date.now(),
-        place: placeId,
-        waiter: [currentWaiter],
-        status: 1,
-        user: userId
-      });
-      Session.set('orderId', orderId);
-    }
     var setId = evt.currentTarget.attributes.id.value;
     var setName = evt.currentTarget.attributes.name.value;
     var quantity = $('#qty-'+setId).val();
@@ -344,6 +314,39 @@ Template.formOrder.events({
 
     function addOrderLine (optionsString) {
 
+      var currentWaiter = '';
+      var userId = Meteor.userId();
+      if (!Roles.userIsInRole(Meteor.user(), ['waiter'])) {
+        currentWaiter = tmpl.data.owner[0];
+      } else {
+        // this place waiter ?
+        if (_.contains(tmpl.data.waiter, userId)) {
+          currentWaiter = userId;
+        } else {
+          currentWaiter = tmpl.data.owner[0];
+        }
+      }
+      if (!orderId) {
+        OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
+        orderNumber = OrdersNumbers.findOne({_id: placeId});
+        var user = Meteor.user();
+        var orderName = user.profile.name;
+        if (!orderName) {
+          orderName = user.emails[0].address;
+        }
+        orderId = Orders.insert({
+          number: orderNumber.seq,
+          name: orderName,
+          total: 0.00,
+          created: Date.now(),
+          place: placeId,
+          waiter: [currentWaiter],
+          status: 1,
+          user: userId,
+          paid: false
+        });
+        Session.set('orderId', orderId);
+      }
       var linePrice = set.price * quantity;
       var lineId = Lines.insert({
         order: orderId,
