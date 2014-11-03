@@ -58,17 +58,21 @@ Template.payOrder.events({
     order = Orders.findOne({_id: orderId});
     var cash = tmpl.find('#inputCash').value;
     var ticket = tmpl.find('#inputTicket').value;
-    if (ticket > order.total && !cash) {
+    if (ticket >= order.total) {
       creditNote = ticket - order.total;
       $('.creditNote').html(creditNote.toFixed(2)+'€');
       $('#creditNote').val(creditNote);
+      if (cash > 0) {
+        $('.cashBack').html(parseFloat(cash).toFixed(2)+'€');
+        $('#cashBack').val(cash);
+      }
     }
     if (cash > order.total && !ticket) {
       cashBack = cash - order.total;
       $('.cashBack').html(cashBack.toFixed(2)+'€');
       $('#cashBack').val(cashBack);
     }
-    if (cash > 0 && cash + ticket > order.total) {
+    if (cash > 0 && cash + ticket > order.total && ticket < order.total) {
       var cashNeeded = order.total - ticket;
       cashBack = cash - cashNeeded;
       $('.cashBack').html(cashBack.toFixed(2)+'€');
