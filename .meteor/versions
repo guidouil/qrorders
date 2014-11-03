@@ -67,6 +67,7 @@ mongo-livedata@1.0.6
 mongo@1.0.8
 mrt:accounts-admin-ui-bootstrap-3@0.2.7
 mrt:momentjs@2.1.0
+mrt:qr-scanner@0.2.0
 mrt:underscore-string-latest@2.3.3
 npm-bcrypt@0.7.7
 oauth1@1.1.2
@@ -75,6 +76,7 @@ oauth@1.1.2
 observe-sequence@1.0.3
 ordered-dict@1.0.1
 patrickleet:tags@1.1.0
+pestouille:qrcodejs@0.0.1
 random@1.0.1
 reactive-dict@1.0.4
 reactive-var@1.0.3

@@ -25,6 +25,7 @@
             {{#if isLoggedIn}}
             <li class="{{ activeIfTemplateIs 'cart' }}"><a href="{{pathFor 'cart'}}" title="cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
             {{/if}}
+            <li class="{{ activeIfTemplateIs 'scanQrCode' }}"><a href="{{pathFor 'scanQrCode'}}" title="Scan QR Code"><span class="glyphicon glyphicon-qrcode"></span></a></li>
           </ul>
         </div>
     </div>
