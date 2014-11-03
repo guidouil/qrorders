@@ -34,7 +34,7 @@ handlebars@1.0.1
 html-tools@1.0.2
 htmljs@1.0.2
 http@1.0.8
-ian:bootstrap-3@1.0.3
+ian:bootstrap-3@3.3.0_2
 id-map@1.0.1
 iron:controller@1.0.0
 iron:core@1.0.0

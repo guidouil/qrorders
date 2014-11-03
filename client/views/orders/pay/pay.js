@@ -52,22 +52,27 @@ Template.payOrder.events({
     $('.cashBack').html('0.00€');
     $('#creditNote').val(0);
     $('#cashBack').val(0);
+    var cashBack = 0;
+    var creditNote = 0;
     var orderId = Router.current().params.order_id;
     order = Orders.findOne({_id: orderId});
     var cash = tmpl.find('#inputCash').value;
     var ticket = tmpl.find('#inputTicket').value;
     if (ticket > order.total && !cash) {
-      $('.creditNote').html(ticket - order.total);
-      $('#creditNote').val(ticket - order.total);
+      creditNote = ticket - order.total;
+      $('.creditNote').html(creditNote.toFixed(2)+'€');
+      $('#creditNote').val(creditNote);
     }
     if (cash > order.total && !ticket) {
-      $('.cashBack').html(cash - order.total);
-      $('#cashBack').val(cash - order.total);
+      cashBack = cash - order.total;
+      $('.cashBack').html(cashBack.toFixed(2)+'€');
+      $('#cashBack').val(cashBack);
     }
-    if (cash + ticket > order.total) {
+    if (cash > 0 && cash + ticket > order.total) {
       var cashNeeded = order.total - ticket;
-      $('.cashBack').html(cash - cashNeeded);
-      $('#cashBack').val(cash - cashNeeded);
+      cashBack = cash - cashNeeded;
+      $('.cashBack').html(cashBack.toFixed(2)+'€');
+      $('#cashBack').val(cashBack);
     }
   },
   'click .validCashPay': function (evt, tmpl) {
@@ -91,6 +96,21 @@ Template.payOrder.events({
       total: order.total,
       user: order.user
     });
+    // credit note should be assign to user
+    if (order.user !== Meteor.userId) {
+      var note = Notes.findOne({place: placeId, user: order.user});
+      if (note._id) {
+        Notes.update({_id: note._id},{$set: {updated: Date.now()}, $inc: {amount: order.total}});
+      } else {
+        Notes.insert({
+          place: placeId,
+          owner: Meteor.userId(),
+          user: order.user,
+          amount: order.total,
+          created: Date.now()
+        });
+      }
+    }
     growl('OK', 'Payement validé', 'success');
     Router.go('waiter', {_id: placeId});
   }
