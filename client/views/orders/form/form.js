@@ -50,6 +50,9 @@ Template.formOrder.helpers({
     return (status == Session.get('orderStatus')?'checked':'');
   },
   isNotWaiter: function () {
+    if (!Meteor.userId()) {
+      return false;
+    }
     var orderId = Router.current().params.order_id;
     if (orderId) {
       var order = Orders.findOne({_id: orderId});
@@ -200,7 +203,9 @@ Template.formOrder.events({
         var user = Meteor.user();
         var orderName = user.profile.name;
         if (!orderName) {
-          orderName = user.emails[0].address;
+          var mail = user.emails[0].address;
+          aMail = mail.split('@');
+          orderName = aMail[0];
         }
         orderId = Orders.insert({
           number: orderNumber.seq,
@@ -332,7 +337,9 @@ Template.formOrder.events({
         var user = Meteor.user();
         var orderName = user.profile.name;
         if (!orderName) {
-          orderName = user.emails[0].address;
+          var mail = user.emails[0].address;
+          aMail = mail.split('@');
+          orderName = aMail[0];
         }
         orderId = Orders.insert({
           number: orderNumber.seq,

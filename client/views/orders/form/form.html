@@ -12,62 +12,68 @@
       <div class="col-md-6">
         <form class="form-horizontal form-qr">
           <legend>{{place.placename}} <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th class="col-xs-5 col-md-6">Produit</th>
-                <th class="col-xs-2 col-md-2">Prix</th>
-                <th class="col-xs-4 col-md-3">Quantité</th>
-                <th class="col-xs-1 col-md-1">&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sets}}
-              <tr>
-                <td>{{name}} {{{showTags SetsTags}}}</td>
-                <td>{{formatPrice price}}</td>
-                <td>
-                  <div class="input-group">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
-                    </span>
-                    <input type="text" class="form-control input-sm text-center" name="quantity" id="qty-{{_id}}" value="1">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus"></span></button>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  {{#if isLoggedIn}}
-                  <button class="btn btn-success btn-sm addSet" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
-                  {{/if}}
-                </td>
-              </tr>
-              {{/each}}
-              {{#each products}}
-              <tr>
-                <td>{{name}} {{{showTags ProductsTags}}}</td>
-                <td>{{formatPrice price}}</td>
-                <td>
-                  <div class="input-group">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
-                    </span>
-                    <input type="text" class="form-control input-sm text-center" name="quantity" id="qty-{{_id}}" value="1">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus"></span></button>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  {{#if isLoggedIn}}
-                  <button class="btn btn-success btn-sm addProduct" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
-                  {{/if}}
-                </td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="col-xs-1 col-md-1">Type</th>
+                  <th class="col-xs-4 col-md-5">Produit</th>
+                  <th class="col-xs-2 col-md-2">Prix</th>
+                  <th class="col-xs-4 col-md-3">Quantité</th>
+                  <th class="col-xs-1 col-md-1">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each sets}}
+                <tr>
+                  <td>{{{showTags SetsTags}}}</td>
+                  <td>{{name}}</td>
+
+                  <td>{{formatPrice price}}</td>
+                  <td>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
+                      </span>
+                      <input type="text" class="form-control input-sm text-center" name="quantity" id="qty-{{_id}}" value="1">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus"></span></button>
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    {{#if isLoggedIn}}
+                    <button class="btn btn-success btn-sm addSet" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    {{/if}}
+                  </td>
+                </tr>
+                {{/each}}
+                {{#each products}}
+                <tr>
+                  <td>{{{showTags ProductsTags}}}</td>
+                  <td>{{name}}</td>
+                  <td>{{formatPrice price}}</td>
+                  <td>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
+                      </span>
+                      <input type="text" class="form-control input-sm text-center" name="quantity" id="qty-{{_id}}" value="1">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus"></span></button>
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    {{#if isLoggedIn}}
+                    <button class="btn btn-success btn-sm addProduct" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    {{/if}}
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
         </form>
       </div>
       <div class="col-md-6">
@@ -100,31 +106,32 @@
             {{/if}}
             <span class="pull-right">{{formatPrice order.total}}</span>
           </legend>
-
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Quantité</th>
-                <th>Produit</th>
-                <th>Options</th>
-                <th>Prix</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each lines}}
-              <tr>
-                <td>{{quantity}}</td>
-                <td>{{productName}}{{setName}}</td>
-                <td>{{options}}</td>
-                <td>{{formatPrice price}}</td>
-                <td class="text-right">
-                  <button class="btn btn-danger btn-sm deleteLine" id="{{_id}}" name="{{productName}}"><span class="glyphicon glyphicon-trash"></span></button>
-                </td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Quantité</th>
+                  <th>Produit</th>
+                  <th>Options</th>
+                  <th>Prix</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each lines}}
+                <tr>
+                  <td>{{quantity}}</td>
+                  <td>{{productName}}{{setName}}</td>
+                  <td>{{options}}</td>
+                  <td>{{formatPrice price}}</td>
+                  <td class="text-right">
+                    <button class="btn btn-danger btn-sm deleteLine" id="{{_id}}" name="{{productName}}"><span class="glyphicon glyphicon-trash"></span></button>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
         </form>
       </div>
     </div>

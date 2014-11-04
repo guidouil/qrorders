@@ -2,75 +2,77 @@
 
   <form class="form-horizontal form-qr" id="{{order._id}}">
     <legend><strong>{{dontSayMyName  placename}}</strong> <small>Commandes en cours</small></legend>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Nom</th>
-          <th>Quand</th>
-          <th>Total</th>
-          <th>Statut</th>
-          <th>
-            <span class="pull-right">
-              <select id="selectStatus" name="selectStatus" class="form-control">
-                <option value="all" selected="{{selectedStatus 'all'}}">Toutes</option>
-                <option value="0" selected="{{selectedStatus 0}}" class="text-danger">Annulées</option>
-                <option value="1" selected="{{selectedStatus 1}}" class="text-warning">En création</option>
-                <option value="2" selected="{{selectedStatus 2}}" class="text-primary">Validées</option>
-                <option value="3" selected="{{selectedStatus 3}}" class="text-info">En cours</option>
-                <option value="4" selected="{{selectedStatus 4}}" class="text-success">Servies</option>
-              </select>
-            </span>
-            <span class="pull-right">
-              <div class="btn-group">
-                <button type="button" class="btn btn-default filterDateToday {{isActiveDate 'today'}}">24H</button>
-                <button type="button" class="btn btn-default filterDateAll {{isActiveDate 'all'}}">Toutes</button>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Quand</th>
+            <th>Total</th>
+            <th>Statut</th>
+            <th>
+              <span class="pull-right">
+                <select id="selectStatus" name="selectStatus" class="form-control">
+                  <option value="all" selected="{{selectedStatus 'all'}}">Toutes</option>
+                  <option value="0" selected="{{selectedStatus 0}}" class="text-danger">Annulées</option>
+                  <option value="1" selected="{{selectedStatus 1}}" class="text-warning">En création</option>
+                  <option value="2" selected="{{selectedStatus 2}}" class="text-primary">Validées</option>
+                  <option value="3" selected="{{selectedStatus 3}}" class="text-info">En cours</option>
+                  <option value="4" selected="{{selectedStatus 4}}" class="text-success">Servies</option>
+                </select>
+              </span>
+              <span class="pull-right">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default filterDateToday {{isActiveDate 'today'}}">24H</button>
+                  <button type="button" class="btn btn-default filterDateAll {{isActiveDate 'all'}}">Toutes</button>
+                </div>
+                &nbsp;
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each orders}}
+          <tr>
+            <td>{{number}}</td>
+            <td>{{sayMyName name place}}</td>
+            <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
+            <td>{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
+            <td>{{{textStatus status}}}</td>
+            <td class="text-right">
+              <button class="btn btn-danger btn-sm deleteOrder" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
+
+              <div class="btn-group text-center hidden-xs" data-toggle="buttons">
+                <label class="btn btn-danger btn-sm {{isStatusActive 0 status}} changeStatus" for="status-0" value="0" id="{{_id}}">
+                  <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0 status}}>
+                  <span class="glyphicon glyphicon-remove"></span>
+                </label>
+                <label class="btn btn-warning btn-sm {{isStatusActive 1 status}} changeStatus" for="status-1" value="1" id="{{_id}}">
+                  <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1 status}}>
+                  <span class="glyphicon glyphicon-plus"></span>
+                </label>
+                <label class="btn btn-primary btn-sm {{isStatusActive 2 status}} changeStatus" for="status-2" value="2" id="{{_id}}">
+                  <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2 status}}>
+                  <span class="glyphicon glyphicon-ok"></span>
+                </label>
+                <label class="btn btn-info btn-sm {{isStatusActive 3 status}} changeStatus" for="status-3" value="3" id="{{_id}}">
+                  <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3 status}}>
+                  <span class="glyphicon glyphicon-refresh"></span>
+                </label>
+                <label class="btn btn-success btn-sm {{isStatusActive 4 status}} changeStatus" for="status-4" value="4" id="{{_id}}">
+                  <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4 status}}>
+                  <span class="glyphicon glyphicon-cutlery"></span>
+                </label>
               </div>
-              &nbsp;
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each orders}}
-        <tr>
-          <td>{{number}}</td>
-          <td>{{sayMyName name place}}</td>
-          <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
-          <td>{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
-          <td>{{{textStatus status}}}</td>
-          <td class="text-right">
-            <button class="btn btn-danger btn-sm deleteOrder" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
 
-            <div class="btn-group text-center hidden-xs" data-toggle="buttons">
-              <label class="btn btn-danger btn-sm {{isStatusActive 0 status}} changeStatus" for="status-0" value="0" id="{{_id}}">
-                <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0 status}}>
-                <span class="glyphicon glyphicon-remove"></span>
-              </label>
-              <label class="btn btn-warning btn-sm {{isStatusActive 1 status}} changeStatus" for="status-1" value="1" id="{{_id}}">
-                <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1 status}}>
-                <span class="glyphicon glyphicon-plus"></span>
-              </label>
-              <label class="btn btn-primary btn-sm {{isStatusActive 2 status}} changeStatus" for="status-2" value="2" id="{{_id}}">
-                <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2 status}}>
-                <span class="glyphicon glyphicon-ok"></span>
-              </label>
-              <label class="btn btn-info btn-sm {{isStatusActive 3 status}} changeStatus" for="status-3" value="3" id="{{_id}}">
-                <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3 status}}>
-                <span class="glyphicon glyphicon-refresh"></span>
-              </label>
-              <label class="btn btn-success btn-sm {{isStatusActive 4 status}} changeStatus" for="status-4" value="4" id="{{_id}}">
-                <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4 status}}>
-                <span class="glyphicon glyphicon-cutlery"></span>
-              </label>
-            </div>
-
-            <a class="btn btn-primary btn-sm editOrder" href="{{pathFor 'editOrder' place_id=place order_id=_id}}"><span class="glyphicon glyphicon-pencil"></span></a>
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
+              <a class="btn btn-primary btn-sm editOrder" href="{{pathFor 'editOrder' place_id=place order_id=_id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </form>
 
 </template>
