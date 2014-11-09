@@ -1,3 +1,11 @@
+Template.formOrder.rendered = function () {
+    $('.clockpicker').clockpicker({
+      placement: 'top',
+      align: 'left',
+      autoclose: true
+    });
+};
+
 Template.formOrder.helpers({
   place: function() {
     var placeId = Router.current().params.place_id;
@@ -56,7 +64,9 @@ Template.formOrder.helpers({
     var orderId = Router.current().params.order_id;
     if (orderId) {
       var order = Orders.findOne({_id: orderId});
-      if (order.status != 1) {
+      if (order.status === 1) {
+        return true;
+      } else {
         return false;
       }
     }
@@ -67,6 +77,9 @@ Template.formOrder.helpers({
     } else {
       return true;
     }
+  },
+  theTime: function () {
+    return moment().add('minutes',10).format('HH:mm');
   }
 });
 
@@ -108,7 +121,12 @@ Template.formOrder.events({
   'click .customerValidation': function (evt, tmpl) {
     evt.preventDefault();
     var orderId = Session.get('orderId');
-    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now()}});
+    var timeWanted = tmpl.find('#timeWanted').value;
+    var inTen = moment().add('minutes',10).format('HH:mm');
+    if (timeWanted < inTen) {
+      timeWanted = inTen;
+    }
+    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now(), wanted: timeWanted}});
     swal('Merci','Votre commande est validée','success');
     Router.go('cart');
   },

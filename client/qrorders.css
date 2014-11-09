@@ -5,25 +5,23 @@ body {
 }
 .navbar-brand {
   color: whitesmoke!important;
-  line-height: 1.6em;
+  line-height: 1.5em;
 }
-
-.form-qr {
-  float: none;
-  margin: auto;
-  overflow: auto;
-  background: #fff;
-  border-radius: 7px;
-  padding: 15px;
-  color: #444;
-  margin-bottom: 10px;
+.navbar-nav {
+  margin: 7.5px 0px;
 }
-
+.nav-pills li a{
+  padding-left: 14px;
+  padding-right: 14px;
+}
 #iron-router-progress {
   background-color : #5cb85c;
   box-shadow       : 0 0 0 #5cb85c;
 }
-
+.well {
+  padding-left: 7px;
+  padding-right: 7px;
+}
 .shape{
     border-style: solid; border-width: 0 40px 40px 0; float:right; height: 0px; width: 0px;
     -webkit-transform: rotate(360deg);
@@ -74,6 +72,12 @@ body {
 
 .offer-content{
   padding:0 20px 10px;
+}
+@media (max-width: 500px) {
+  .col-md-6 {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 @media (min-width: 487px) {
   .container {

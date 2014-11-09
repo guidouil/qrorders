@@ -10,7 +10,7 @@
     {{/if}}
     <div class="row">
       <div class="col-md-6">
-        <form class="form-horizontal form-qr">
+        <form class="form-horizontal well">
           <legend>{{place.placename}} <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -77,7 +77,7 @@
         </form>
       </div>
       <div class="col-md-6">
-        <form class="form-horizontal form-qr">
+        <form class="form-horizontal well">
           <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}}&nbsp;
             {{#if isActiveOrder}}
             <div class="btn-group text-center" data-toggle="buttons">
@@ -137,8 +137,16 @@
     </div>
     {{#if isNotWaiter}}
     <div class="row">
-      <div class="col-xs-12">
-        <button class="btn btn-success btn-block customerValidation">Valider la commande <span class="glyphicon glyphicon-shopping-cart"></span></button>
+      <div class="col-xs-5 col-md-2">
+        <div class="input-group clockpicker">
+          <input type="text" class="form-control" value="{{theTime}}" id="timeWanted" name="timeWanted">
+          <span class="input-group-addon">
+              <span class="glyphicon glyphicon-time"></span>
+          </span>
+      </div>
+      </div>
+      <div class="col-xs-7 col-md-10">
+        <button class="btn btn-success btn-block customerValidation">Valider la commande</button>
       </div>
     </div>
     {{/if}}

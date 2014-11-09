@@ -1,35 +1,35 @@
 <template name="orders">
 
-  <form class="form-horizontal form-qr" id="{{order._id}}">
-    <legend><strong>{{dontSayMyName  placename}}</strong> <small>Commandes en cours</small></legend>
+  <form class="form-horizontal well" id="{{order._id}}">
+    <legend><strong>{{dontSayMyName  placename}}</strong> <small>Commandes en cours</small>
+      <span class="pull-right">
+        <select id="selectStatus" name="selectStatus" class="form-control">
+          <option value="all" selected="{{selectedStatus 'all'}}">Toutes</option>
+          <option value="0" selected="{{selectedStatus 0}}" class="text-danger">Annulées</option>
+          <option value="1" selected="{{selectedStatus 1}}" class="text-warning">En création</option>
+          <option value="2" selected="{{selectedStatus 2}}" class="text-primary">Validées</option>
+          <option value="3" selected="{{selectedStatus 3}}" class="text-info">En cours</option>
+          <option value="4" selected="{{selectedStatus 4}}" class="text-success">Servies</option>
+        </select>
+      </span>
+      <span class="pull-right">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default filterDateToday {{isActiveDate 'today'}}">24H</button>
+          <button type="button" class="btn btn-default filterDateAll {{isActiveDate 'all'}}">Toutes</button>
+        </div>
+        &nbsp;
+      </span>
+    </legend>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
           <tr>
             <th>#</th>
             <th>Nom</th>
-            <th>Quand</th>
-            <th>Total</th>
             <th>Statut</th>
-            <th>
-              <span class="pull-right">
-                <select id="selectStatus" name="selectStatus" class="form-control">
-                  <option value="all" selected="{{selectedStatus 'all'}}">Toutes</option>
-                  <option value="0" selected="{{selectedStatus 0}}" class="text-danger">Annulées</option>
-                  <option value="1" selected="{{selectedStatus 1}}" class="text-warning">En création</option>
-                  <option value="2" selected="{{selectedStatus 2}}" class="text-primary">Validées</option>
-                  <option value="3" selected="{{selectedStatus 3}}" class="text-info">En cours</option>
-                  <option value="4" selected="{{selectedStatus 4}}" class="text-success">Servies</option>
-                </select>
-              </span>
-              <span class="pull-right">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default filterDateToday {{isActiveDate 'today'}}">24H</button>
-                  <button type="button" class="btn btn-default filterDateAll {{isActiveDate 'all'}}">Toutes</button>
-                </div>
-                &nbsp;
-              </span>
-            </th>
+            <th>Total</th>
+            <th>Quand</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -37,12 +37,11 @@
           <tr>
             <td>{{number}}</td>
             <td>{{sayMyName name place}}</td>
-            <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
-            <td>{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
             <td>{{{textStatus status}}}</td>
+            <td>{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
+            <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}{{#if wanted}} (pour {{wanted}}){{/if}}</td>
             <td class="text-right">
               <button class="btn btn-danger btn-sm deleteOrder" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
-
               <div class="btn-group text-center hidden-xs" data-toggle="buttons">
                 <label class="btn btn-danger btn-sm {{isStatusActive 0 status}} changeStatus" for="status-0" value="0" id="{{_id}}">
                   <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0 status}}>
@@ -65,7 +64,6 @@
                   <span class="glyphicon glyphicon-cutlery"></span>
                 </label>
               </div>
-
               <a class="btn btn-primary btn-sm editOrder" href="{{pathFor 'editOrder' place_id=place order_id=_id}}"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
           </tr>

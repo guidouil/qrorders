@@ -4,7 +4,7 @@ Template.editOption.events({
     var inputTitle = tmpl.find('#inputTitle').value.trim();
     var inputType = tmpl.find('input:radio[name=radioType]:checked').value;
     var inputChoices = tmpl.find('#inputChoices').value.split(',');
-    if (inputTitle != '' && inputChoices != '') {
+    if (inputTitle !== '' && inputChoices !== '') {
       var optionId = Router.current().params.option_id;
       Options.update({_id: optionId}, {$set: {
         title: inputTitle,
@@ -13,11 +13,11 @@ Template.editOption.events({
       }});
       if (inputChoices.length > 0) {
         $.each(inputChoices, function(index, value) {
-          if (value != '') {
+          if (value !== '') {
             Options.addTag(value, 'Options', {_id: optionId});
-          };
+          }
         });
-      };
+      }
       growl('OK', 'L\'option '+inputTitle+' est à jour', 'success');
       var placeId = Router.current().params.place_id;
       Router.go('optionsPlace', {_id: placeId});

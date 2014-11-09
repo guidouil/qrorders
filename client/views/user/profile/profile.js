@@ -8,15 +8,15 @@ Template.profile.events({
     evt.preventDefault();
     var user = Meteor.user();
     var inputName = tmpl.find('#inputName').value.trim();
-    if (inputName != '' && (!user.profile || user.profile.name !== inputName)) {
+    if (inputName !== '' && (!user.profile || user.profile.name !== inputName)) {
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.name': inputName}});
       growl('OK', 'Profil mis à jours', 'success');
-    };
+    }
     if (tmpl.find('#selectplace')) {
       var selectplace = tmpl.find('#selectplace').value.trim();
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': selectplace}});
       growl('OK', 'Resto mise à jours', 'success');
-    };
+    }
   }
 });
 
@@ -36,6 +36,6 @@ Template.profile.helpers({
       return 'selected';
     } else {
       return false;
-    };
+    }
   }
 });
