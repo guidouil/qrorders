@@ -6,5 +6,11 @@ Template.onePlace.helpers({
     } else {
       return false;
     }
+  },
+  imageSrc: function(imageId) {
+    if (imageId) {
+      var image = Images.findOne({_id: imageId});
+      return image.name();
+    }
   }
 });

@@ -52,6 +52,24 @@ Template.editPlace.events({
         });
       }
     }
+  },
+  'change #inputImage': function(event, template) {
+    event.preventDefault();
+    FS.Utility.eachFile(event, function(file) {
+      Images.insert(file, function (err, fileObj) {
+        //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+        var placeId = Router.current().params._id;
+        Places.update({_id: placeId}, {$set: {image: fileObj._id}});
+      });
+    });
+  }
+});
+
+Template.editPlace.helpers({
+  imageSrc: function() {
+    if (this.image) {
+      return Images.findOne({_id: this.image});
+    }
   }
 });
 

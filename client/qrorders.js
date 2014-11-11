@@ -1,4 +1,5 @@
 Meteor.subscribe('Places');
+Meteor.subscribe('Images');
 
 Template.layout.rendered = function () {
   Meteor.call('user_profile_name');
@@ -8,7 +9,7 @@ getUserLanguage = function () {
   var language = window.navigator.userLanguage || window.navigator.language;
   if (language.length > 2) {
     language = language.substring(0,2).toLowerCase();
-  };
+  }
   Session.set('language', language);
   //return language;
 };

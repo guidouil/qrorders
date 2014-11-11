@@ -5,6 +5,16 @@
         <legend>Éditer {{name}}</legend>
 
         {{> formSet}}
+        <div class="form-group">
+          <label class="col-xs-3 control-label" for="inputImage">Photo</label>
+          <div class="col-xs-9">
+            <input type="file" id="inputImage">
+            <p class="help-block">De preference en vue paysage.</p>
+            {{#if image}}
+              <img src="/uploads/images-{{imageSrc._id}}-{{imageSrc.name}}" alt="{{image}}" class="img-responsive" width="460"/>
+            {{/if}}
+          </div>
+        </div>
 
         <button type="submit" class="btn btn-success save">Enregister</button>
         <a href="{{pathFor 'setsPlace' _id=place_id}}" class="btn">Annuler</a>

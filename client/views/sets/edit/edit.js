@@ -10,8 +10,8 @@ Template.editSet.events({
       $('.inputProducts:checked').each(function(){
         inputProducts.push(this.id);
       });
-    };
-    if (inputName != '' && inputPrice != '' && inputProducts.length > 0) {
+    }
+    if (inputName !== '' && inputPrice !== '' && inputProducts.length > 0) {
       var setId = Router.current().params.set_id;
       Sets.update({_id: setId}, {$set: {
         name: inputName,
@@ -21,11 +21,11 @@ Template.editSet.events({
       }});
       if (inputTags.length > 0) {
         $.each(inputTags, function(index, value) {
-          if (value != '') {
+          if (value !== '') {
             Sets.addTag(value, 'Sets', {_id: setId});
-          };
+          }
         });
-      };
+      }
       growl('OK', inputName+' mis à jour', 'success');
       var placeId = Router.current().params.place_id;
       Router.go('setsPlace', {_id: placeId});
@@ -52,12 +52,26 @@ Template.editSet.events({
         Router.go('setsPlace', {_id: placeId});
       }
     );
+  },
+  'change #inputImage': function(event, template) {
+    event.preventDefault();
+    var setId = this._id;
+    FS.Utility.eachFile(event, function(file) {
+      Images.insert(file, function (err, fileObj) {
+        //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+        Sets.update({_id: setId}, {$set: {image: fileObj._id}});
+      });
+    });
   }
 });
 
 Template.editSet.helpers({
   place_id: function () {
     return Router.current().params.place_id;
-
+  },
+  imageSrc: function() {
+    if (this.image) {
+      return Images.findOne({_id: this.image});
+    }
   }
 });

@@ -10,13 +10,13 @@ Template.editProduct.events({
       $('.inputOptions:checked').each(function(){
         inputOptions.push(this.id);
       });
-    };
+    }
     if ($('.inputOptions:checkbox')) {
       $('.inputOptions:checkbox').each(function(){
         Options.update({_id: this.id}, {$pull: {products: productId}});
       });
-    };
-    if (inputName != '' && inputPrice != '') {
+    }
+    if (inputName !== '' && inputPrice !== '') {
       var productId = Router.current().params.product_id;
       Products.update({_id: productId}, {$set: {
         name: inputName,
@@ -28,14 +28,14 @@ Template.editProduct.events({
         $.each(inputOptions, function(index, optionId) {
            Options.update({_id: optionId}, {$push: {products: productId}});
         });
-      };
+      }
       if (inputTags.length > 0) {
         $.each(inputTags, function(index, value) {
-          if (value != '') {
+          if (value !== '') {
             Products.addTag(value, 'Products', {_id: productId});
-          };
+          }
         });
-      };
+      }
       growl('OK', inputName+' mis à jour', 'success');
       var placeId = Router.current().params.place_id;
       Router.go('productsPlace', {_id: placeId});
@@ -62,12 +62,26 @@ Template.editProduct.events({
         Router.go('productsPlace', {_id: placeId});
       }
     );
+  },
+  'change #inputImage': function(event, template) {
+    event.preventDefault();
+    var productId = this._id;
+    FS.Utility.eachFile(event, function(file) {
+      Images.insert(file, function (err, fileObj) {
+        //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+        Products.update({_id: productId}, {$set: {image: fileObj._id}});
+      });
+    });
   }
 });
 
 Template.editProduct.helpers({
   place_id: function () {
     return Router.current().params.place_id;
-
+  },
+  imageSrc: function() {
+    if (this.image) {
+      return Images.findOne({_id: this.image});
+    }
   }
 });

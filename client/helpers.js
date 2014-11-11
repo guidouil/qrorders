@@ -4,8 +4,8 @@ UI.registerHelper('formatPrice', function(price) {
       case 'fr' :
         return parseFloat(price).toMoney(2,',',' ') + '€';
         break;
-      case 'en' :
       default :
+      case 'en' :
         return '€' + parseFloat(price).toMoney(2,'.',',');
         break;
     }
@@ -42,7 +42,7 @@ UI.registerHelper('formatDate', function(date){
   return moment(date).format('DD/MM/YYYY HH:mm');
 });
 UI.registerHelper('fromNow', function(date){
-  if(date != null) {
+  if(date !== null) {
     var oDate = moment(date);
     oDate.lang('fr');
     return oDate.fromNow();
@@ -50,26 +50,28 @@ UI.registerHelper('fromNow', function(date){
 });
 
 UI.registerHelper('textStatus', function(status) {
+  var result = false;
   switch (status) {
     case 0:
-      return '<span class="label label-danger">Annulée</span>';
+      result = '<span class="label label-danger">Annulée</span>';
       break;
     case 1:
-      return '<span class="label label-warning">En création</span>';
+      result = '<span class="label label-warning">En création</span>';
       break;
     case 2:
-      return '<span class="label label-primary">Validée</span>';
+      result = '<span class="label label-primary">Validée</span>';
       break;
     case 3:
-      return '<span class="label label-info">En cours</span>';
+      result = '<span class="label label-info">En cours</span>';
       break;
     case 4:
-      return '<span class="label label-success">Servie</span>';
+      result = '<span class="label label-success">Servie</span>';
       break;
     default :
-      return '<span class="label label-muted">Houston?</span>';
+      result = '<span class="label label-muted">Houston?</span>';
       break;
   }
+  return result;
 });
 
 UI.registerHelper('arrayToString', function (array) {
@@ -83,13 +85,13 @@ UI.registerHelper('arrayLength', function (array) {
 UI.registerHelper('isNotLoggedIn', function () {
   if (!Meteor.userId()) {
     return true;
-  };
+  }
   return false;
 });
 UI.registerHelper('isLoggedIn', function () {
   if (Meteor.userId()) {
     return true;
-  };
+  }
   return false;
 });
 
@@ -100,5 +102,10 @@ UI.registerHelper('showTags', function (tags) {
       tagsString += '<span class="label label-info">'+tag+'</span> ';
     });
     return tagsString;
-  };
+  }
+});
+
+UI.registerHelper('getImage', function (imgId) {
+  var image = Images.findOne({_id: imgId});
+  return image;
 });
