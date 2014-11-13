@@ -15,11 +15,11 @@
       <div class="productprice">
         <div class="pull-right">
           {{#if isOwner}}
-          <a href="/products/{{_id}}" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-cutlery"></span></a>&nbsp;
-          <a href="/edit/{{_id}}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-cog"></span></a>&nbsp;
-          <a href="/editqrcode/{{_id}}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-qrcode"></span></a>
+          <a href="/products/{{_id}}" class="btn btn-success btn-sm" title="Produits"><span class="glyphicon glyphicon-shopping-cart"></span></a>&nbsp;
+          <a href="/edit/{{_id}}" class="btn btn-warning btn-sm" title="Éditer"><span class="glyphicon glyphicon-cog"></span></a>&nbsp;
+          <a href="/editqrcode/{{_id}}" class="btn btn-info btn-sm" title="QR Code"><span class="glyphicon glyphicon-qrcode"></span></a>
           {{else}}
-          <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-sm">La Carte <span class="glyphicon glyphicon-cutlery"></span></a>
+          <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-sm" title="Je Commande">JeCmd <span class="glyphicon glyphicon-shopping-cart"></span></a>
           {{/if}}
         </div>
         <div class="pricetext">
