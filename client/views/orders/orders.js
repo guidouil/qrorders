@@ -2,18 +2,20 @@ Template.orders.helpers({
   orders: function () {
     var dateFilter = Session.get('dateFilter');
     var statusFilter = Session.get('statusFilter');
+    var paidFilter = Session.get('paidFilter');
+
     if (dateFilter == 'today') {
       var yesterday = moment().subtract('days', 1).valueOf();
       if (statusFilter == 'all') {
-        return Orders.find({created: {$gt: yesterday}},{sort: {created: -1}}).fetch();
+        return Orders.find({$and: [{created: {$gt: yesterday}}, {paid: paidFilter} ]},{sort: {created: -1}}).fetch();
       } else {
-        return Orders.find({status: parseFloat(statusFilter), created: {$gt: yesterday}},{sort: {created: -1}}).fetch();
+        return Orders.find({status: parseFloat(statusFilter), created: {$gt: yesterday}, paid: paidFilter},{sort: {created: -1}}).fetch();
       }
     } else {
       if (statusFilter == 'all') {
-        return Orders.find({},{sort: {created: -1}}).fetch();
+        return Orders.find({paid: paidFilter},{sort: {created: -1}}).fetch();
       } else {
-        return Orders.find({status: parseFloat(statusFilter)},{sort: {created: -1}}).fetch();
+        return Orders.find({status: parseFloat(statusFilter), paid: paidFilter},{sort: {created: -1}}).fetch();
       }
 
     }
@@ -30,8 +32,11 @@ Template.orders.helpers({
   isActiveDate: function (filter) {
     return (Session.get('dateFilter') == filter ?'active':'');
   },
+  isActivePaid: function (filter) {
+    return (Session.get('paidFilter') == filter ?'active':'');
+  },
   sayMyName: function (name, placeId) {
-    var currentRoute = Router.current()
+    var currentRoute = Router.current();
     if (currentRoute.lookupTemplate() === 'cart') {
       var place = Places.findOne({_id: placeId});
       return place.placename;
@@ -82,6 +87,12 @@ Template.orders.events({
   'click .filterDateAll': function () {
     Session.set('dateFilter', 'all');
   },
+  'click .filterNotPaid': function () {
+    Session.set('paidFilter', false);
+  },
+  'click .filterPaid': function () {
+    Session.set('paidFilter', true);
+  },
   'click .deleteOrder': function (evt, tmpl) {
     evt.preventDefault();
 
@@ -118,5 +129,8 @@ Template.orders.rendered = function () {
   }
   if (!Session.get('dateFilter')) {
     Session.set('dateFilter', 'today');
+  }
+  if (!Session.get('paidFilter')) {
+    Session.set('paidFilter', false);
   }
 };
