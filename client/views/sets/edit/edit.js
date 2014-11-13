@@ -56,22 +56,18 @@ Template.editSet.events({
   'change #inputImage': function(event, template) {
     event.preventDefault();
     var setId = this._id;
-    FS.Utility.eachFile(event, function(file) {
-      Images.insert(file, function (err, fileObj) {
-        //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-        Sets.update({_id: setId}, {$set: {image: fileObj._id}});
-      });
-    });
+    var file = template.find('#inputImage').files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      Sets.update({_id: setId}, {$set: {image: e.target.result}});
+    };
+    reader.readAsDataURL(file);
+    $('#imageModal').modal();
   }
 });
 
 Template.editSet.helpers({
   place_id: function () {
     return Router.current().params.place_id;
-  },
-  imageSrc: function() {
-    if (this.image) {
-      return Images.findOne({_id: this.image});
-    }
   }
 });

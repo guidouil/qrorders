@@ -2,10 +2,6 @@ Meteor.publish('Places', function () {
   return Places.find({});
 });
 
-Meteor.publish('Images', function () {
-  return Images.find({});
-});
-
 Meteor.publish('Products', function(placeId){
   return Products.find({places: placeId});
 });

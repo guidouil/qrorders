@@ -55,22 +55,18 @@ Template.editPlace.events({
   },
   'change #inputImage': function(event, template) {
     event.preventDefault();
-    FS.Utility.eachFile(event, function(file) {
-      Images.insert(file, function (err, fileObj) {
-        //Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-        var placeId = Router.current().params._id;
-        Places.update({_id: placeId}, {$set: {image: fileObj._id}});
-      });
-    });
+    var placeId = Router.current().params._id;
+    var file = template.find('#inputImage').files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      Places.update({_id: placeId}, {$set: {image: e.target.result}});
+    };
+    reader.readAsDataURL(file);
+    $('#imageModal').modal();
   }
 });
 
 Template.editPlace.helpers({
-  imageSrc: function() {
-    if (this.image) {
-      return Images.findOne({_id: this.image});
-    }
-  }
 });
 
 Template.editPlace.rendered = function () {

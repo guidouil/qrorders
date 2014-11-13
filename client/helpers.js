@@ -104,8 +104,3 @@ UI.registerHelper('showTags', function (tags) {
     return tagsString;
   }
 });
-
-UI.registerHelper('getImage', function (imgId) {
-  var image = Images.findOne({_id: imgId});
-  return image;
-});

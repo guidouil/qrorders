@@ -10,7 +10,10 @@ Template.onePlace.helpers({
   imageSrc: function(imageId) {
     if (imageId) {
       var image = Images.findOne({_id: imageId});
-      return image.name();
+      if (image) {
+        return image.name();
+        
+      }
     }
   }
 });

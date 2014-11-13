@@ -1,0 +1,20 @@
+<template name="imageModal">
+  <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="imageModalLabel">Centrer la photo</h4>
+        </div>
+        <div class="modal-body">
+          <div class="bootstrap-modal-cropper"><img src="{{image}}" class="img-responsive"></div>
+          <p class="text-center">
+            vous pouvez zoomer avec votre molette ou vos doigts
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</template>

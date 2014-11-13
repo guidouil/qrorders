@@ -1,41 +1,15 @@
 <template name="onePlace">
-  <!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="offer offer-success">
-      <div class="shape">
-        <div class="shape-text">
-          &nbsp;<span class="glyphicon glyphicon-star"></span>
-        </div>
-      </div>
-      <div class="offer-content">
-        <h3 >
-          {{placename}} <small>{{phone}}</small>
-        </h3>
-        <h4>{{street}} <small>{{town}}</small></h4>
-        <p>{{{showTags PlacesTags}}}</p>
-        <p>{{desc}}</p>
-        <p>
-          {{#if isOwner}}
-          <a href="/products/{{_id}}" class="btn btn-success">La carte <span class="glyphicon glyphicon-cutlery"></span></a>&nbsp;
-          <a href="/edit/{{_id}}" class="btn btn-warning">Éditer <span class="glyphicon glyphicon-cog"></span></a>
-          <a href="/editqrcode/{{_id}}"><span class="glyphicon glyphicon-qrcode"></span></a>
-          {{else}}
-          <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-lg">La Carte <span class="glyphicon glyphicon-cutlery"></span></a>
-          {{/if}}
-        </p>
-      </div>
-    </div>
-  </div> -->
   <div class="col-xs-12 col-sm-4 col-md-3">
     <div class="productbox">
       {{#if image}}
-      <img src="/uploads/images-{{image}}-{{imageSrc image}}" alt="{{placename}}" class="img-responsive">
+      <img src="{{image}}" alt="{{placename}}" class="img-responsive">
       {{/if}}
       <div class="producttitle">{{placename}}</div>
       <p class="text-justify">{{desc}}</p>
       <address>
         {{street}}<br>
-        {{town}}<br>
-        <abbr title="Téléphone">Tel :</abbr> {{phone}}
+        {{zip}} {{town}}<br>
+        <a href="tel:{{phone}}">{{phone}}</a>
       </address>
 
       <div class="productprice">
