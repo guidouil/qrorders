@@ -26,7 +26,6 @@ Template.imageModal.rendered = function() {
       var setId = currentRoute.params.set_id;
       Sets.update({_id: setId}, {$set: {image: originalData}});
     }
-    console.log(currentRoute.lookupTemplate());
     $image.cropper("destroy");
   });
 };

@@ -44,5 +44,15 @@ Meteor.methods({
       // console.log(source);
       return source;
     };
+  },
+  clean_the_place: function (placeId) {
+    Products.remove({places: placeId});
+    Sets.remove({places: placeId});
+    Orders.remove({place: placeId});
+    OrdersNumbers.remove({_id: placeId});
+    Lines.remove({place: placeId});
+    Options.remove({place: placeId});
+    Payments.remove({place: placeId});
+    Notes.remove({place: placeId});
   }
 });

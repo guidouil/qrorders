@@ -2,24 +2,22 @@
   <div class="col-xs-12 col-sm-4 col-md-3">
     <div class="productbox">
       {{#if image}}
-      <img src="{{image}}" alt="{{placename}}" class="img-responsive">
+      <a href="{{pathFor 'createOrder' place_id=_id}}"><img src="{{image}}" alt="{{placename}}" class="img-responsive"></a>
       {{/if}}
-      <div class="producttitle">{{placename}}</div>
-      <p class="text-justify">{{desc}}</p>
+      <div class="producttitle text-center">{{placename}}</div>
+      <p class="text-center">{{placedesc}}</p>
+      <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-block" title="Je Commande">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></a>
       <address>
-        {{street}}<br>
-        {{zip}} {{town}}<br>
+        {{#if street}}{{street}}<br>{{/if}}
+        {{#if town}}{{zip}} {{town}}<br>{{/if}}
         <a href="tel:{{phone}}">{{phone}}</a>
       </address>
-
       <div class="productprice">
         <div class="pull-right">
           {{#if isOwner}}
           <a href="/products/{{_id}}" class="btn btn-success btn-sm" title="Produits"><span class="glyphicon glyphicon-shopping-cart"></span></a>&nbsp;
           <a href="/edit/{{_id}}" class="btn btn-warning btn-sm" title="Éditer"><span class="glyphicon glyphicon-cog"></span></a>&nbsp;
-          <a href="/editqrcode/{{_id}}" class="btn btn-info btn-sm" title="QR Code"><span class="glyphicon glyphicon-qrcode"></span></a>
-          {{else}}
-          <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-sm" title="Je Commande">JeCmd <span class="glyphicon glyphicon-shopping-cart"></span></a>
+          <a href="/editqrcode/{{_id}}" class="btn btn-danger btn-sm" title="QR Code"><span class="glyphicon glyphicon-qrcode"></span></a>
           {{/if}}
         </div>
         <div class="pricetext">

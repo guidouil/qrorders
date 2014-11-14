@@ -29,7 +29,7 @@ Template.editPlace.events({
             street: inputStreet,
             town: inputTown,
             zip: inputZip,
-            desc: inputDesc,
+            placedesc: inputDesc,
             updated: Date.now()
           }
         },
@@ -63,6 +63,28 @@ Template.editPlace.events({
     };
     reader.readAsDataURL(file);
     $('#imageModal').modal();
+  },
+  'click .delete': function (evt, tmpl) {
+    var placeId = this._id;
+    swal(
+      {
+        title: "Êtes vous sur ?",
+        text: "La suppression d'un établissement est définitive.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Supprimer",
+        cancelButtonText: "Annuler",
+        closeOnConfirm: true,
+        closeOnCancel: true
+      },
+      function(){
+        Places.remove({_id: placeId});
+        Meteor.call('clean_the_place',placeId);
+        growl('Ça c\'est fait', 'Établissement supprimé', 'danger');
+        Router.go('owner');
+      }
+    );
   }
 });
 

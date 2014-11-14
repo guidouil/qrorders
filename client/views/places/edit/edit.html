@@ -39,7 +39,7 @@
         <div class="form-group" id="desc">
           <label class="col-xs-3 control-label" for="inputDesc">Description</label>
           <div class="col-xs-9">
-            <textarea class="form-control" rows="3" name="inputDesc" id="inputDesc">{{desc}}</textarea>
+            <textarea class="form-control" rows="3" name="inputDesc" id="inputDesc">{{placedesc}}</textarea>
           </div>
         </div>
         <div class="form-group">
@@ -59,9 +59,9 @@
             <p class="help">Tapez en plusieurs, séparés par des virgules. Ex : Kebab, Pizzeria, Boulangerie ...</p>
           </div>
         </div>
-
         <button type="submit" class="btn btn-success save">Enregister</button>
         <a href="{{pathFor 'owner'}}" class="btn">Annuler</a>
+        <a href="" class="btn btn-danger pull-right delete">Supprimer</a>
       </form>
     </div>
   </div>
