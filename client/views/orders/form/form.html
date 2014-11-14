@@ -19,7 +19,7 @@
                   <th class="col-xs-1 col-md-1">Type</th>
                   <th class="col-xs-4 col-md-5">Produit</th>
                   <th class="col-xs-2 col-md-2">Prix</th>
-                  <th class="col-xs-4 col-md-3">Quantité</th>
+                  <th class="col-xs-4 col-md-3 hidden-xs">Quantité</th>
                   <th class="col-xs-1 col-md-1">&nbsp;</th>
                 </tr>
               </thead>
@@ -27,10 +27,9 @@
                 {{#each sets}}
                 <tr>
                   <td>{{{showTags SetsTags}}}</td>
-                  <td>{{name}}</td>
-
+                  <td><a href="#" class="setModal" id="{{_id}}">{{name}}</a></td>
                   <td>{{formatPrice price}}</td>
-                  <td>
+                  <td class="hidden-xs">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
@@ -51,9 +50,9 @@
                 {{#each products}}
                 <tr>
                   <td>{{{showTags ProductsTags}}}</td>
-                  <td>{{name}}</td>
+                  <td><a href="#" class="productModal" id="{{_id}}">{{name}}</a></td>
                   <td>{{formatPrice price}}</td>
-                  <td>
+                  <td class="hidden-xs">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
@@ -151,4 +150,5 @@
     </div>
     {{/if}}
   </div>
+  {{> productModal}}
 </template>

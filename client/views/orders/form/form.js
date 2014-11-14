@@ -96,6 +96,18 @@ Template.formOrder.events({
     var value = $('#qty-'+productId).val();
     $('#qty-'+productId).val(parseFloat(value) + 1);
   },
+  'click .productModal': function (evt,tmpl) {
+    var productId = evt.currentTarget.attributes.id.value;
+    Session.set('setId', false);
+    Session.set('productId', productId);
+    $('#productModal').modal();
+  },
+  'click .setModal': function (evt,tmpl) {
+    var setId = evt.currentTarget.attributes.id.value;
+    Session.set('productId', false);
+    Session.set('setId', setId);
+    $('#productModal').modal();
+  },
   'click .changeStatus': function (evt, tmpl) {
     evt.preventDefault();
     var newStatus = evt.currentTarget.attributes.value.value;
@@ -132,6 +144,7 @@ Template.formOrder.events({
   },
   'click .addProduct': function (evt,tmpl) {
     evt.preventDefault();
+    $('#productModal').modal('hide');
     var placeId = Router.current().params.place_id;
     var orderId = Session.get('orderId');
 
@@ -261,6 +274,7 @@ Template.formOrder.events({
   },
   'click .addSet': function (evt,tmpl) {
     evt.preventDefault();
+    $('#productModal').modal('hide');
     var placeId = Router.current().params.place_id;
     var orderId = Session.get('orderId');
 
