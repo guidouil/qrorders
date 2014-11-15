@@ -100,17 +100,18 @@ Template.payOrder.events({
       total: order.total,
       user: order.user
     });
+    Orders.update({_id: orderId}, {$set: {paid: true}});
     // credit note should be assign to user
-    if (order.user !== Meteor.userId) {
+    if (creditNote > 0 && order.user !== Meteor.userId) {
       var note = Notes.findOne({place: placeId, user: order.user});
-      if (note._id) {
-        Notes.update({_id: note._id},{$set: {updated: Date.now()}, $inc: {amount: order.total}});
+      if (note && note._id) {
+        Notes.update({_id: note._id},{$set: {updated: Date.now()}, $inc: {amount: creditNote}});
       } else {
         Notes.insert({
           place: placeId,
           owner: Meteor.userId(),
           user: order.user,
-          amount: order.total,
+          amount: creditNote,
           created: Date.now()
         });
       }

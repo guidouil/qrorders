@@ -6,6 +6,7 @@ Template.imageModal.rendered = function() {
   $modal.on("shown.bs.modal", function() {
     $image.cropper({
       aspectRatio: 1.618, // Nombre d'or
+      maxWidth: 1024,
       data: originalData,
       done: function(data) {
 
@@ -13,6 +14,9 @@ Template.imageModal.rendered = function() {
     });
   }).on("hidden.bs.modal", function() {
     originalData = $image.cropper("getDataURL");
+    Meteor.call('tiny_images', '', '', originalData, function(error, result){
+      console.log(error, result);
+    });
     var currentRoute = Router.current();
     if (currentRoute.lookupTemplate() === 'EditPlace') {
       var placeId = currentRoute.params._id;

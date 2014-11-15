@@ -9,13 +9,13 @@ Meteor.methods({
   user_set_owner: function () {
     if (Meteor.userId()) {
       Roles.addUsersToRoles(Meteor.userId(), ['owner']);
-    };
+    }
   },
   user_set_waiter: function (placeId) {
     if (Meteor.userId()) {
       Roles.addUsersToRoles(Meteor.userId(), ['waiter']);
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': placeId}});
-    };
+    }
   },
   delete_order: function(orderId) {
     check(orderId, String);
@@ -28,7 +28,7 @@ Meteor.methods({
     } else {
       // console.log(localOrder, 'Not Deleted');
       return false;
-    };
+    }
   },
   onlineUsersCount: function() {
     return Meteor.users.find({ "status.online": true }).count();
@@ -43,7 +43,7 @@ Meteor.methods({
       });
       // console.log(source);
       return source;
-    };
+    }
   },
   clean_the_place: function (placeId) {
     Products.remove({places: placeId});
@@ -54,5 +54,11 @@ Meteor.methods({
     Options.remove({place: placeId});
     Payments.remove({place: placeId});
     Notes.remove({place: placeId});
+  },
+  tiny_images: function (type, id, image) {
+    console.log(image);
+    var tinyResponse = HTTP.post('https://api.tinypng.com/shrink', {auth: 'api:r_NMZYPUA3YANl0rUjvGFHL8XSc8OtAx', data: image});
+    console.log(tinyResponse);
+    return tinyResponse;
   }
 });
