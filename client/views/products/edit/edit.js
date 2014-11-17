@@ -56,6 +56,9 @@ Template.editProduct.events({
         closeOnCancel: true
       },
       function(){
+        if (this.image) {
+          Meteor.call('delete_image', this.image);
+        }
         Products.remove({_id: productId});
         growl('OK', 'Produit supprimé', 'danger');
         var placeId = Router.current().params.place_id;

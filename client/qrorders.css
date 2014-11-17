@@ -18,6 +18,7 @@ body {
   background-color : #5cb85c;
   box-shadow       : 0 0 0 #5cb85c;
 }
+
 .well {
   padding-left: 7px;
   padding-right: 7px;
@@ -57,6 +58,11 @@ body {
   line-height:1.4em;
 }
 
+.img-jecmd {
+  max-width: 100%;
+  height: auto;
+  text-align: center;
+}
 
 .shape{
     border-style: solid; border-width: 0 40px 40px 0; float:right; height: 0px; width: 0px;

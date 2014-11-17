@@ -36,3 +36,5 @@ http
 facts
 cfs:standard-packages
 cfs:filesystem
+fuatsengul:iron-router-progress
+

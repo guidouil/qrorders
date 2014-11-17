@@ -46,6 +46,9 @@ Template.editSet.events({
         closeOnCancel: true
       },
       function(){
+        if (this.image) {
+          Meteor.call('delete_image', this.image);
+        }
         Sets.remove({_id: setId});
         growl('OK', 'Formule supprimée', 'danger');
         var placeId = Router.current().params.place_id;

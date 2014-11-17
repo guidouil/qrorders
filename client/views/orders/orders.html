@@ -74,6 +74,10 @@
               <a class="btn btn-primary btn-sm editOrder" href="{{pathFor 'editOrder' place_id=place order_id=_id}}"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
           </tr>
+          {{else}}
+          <tr>
+            <td colspan="6"><p class="lead text-center">Pas de commandes, essayez de changer les filtres.</p></td>
+          </tr>
           {{/each}}
         </tbody>
       </table>

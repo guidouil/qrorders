@@ -1,22 +1,22 @@
 <template name="productsPlace">
   <div class="container">
     <div class="row">
-      <div class="col-xs-4">
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <a href="{{pathFor 'createProduct'}}" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-plus"></span> Produit</a>
       </div>
-      <div class="col-xs-4">
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <a href="{{pathFor 'setsPlace'}}" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-arrow-right"></span> Formules</a>
       </div>
-      <div class="col-xs-4">
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <a href="{{pathFor 'optionsPlace'}}" class="btn btn-warning btn-lg btn-block"><span class="glyphicon glyphicon-arrow-right"></span> Options</a>
       </div>
     </div>
     <div class="row">
       {{#each products}}
-        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
           <div class="productbox">
             {{#if image}}
-            <a href="/editproduct/{{place_id}}/{{_id}}"><img src="{{getImage image}}" alt="{{name}}" class="img-responsive"></a>
+            <a href="/editproduct/{{place_id}}/{{_id}}"><img src="{{getImage image}}" alt="{{name}}" class="img-jecmd"></a>
             {{/if}}
             <div class="producttitle text-center">{{name}}</div>
             <p class="text-center">{{desc}}</p>
@@ -25,12 +25,14 @@
               <div class="pull-right">
                 {{formatPrice price}}
               </div>
-              <div class="pricetext">
+              <div class="pricetext ">
                 {{{showTags ProductsTags}}}&nbsp;
               </div>
             </div>
           </div>
         </div>
+      {{else}}
+        <p class="lead text-center">Aucun produit, il est temps d'en ajouter :)</p>
       {{/each}}
     </div>
   </div>

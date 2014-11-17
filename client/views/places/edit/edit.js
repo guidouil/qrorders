@@ -79,6 +79,9 @@ Template.editPlace.events({
         closeOnCancel: true
       },
       function(){
+        if (this.image) {
+          Meteor.call('delete_image', this.image);
+        }
         Places.remove({_id: placeId});
         Meteor.call('clean_the_place',placeId);
         growl('OK', 'Établissement supprimé', 'danger');

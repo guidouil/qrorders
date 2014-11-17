@@ -1,8 +1,8 @@
 <template name="onePlace">
-  <div class="col-xs-12 col-sm-4 col-md-3">
-    <div class="productbox">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="productbox text-center">
       {{#if image}}
-      <a href="{{pathFor 'createOrder' place_id=_id}}"><img src="{{getImage image}}" alt="{{placename}}" class="img-responsive"></a>
+      <a href="{{pathFor 'createOrder' place_id=_id}}"><img src="{{getImage image}}" alt="{{placename}}" class="img-jecmd"></a>
       {{/if}}
       <div class="producttitle text-center">{{placename}}</div>
       <p class="text-center">{{placedesc}}</p>

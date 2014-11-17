@@ -10,8 +10,14 @@ Template.profile.events({
     var inputName = tmpl.find('#inputName').value.trim();
     if (inputName !== '' && (!user.profile || user.profile.name !== inputName)) {
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.name': inputName}});
-      growl('OK', 'Profil mis à jours', 'success');
+      growl('OK', 'Nom mis à jours', 'success');
     }
+    var inputMail = tmpl.find('#inputMail').value.trim();
+    if (inputMail !== '' && inputMail !== user.emails[0].address) {
+      Meteor.call('update_email', inputMail);
+      growl('OK', 'Adresse mail mise à jours', 'success');
+    }
+
     if (tmpl.find('#selectplace')) {
       var selectplace = tmpl.find('#selectplace').value.trim();
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': selectplace}});
@@ -37,5 +43,8 @@ Template.profile.helpers({
     } else {
       return false;
     }
+  },
+  notes: function () {
+    return MyNotes.find().fetch();
   }
 });

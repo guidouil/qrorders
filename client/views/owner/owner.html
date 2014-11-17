@@ -8,6 +8,8 @@
     <div class="row">
       {{#each myPlaces}}
         {{> onePlace}}
+      {{else}}
+        <p class="lead text-center">Aucun établissement, il est temps d'en ajouter :)</p>
       {{/each}}
     </div>
   </div>

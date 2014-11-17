@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body text-center">
         {{#if product.image}}
-        <img src="{{product.image}}" alt="{{product.name}}" class="img-responsive">
+        <img src="{{getImage product.image}}" alt="{{product.name}}" class="img-jecmd">
         {{/if}}
         <h4>{{product.desc}}</h4>
         <h3>{{formatPrice product.price}}</h3>

@@ -127,6 +127,12 @@
                     <button class="btn btn-danger btn-sm deleteLine" id="{{_id}}" name="{{productName}}"><span class="glyphicon glyphicon-trash"></span></button>
                   </td>
                 </tr>
+                {{else}}
+                <tr>
+                  <td colspan="5">
+                    <p class="lead text-center">Commande vide</p>
+                  </td>
+                </tr>
                 {{/each}}
               </tbody>
             </table>
