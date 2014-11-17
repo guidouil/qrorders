@@ -1,3 +1,6 @@
+var https = Npm && Npm.require('https');
+var url = Npm && Npm.require('url');
+
 Meteor.methods({
   user_profile_name: function () {
     var user = Meteor.user();
@@ -55,10 +58,39 @@ Meteor.methods({
     Payments.remove({place: placeId});
     Notes.remove({place: placeId});
   },
-  tiny_images: function (type, id, image) {
-    console.log(image);
-    var tinyResponse = HTTP.post('https://api.tinypng.com/shrink', {auth: 'api:r_NMZYPUA3YANl0rUjvGFHL8XSc8OtAx', data: image});
-    console.log(tinyResponse);
-    return tinyResponse;
+  tiny_images: function (imageId) {
+    var image = Images.findOne({_id: imageId});
+    // console.log(image.getFileRecord());
+    var input = image.createReadStream('images');
+    var output = image.createWriteStream('images');
+    // console.log(input);
+
+    // var tiny = function(data) {
+    //   HTTP.post('https://api.tinypng.com/shrink', {auth: 'api:r_NMZYPUA3YANl0rUjvGFHL8XSc8OtAx', content: data}, function (response){
+    //     console.log(response);
+    //   });
+    // };
+    // input.pipe(tiny);
+    var key = "r_NMZYPUA3YANl0rUjvGFHL8XSc8OtAx";
+    var options = url.parse("https://api.tinypng.com/shrink");
+    options.auth = "api:" + key;
+    options.method = "POST";
+
+    var request = https.request(options, function(response) {
+      if (response.statusCode === 201) {
+        /* Compression was successful, retrieve output from Location header. */
+        https.get(response.headers.location, function(response) {
+          response.pipe(output);
+        });
+      } else {
+        /* Something went wrong! You can parse the JSON body for details. */
+        console.log("Compression failed");
+      }
+      console.log(response.statusCode);
+    });
+    input.pipe(request);
+  },
+  delete_image: function (imageId) {
+    Images.remove({_id: imageId});
   }
 });

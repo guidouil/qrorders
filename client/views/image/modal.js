@@ -14,22 +14,44 @@ Template.imageModal.rendered = function() {
     });
   }).on("hidden.bs.modal", function() {
     originalData = $image.cropper("getDataURL");
-    Meteor.call('tiny_images', '', '', originalData, function(error, result){
-      console.log(error, result);
+    // Meteor.call('tiny_images', '', '', originalData, function(error, result){
+    //   console.log(error, result);
+    // });
+    // var image = Images.insert(originalData);
+    var newFile = new FS.File();
+    newFile.attachData(originalData, {type: 'image/png'}, function(error){
+        if(error) throw error;
+        newFile.name('jecmd.png');
+        var image = Images.insert(newFile);
+        // console.log(image._id);
+        // Meteor.call('tiny_images', image._id);
+        var currentRoute = Router.current();
+        if (currentRoute.lookupTemplate() === 'EditPlace') {
+          var placeId = currentRoute.params._id;
+          var place = Places.findOne({_id: placeId});
+          if (place.image ) {
+            Meteor.call('delete_image', place.image);
+          }
+          Places.update({_id: placeId}, {$set: {image: image._id, imageTmp: ''}});
+        }
+        if (currentRoute.lookupTemplate() === 'EditProduct') {
+          var productId = currentRoute.params.product_id;
+          var product = Products.findOne({_id: productId});
+          if (product.image ) {
+            Meteor.call('delete_image', product.image);
+          }
+          Products.update({_id: productId}, {$set: {image: image._id, imageTmp: ''}});
+        }
+        if (currentRoute.lookupTemplate() === 'EditSet') {
+          var setId = currentRoute.params.set_id;
+          var set = Sets.findOne({_id: setId});
+          if (set.image ) {
+            Meteor.call('delete_image', set.image);
+          }
+          Sets.update({_id: setId}, {$set: {image: image._id, imageTmp: ''}});
+        }
     });
-    var currentRoute = Router.current();
-    if (currentRoute.lookupTemplate() === 'EditPlace') {
-      var placeId = currentRoute.params._id;
-      Places.update({_id: placeId}, {$set: {image: originalData}});
-    }
-    if (currentRoute.lookupTemplate() === 'EditProduct') {
-      var productId = currentRoute.params.product_id;
-      Products.update({_id: productId}, {$set: {image: originalData}});
-    }
-    if (currentRoute.lookupTemplate() === 'EditSet') {
-      var setId = currentRoute.params.set_id;
-      Sets.update({_id: setId}, {$set: {image: originalData}});
-    }
+
     $image.cropper("destroy");
   });
 };

@@ -59,7 +59,7 @@ Template.editPlace.events({
     var file = template.find('#inputImage').files[0];
     var reader = new FileReader();
     reader.onload = function(e) {
-      Places.update({_id: placeId}, {$set: {image: e.target.result}});
+      Places.update({_id: placeId}, {$set: {imageTmp: e.target.result}});
     };
     reader.readAsDataURL(file);
     $('#imageModal').modal();
@@ -81,7 +81,7 @@ Template.editPlace.events({
       function(){
         Places.remove({_id: placeId});
         Meteor.call('clean_the_place',placeId);
-        growl('Ça c\'est fait', 'Établissement supprimé', 'danger');
+        growl('OK', 'Établissement supprimé', 'danger');
         Router.go('owner');
       }
     );

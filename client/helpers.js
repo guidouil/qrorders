@@ -44,7 +44,7 @@ UI.registerHelper('formatDate', function(date){
 UI.registerHelper('fromNow', function(date){
   if(date !== null) {
     var oDate = moment(date);
-    oDate.lang('fr');
+    oDate.lang(Session.get('language'));
     return oDate.fromNow();
   }
 });
@@ -103,4 +103,9 @@ UI.registerHelper('showTags', function (tags) {
     });
     return tagsString;
   }
+});
+
+UI.registerHelper('getImage', function (imgId) {
+  var image = Images.findOne({_id: imgId});
+  return image.url();
 });

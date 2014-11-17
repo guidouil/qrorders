@@ -2,7 +2,7 @@
   <div class="col-xs-12 col-sm-4 col-md-3">
     <div class="productbox">
       {{#if image}}
-      <a href="{{pathFor 'createOrder' place_id=_id}}"><img src="{{image}}" alt="{{placename}}" class="img-responsive"></a>
+      <a href="{{pathFor 'createOrder' place_id=_id}}"><img src="{{getImage image}}" alt="{{placename}}" class="img-responsive"></a>
       {{/if}}
       <div class="producttitle text-center">{{placename}}</div>
       <p class="text-center">{{placedesc}}</p>

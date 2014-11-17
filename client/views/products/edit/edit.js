@@ -69,7 +69,7 @@ Template.editProduct.events({
     var file = template.find('#inputImage').files[0];
     var reader = new FileReader();
     reader.onload = function(e) {
-      Products.update({_id: productId}, {$set: {image: e.target.result}});
+      Products.update({_id: productId}, {$set: {imageTmp: e.target.result}});
     };
     reader.readAsDataURL(file);
     $('#imageModal').modal();

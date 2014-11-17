@@ -34,4 +34,5 @@ meteorhacks:kadira
 jonblum:jquery-cropper
 http
 facts
-
+cfs:standard-packages
+cfs:filesystem
