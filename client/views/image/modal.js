@@ -13,15 +13,15 @@ Template.imageModal.rendered = function() {
       }
     });
   }).on("hidden.bs.modal", function() {
-    originalData = $image.cropper("getDataURL");
+    originalData = $image.cropper("getDataURL", "image/jpeg", 0.6);
     // Meteor.call('tiny_images', '', '', originalData, function(error, result){
     //   console.log(error, result);
     // });
-    var defaultChunkSize = 5 * 1024 * 1024;
+    var defaultChunkSize = 10 * 1024 * 1024;
     var newFile = new FS.File();
     newFile.attachData(originalData, {type: 'image/png'}, function(error){
         if(error) throw error;
-        newFile.name('jecmd.png');
+        newFile.name('jecmd.jpg');
         var image = Images.insert(newFile);
         // console.log(image._id);
         // Meteor.call('tiny_images', image._id);
