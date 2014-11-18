@@ -17,7 +17,7 @@ Template.imageModal.rendered = function() {
     // Meteor.call('tiny_images', '', '', originalData, function(error, result){
     //   console.log(error, result);
     // });
-    // var image = Images.insert(originalData);
+    var defaultChunkSize = 5 * 1024 * 1024;
     var newFile = new FS.File();
     newFile.attachData(originalData, {type: 'image/png'}, function(error){
         if(error) throw error;
