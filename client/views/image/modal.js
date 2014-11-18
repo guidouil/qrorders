@@ -6,7 +6,7 @@ Template.imageModal.rendered = function() {
   $modal.on("shown.bs.modal", function() {
     $image.cropper({
       aspectRatio: 1.618, // Nombre d'or
-      maxWidth: 1024,
+      maxWidth: 2048,
       data: originalData,
       done: function(data) {
 
