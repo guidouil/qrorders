@@ -42,7 +42,9 @@
                   </td>
                   <td>
                     {{#if isLoggedIn}}
+                    {{#unless order.paid}}
                     <button class="btn btn-success btn-sm addSet" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    {{/unless}}
                     {{/if}}
                   </td>
                 </tr>
@@ -65,7 +67,9 @@
                   </td>
                   <td>
                     {{#if isLoggedIn}}
+                    {{#unless order.paid}}
                     <button class="btn btn-success btn-sm addProduct" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    {{/unless}}
                     {{/if}}
                   </td>
                 </tr>
@@ -77,7 +81,7 @@
       </div>
       <div class="col-md-6">
         <form class="form-horizontal well">
-          <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}}&nbsp;
+          <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}}{{#if order.name}} par {{order.name}}{{/if}}&nbsp;
             {{#if isActiveOrder}}
             <div class="btn-group text-center" data-toggle="buttons">
               <label class="btn btn-danger btn-sm {{isStatusActive 0}} changeStatus" for="status-0" value="0">
@@ -101,7 +105,7 @@
                 <span class="glyphicon glyphicon-cutlery"></span>
               </label>
             </div>
-            {{{textStatus order.status}}}&nbsp;
+            {{{textStatus order.status}}}{{#if order.paid}} Payée{{/if}}&nbsp;
             {{/if}}
             <span class="pull-right">{{formatPrice order.total}}</span>
           </legend>
@@ -109,9 +113,9 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Quantité</th>
+                  <th>Qtt</th>
                   <th>Produit</th>
-                  <th>Options</th>
+                  <th>Opt</th>
                   <th>Prix</th>
                   <th></th>
                 </tr>
@@ -124,7 +128,9 @@
                   <td>{{options}}</td>
                   <td>{{formatPrice price}}</td>
                   <td class="text-right">
+                    {{#unless order.paid}}
                     <button class="btn btn-danger btn-sm deleteLine" id="{{_id}}" name="{{productName}}"><span class="glyphicon glyphicon-trash"></span></button>
+                    {{/unless}}
                   </td>
                 </tr>
                 {{else}}

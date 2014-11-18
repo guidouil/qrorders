@@ -9,6 +9,12 @@ Template.productModal.helpers({
       return Sets.findOne({_id: setId});
     }
   },
+  order: function () {
+    if (Session.get('orderId')) {
+      var orderId = Session.get('orderId');
+      return Orders.findOne({_id: orderId});
+    }
+  },
   addClass: function () {
     if (Session.get('productId')) {
       return 'addProduct';

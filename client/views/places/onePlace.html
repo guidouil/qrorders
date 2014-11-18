@@ -13,16 +13,16 @@
         <a href="tel:{{phone}}">{{phone}}</a>
       </address>
       <div class="productprice">
-        <div class="pull-right">
-          {{#if isOwner}}
-          <a href="/products/{{_id}}" class="btn btn-success btn-sm" title="Produits"><span class="glyphicon glyphicon-shopping-cart"></span></a>&nbsp;
-          <a href="/edit/{{_id}}" class="btn btn-warning btn-sm" title="Éditer"><span class="glyphicon glyphicon-cog"></span></a>&nbsp;
-          <a href="/editqrcode/{{_id}}" class="btn btn-danger btn-sm" title="QR Code"><span class="glyphicon glyphicon-qrcode"></span></a>
-          {{/if}}
-        </div>
         <div class="pricetext">
           {{{showTags PlacesTags}}}&nbsp;
         </div>
+        {{#if isOwner}}
+        <div class="pricetext">
+          <a href="/products/{{_id}}" class="btn btn-success btn-sm" title="Produits">Prod <span class="glyphicon glyphicon-shopping-cart"></span></a>&nbsp;
+          <a href="/edit/{{_id}}" class="btn btn-warning btn-sm" title="Éditer">Edit <span class="glyphicon glyphicon-cog"></span></a>&nbsp;
+          <a href="/editqrcode/{{_id}}" class="btn btn-danger btn-sm" title="QR Code">QR <span class="glyphicon glyphicon-qrcode"></span></a>
+        </div>
+        {{/if}}
       </div>
     </div>
   </div>

@@ -38,12 +38,14 @@
               <tr>
                 <th>Établissement</th>
                 <th>Montant</th>
+                <th>MAJ</th>
               </tr>
             </thead>
             {{#each notes}}
             <tr>
               <td>{{placeName place}}</td>
-              <td>{{amount}}</td>
+              <td>{{formatPrice amount}}</td>
+              <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
             </tr>
             {{else}}
             <tr>

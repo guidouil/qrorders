@@ -64,7 +64,7 @@ Template.formOrder.helpers({
     var orderId = Router.current().params.order_id;
     if (orderId) {
       var order = Orders.findOne({_id: orderId});
-      if (order.status === 1) {
+      if (order && order.status === 1) {
         return true;
       } else {
         return false;
@@ -142,6 +142,8 @@ Template.formOrder.events({
       timeWanted = inTen;
     }
     Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now(), wanted: timeWanted}});
+    var order = Orders.findOne({_id: orderId});
+    Meteor.call('notify_order_status', orderId, order.waiter[0], 2);
     swal('Merci','Votre commande est validée','success');
     Router.go('cart');
   },

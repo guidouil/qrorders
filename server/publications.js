@@ -39,7 +39,7 @@ Meteor.publish('Payments', function(placeId){
 });
 
 Meteor.publish('Notes', function(placeId){
-  return Notes.find({places: placeId});
+  return Notes.find({place: placeId});
 });
 
 Meteor.publish('MyNotes', function(userId){

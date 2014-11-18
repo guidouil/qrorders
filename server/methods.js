@@ -159,7 +159,7 @@ Meteor.methods({
       });
     };
 
-    var message = "Votre commande #" + order.number + " @ " + place.placename + " viens de passer en statut : " + statusStr(order.status) + "\n" +
+    var message = "La commande #" + order.number + " @ " + place.placename + " viens de passer en statut : " + statusStr(order.status) + "\n" +
     "Vous pouvez consulter cette commade à cette adresse : \n" + Meteor.absoluteUrl() + "editorder/" + order.place + "/" + order._id + "\n\n";
 
     sendMessage(userId, message);
