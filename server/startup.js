@@ -26,4 +26,6 @@ Meteor.startup(function () {
     Notes._ensureIndex({ "places": 1});
   }
 
+  //MailGun Conf
+  process.env.MAIL_URL = 'smtp://postmaster%40jecmd.fr:a4a921f720e8ab89f03325dfb2a46439@smtp.mailgun.org:587';
 });

@@ -115,6 +115,9 @@ Template.formOrder.events({
     var order = Orders.findOne({_id: orderId});
     if ( _.contains(order.waiter, Meteor.userId()) ) {
       Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now()}});
+      if (order.user !== Meteor.userId()) {
+        Meteor.call('notify_order_status', orderId, order.user, newStatus);
+      }
       Session.set('orderStatus', newStatus);
     } else {
       Session.set('orderStatus', order.status);

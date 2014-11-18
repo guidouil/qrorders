@@ -100,5 +100,68 @@ Meteor.methods({
       return true;
     }
     return false;
+  },
+  notify_order_status: function (orderId, userId, newStatus) {
+    var order = Orders.findOne({_id: orderId});
+    var place = Places.findOne({_id: order.place});
+
+    var statusStr = function(status) {
+      var result = false;
+      switch (status) {
+        case 0:
+          result = 'Annulée';
+          break;
+        case 1:
+          result = 'En création';
+          break;
+        case 2:
+          result = 'Validée';
+          break;
+        case 3:
+          result = 'En cours';
+          break;
+        case 4:
+          result = 'Servie';
+          break;
+        default :
+          result = 'Houston?';
+          break;
+      }
+      return result;
+    }
+
+    var contactEmail = function (user) {
+      if (user.emails && user.emails.length)
+        return user.emails[0].address;
+      if (user.services && user.services.facebook && user.services.facebook.email)
+        return user.services.facebook.email;
+      if (user.services && user.services.google && user.services.google.email)
+        return user.services.google.email;
+      if (user.services && user.services.twitter && user.services.twitter.email)
+        return user.services.twitter.email;
+      return null;
+    };
+
+    var sendMessage = function (toId, msg) {
+      var from = 'JeCMD.fr';
+      var to = Meteor.users.findOne(toId);
+      var fromEmail = 'no-repply@jecmd.fr';
+      var toEmail = contactEmail(to);
+      Email.send({
+        from: fromEmail,
+        to: toEmail,
+        replyTo: fromEmail || undefined,
+        subject: "JeCMD: commande #" + order.number + "@" + place.placename +' -> '+statusStr(order.status),
+        text: "Bonjour "+to.profile.name+",\n\n"+msg+
+        "Merci d'utiliser JeCMD !\n\n"+
+        "L'équipe JeCMD.\n"+
+        Meteor.absoluteUrl()+"\n"
+      });
+    };
+
+    var message = "Votre commande #" + order.number + " @ " + place.placename + " viens de passer en statut : " + statusStr(order.status) + "\n" +
+    "Vous pouvez consulter cette commade à cette adresse : \n" + Meteor.absoluteUrl() + "editorder/" + order.place + "/" + order._id + "\n\n";
+
+    sendMessage(userId, message);
   }
 });

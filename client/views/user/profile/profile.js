@@ -46,5 +46,9 @@ Template.profile.helpers({
   },
   notes: function () {
     return MyNotes.find().fetch();
+  },
+  placeName: function (placeId) {
+    var place = Places.findOne({_id: placeId});
+    return place.placename + ' - ' + place.city;
   }
 });
