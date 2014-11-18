@@ -32,20 +32,20 @@
         <a class="btn btn-danger logout pull-right">Déconnexion</a>
         <hr>
         <div class="table-responsive">
-          <legend>Avoirs</legend>
+          <legend>Avoirs <span class='glyphicon glyphicon-send'></span></legend>
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Établissement</th>
-                <th>Montant</th>
                 <th>MAJ</th>
+                <th>Montant</th>
               </tr>
             </thead>
             {{#each notes}}
             <tr>
               <td>{{placeName place}}</td>
-              <td>{{formatPrice amount}}</td>
               <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
+              <td class="text-right">{{formatPrice amount}}</td>
             </tr>
             {{else}}
             <tr>

@@ -6,6 +6,16 @@ Template.payOrder.helpers({
   lines: function () {
     var orderId = Router.current().params.order_id;
     return Lines.find({order: orderId}).fetch();
+  },
+  note: function () {
+    var orderId = Router.current().params.order_id;
+    var order = Orders.findOne({_id: orderId});
+    return Notes.findOne({user: order.user});
+  },
+  total: function () {
+    var orderId = Router.current().params.order_id;
+    var order = Orders.findOne({_id: orderId});
+    return order.total - order.rebate;
   }
 });
 
@@ -43,6 +53,20 @@ Template.payOrder.events({
       }
     );
   },
+  'click .useNote': function (evt, tmpl) {
+    var orderId = Router.current().params.order_id;
+    var order = Orders.findOne({_id: orderId});
+    var note = Notes.findOne({user: order.user});
+    if (note) {
+      if (note.amount <= order.total) {
+        Orders.update({_id: orderId}, {$set: {rebate: note.amount}});
+        Notes.update({_id: note._id}, {$set: {amount: 0}});
+      } else if (note.amount > order.total) {
+        Orders.update({_id: orderId}, {$set: {rebate: order.total}});
+        Notes.update({_id: note._id}, {$inc: {amount: -order.total}});
+      }
+    }
+  },
   'click .cashPay': function (evt, tmpl) {
     $('.cashForm').removeClass('hidden');
     $('#inputCash').focus();
@@ -55,11 +79,12 @@ Template.payOrder.events({
     var cashBack = 0;
     var creditNote = 0;
     var orderId = Router.current().params.order_id;
-    order = Orders.findOne({_id: orderId});
+    var order = Orders.findOne({_id: orderId});
     var cash = tmpl.find('#inputCash').value;
     var ticket = tmpl.find('#inputTicket').value;
-    if (ticket >= order.total) {
-      creditNote = ticket - order.total;
+    var total = order.total - order.rebate;
+    if (ticket >= total) {
+      creditNote = ticket - total;
       $('.creditNote').html(creditNote.toFixed(2)+'€');
       $('#creditNote').val(creditNote);
       if (cash > 0) {
@@ -67,13 +92,13 @@ Template.payOrder.events({
         $('#cashBack').val(cash);
       }
     }
-    if (cash > order.total && !ticket) {
-      cashBack = cash - order.total;
+    if (cash > total && !ticket) {
+      cashBack = cash - total;
       $('.cashBack').html(cashBack.toFixed(2)+'€');
       $('#cashBack').val(cashBack);
     }
-    if (cash > 0 && cash + ticket > order.total && ticket < order.total) {
-      var cashNeeded = order.total - ticket;
+    if (cash > 0 && cash + ticket > total && ticket < total) {
+      var cashNeeded = total - ticket;
       cashBack = cash - cashNeeded;
       $('.cashBack').html(cashBack.toFixed(2)+'€');
       $('#cashBack').val(cashBack);

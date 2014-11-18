@@ -2,7 +2,7 @@
   <div class="container">
     <div class='row'>
       <div class="well">
-        <h1>{{placename}} - #{{order.number}} <small>{{order.name}} {{formatDate order.created}}</small><span class='pull-right'>{{formatPrice order.total}}</span></h1>
+        <h1>{{placename}} - #{{order.number}} <small>{{order.name}} {{formatDate order.created}}</small><span class='pull-right'>{{#if order.rebate}}<small>{{formatPrice order.total}} - {{formatPrice order.rebate}} = </small>{{/if}}{{formatPrice total}}</span></h1>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -18,7 +18,7 @@
               <td>{{quantity}}</td>
               <td>{{productName}}{{setName}}</td>
               <td>{{options}}</td>
-              <td>{{formatPrice price}}</td>
+              <td class="text-right">{{formatPrice price}}</td>
             </tr>
             {{/each}}
           </tbody>
@@ -26,6 +26,12 @@
       </div>
     </div>
     <div class='row'>
+      {{#if note.amount}}
+      <div class='col-md-12'>
+        <button class='btn btn-info btn-block btn-lg useNote'>Utiliser avoir {{formatPrice note.amount}} <span class='glyphicon glyphicon-send'></span></button>
+      <br>
+      </div>
+      {{/if}}
       <div class='col-md-6'>
         <button class='btn btn-primary btn-block btn-lg cardPay'>Carte <span class='glyphicon glyphicon-credit-card'></span></button>
       </div>
