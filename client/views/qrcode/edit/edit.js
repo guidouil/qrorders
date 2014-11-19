@@ -9,7 +9,7 @@ Template.editQrCode.events({
         Places.update({_id: this._id}, {$set: {code: encodeURI(inputCode)}});
         Session.set('qrcode', inputCode);
         $('#qrcode').html('');
-        $('#qrcode').qrcode({text:"http://jecmd.fr/a/" + inputCode});
+        $('#qrcode').qrcode({text:"https://jecmd.fr/a/" + inputCode});
         growl('OK', 'QR Code mis à jour','success');
       } else {
         growl('KO', 'Code déjà utilisé','danger');
@@ -26,6 +26,6 @@ Template.editQrCode.helpers({
 
 Template.editQrCode.rendered = function () {
   if (Session.get('qrcode')) {
-    $('#qrcode').qrcode({text:"http://jecmd.fr/a/" + Session.get('qrcode')});
+    $('#qrcode').qrcode({text:"https://jecmd.fr/a/" + Session.get('qrcode')});
   }
 };
