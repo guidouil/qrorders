@@ -10,8 +10,8 @@ Template.createSet.events({
       $('.inputProducts:checked').each(function(){
         inputProducts.push(this.id);
       });
-    };
-    if (inputName != '' && inputPrice != '' && inputProducts.length > 0) {
+    }
+    if (inputName !== '' && inputPrice !== '' && inputProducts.length > 0) {
       inputPrice = parseFloat(inputPrice).toFixed(2);
       var setId = Sets.insert({
         name: inputName,
@@ -23,13 +23,13 @@ Template.createSet.events({
       });
       if (inputTags.length > 0) {
         $.each(inputTags, function(index, value) {
-          if (value != '') {
+          if (value !== '') {
             Sets.addTag(value, 'Sets', {_id: setId});
-          };
+          }
         });
-      };
+      }
       swal("Cool !", "Vous avez ajouté une formule "+inputName, "success");
-      Router.go('setsPlace', {_id: this._id});
-    };
+      Router.go('editSet', {place_id: this._id, set_id: setId});
+    }
   }
 });

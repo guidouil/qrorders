@@ -10,8 +10,8 @@ Template.createProduct.events({
       $('.inputOptions:checked').each(function(){
         inputOptions.push(this.id);
       });
-    };
-    if (inputName != '' && inputPrice != '') {
+    }
+    if (inputName !== '' && inputPrice !== '') {
       inputPrice = parseFloat(inputPrice).toFixed(2);
       var productId = Products.insert({
         name: inputName,
@@ -28,16 +28,16 @@ Template.createProduct.events({
         $.each(inputOptions, function(index, optionId) {
            Options.update({_id: optionId}, {$push: {products: productId}});
         });
-      };
+      }
       if (inputTags.length > 0) {
         $.each(inputTags, function(index, value) {
-          if (value != '') {
+          if (value !== '') {
             Products.addTag(value, 'Products', {_id: productId});
-          };
+          }
         });
-      };
-      swal("Cool !", "Vous avez ajouté un(e) "+inputName, "success");
-      Router.go('productsPlace', {_id: this._id});
-    };
+      }
+      swal("Cool !", "Vous avez ajouté un(e) " + inputName, "success");
+      Router.go('editProduct', {place_id: this._id, product_id: productId});
+    }
   }
 });

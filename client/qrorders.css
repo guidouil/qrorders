@@ -24,6 +24,9 @@ body {
   padding-right: 7px;
 }
 
+.input-lc {
+  width: 50px;
+}
 
 .productbox {
     background-color:#ffffff;

@@ -48,7 +48,7 @@
             <input type="file" id="inputImage">
             <p class="help-block">De preference en vue paysage.</p>
             {{#if image}}
-              <img src="{{getImage image}}" alt="{{placename}}" class="img-responsive"/>
+              <img src="{{getImage image}}" alt="{{placename}}" class="img-jecmd"/>
             {{/if}}
           </div>
         </div>
@@ -62,6 +62,18 @@
         <button type="submit" class="btn btn-success save">Enregister</button>
         <a href="{{pathFor 'owner'}}" class="btn">Annuler</a>
         <a href="" class="btn btn-danger pull-right delete">Supprimer</a>
+        <hr>
+
+        <div class="form-group" id="loyaltyCard">
+          <label class="col-xs-3 control-label" >Carte de fidélité</label>
+          <div class="col-xs-9">
+            <label for="inputLoyaltyCard">
+              <input type="checkbox" id="inputLoyaltyCard"  checked="{{#if loyaltyCard}}checked{{/if}}"> Active si cochée
+            </label>
+            <p>Tout les <input type="number" step="any" id="inputLcPrice" value="{{lcPrice}}" class="input-lc" > &euro; dépensés, 1 point est ajouté à la carte.<br>
+              Tout les <input type="number" step="any" id="inputLcSize" value="{{lcSize}}" class="input-lc" > points un avoir de <input type="number" step="any" id="inputLcReward" value="{{lcReward}}" class="input-lc" > &euro; est offert au client.</p>
+          </div>
+        </div>
 
       </form>
     </div>

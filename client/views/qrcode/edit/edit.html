@@ -13,9 +13,13 @@
         <button type="submit" class="btn btn-success save">Enregister</button>
         <a href="{{pathFor 'owner'}}" class="btn">Annuler</a>
         <br>
+        <br>
         <div class="text-center" id="qrcode"></div>
+        {{#if code}}
         <p class="text-center lead"><a href="https://jecmd.fr/a/{{code}}">https://jecmd.fr/a/{{code}}</a></p>
         {{qrcode code}}
+        <p class="text-center lead"><button name="qrlarge" class="btn btn-primary qrlarge">Afficher grand format</button></p>
+        {{/if}}
       </form>
     </div>
   </div>

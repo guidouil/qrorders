@@ -15,6 +15,11 @@ Template.editQrCode.events({
         growl('KO', 'Code déjà utilisé','danger');
       }
     }
+  },
+  'click .qrlarge': function (evt, tmpl) {
+    evt.preventDefault();
+    $('#qrcode').html('');
+    $('#qrcode').qrcode({width: 1024,height: 1024,text:"https://jecmd.fr/a/" + Session.get('qrcode')});
   }
 });
 
@@ -25,6 +30,7 @@ Template.editQrCode.helpers({
 });
 
 Template.editQrCode.rendered = function () {
+  $('#qrcode').html('');
   if (Session.get('qrcode')) {
     $('#qrcode').qrcode({text:"https://jecmd.fr/a/" + Session.get('qrcode')});
   }

@@ -1,7 +1,7 @@
 Template.imageModal.rendered = function() {
   var $modal = $("#imageModal"),
     $image = $modal.find(".bootstrap-modal-cropper img"),
-    originalData = {width:460};
+    originalData = {width:1024};
 
   $modal.on("shown.bs.modal", function() {
     $image.cropper({

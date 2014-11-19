@@ -62,7 +62,7 @@ Meteor.publish('PlaceWaiters', function (placeId) {
   var place = Places.findOne({_id: placeId});
   // var result = [];
   _.each(place.waiter, function(waiterId) {
-    var user = users.findOne({_id: waiterId});
+    var user = Meteor.users.findOne({_id: waiterId});
     if (user) {
       var waiterInfo = {'name': user.profile.name, 'mail':  contactEmail(user)};
       self.added( "PlaceWaiters", waiterId, waiterInfo);

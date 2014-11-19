@@ -3,8 +3,8 @@ Template.search.helpers({
     return decodeURI(Router.current().params.searched);
   },
   places: function () {
-    var query = decodeURI(Router.current().params.query);
-    return Places.find({$or: [{placename: { $regex: query, $options: 'i' }}, {phone: { $regex: query, $options: 'i' }}, {street: { $regex: query, $options: 'i' }}, {town: { $regex: query, $options: 'i' }}, {zip: { $regex: query, $options: 'i' }}, {desc: { $regex: query, $options: 'i' }}, {PlacesTags: { $regex: query, $options: 'i' }}]}).fetch();
+    var searched = decodeURI(Router.current().params.searched);
+    return Places.find({$or: [{placename: { $regex: searched, $options: 'i' }}, {phone: { $regex: searched, $options: 'i' }}, {street: { $regex: searched, $options: 'i' }}, {town: { $regex: searched, $options: 'i' }}, {zip: { $regex: searched, $options: 'i' }}, {placedesc: { $regex: searched, $options: 'i' }}, {PlacesTags: { $regex: searched, $options: 'i' }}, {code: { $regex: searched, $options: 'i' }}]}).fetch();
   }
 });
 

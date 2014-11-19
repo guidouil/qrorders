@@ -9,6 +9,13 @@ Template.editPlace.events({
     var inputZip = tmpl.find('#inputZip').value;
     var inputDesc = tmpl.find('#inputDesc').value;
     var inputTags = tmpl.find('#inputTags').value.split(',');
+    var inputLoyaltyCard = false;
+    if ($('#inputLoyaltyCard').prop( "checked" )) {
+      inputLoyaltyCard = true;
+    }
+    var inputLcPrice = tmpl.find('#inputLcPrice').value;
+    var inputLcSize = tmpl.find('#inputLcSize').value;
+    var inputLcReward = tmpl.find('#inputLcReward').value;
     var valid = true;
     if (!validatePhone(inputPhone)) {
       // téléphone faux !
@@ -30,6 +37,10 @@ Template.editPlace.events({
             town: inputTown,
             zip: inputZip,
             placedesc: inputDesc,
+            loyaltyCard: inputLoyaltyCard,
+            lcPrice: inputLcPrice,
+            lcSize: inputLcSize,
+            lcReward: inputLcReward,
             updated: Date.now()
           }
         },
