@@ -145,17 +145,18 @@ Meteor.methods({
     var sendMessage = function (toId, msg) {
       var from = 'JeCMD.fr';
       var to = Meteor.users.findOne(toId);
-      var fromEmail = 'no-repply@jecmd.fr';
+      var fromEmail = 'jecmd@jecmd.fr';
       var toEmail = contactEmail(to);
       Email.send({
         from: fromEmail,
         to: toEmail,
         replyTo: fromEmail || undefined,
         subject: "JeCMD: commande #" + order.number + "@" + place.placename +' -> '+statusStr(order.status),
-        text: "Bonjour "+to.profile.name+",\n\n"+msg+
-        "Merci d'utiliser JeCMD !\n\n"+
-        "L'équipe JeCMD.\n"+
-        Meteor.absoluteUrl()+"\n"
+        text: "Bonjour "+to.profile.name+",\n\n"+
+          msg+
+          "Merci d'utiliser JeCMD !\n\n"+
+          "L'équipe JeCMD.\n"+
+          Meteor.absoluteUrl()+"\n"
       });
     };
 
