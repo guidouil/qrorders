@@ -80,7 +80,7 @@ Template.createPlace.events({
         swal("Génial !", "Le restaurant " + inputName + " à été créé!", "success");
         Meteor.call('user_set_owner');
         Meteor.call('user_set_waiter', placeId);
-        Router.go('owner');
+        Router.go('editPlace', {_id: placeId});
       }
     } else {
       $('.form-group').addClass('has-error');

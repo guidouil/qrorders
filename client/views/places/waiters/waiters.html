@@ -1,0 +1,26 @@
+<template name="placeWaiters">
+  <hr>
+  <div class="table-responsive">
+    <legend>Serveurs <span class='glyphicon glyphicon-phone'></span></legend>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      {{#each placeWaiters}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{mail}}</td>
+        <td class="text-right"></td>
+      </tr>
+      {{else}}
+      <tr>
+        <td colspan="3"><p class="lead text-center">Aucun serveur pour l'instant</p></td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+</template>

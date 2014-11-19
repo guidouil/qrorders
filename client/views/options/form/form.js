@@ -17,7 +17,7 @@ Template.formOption.rendered = function () {
       options: result,
       onItemRemove: function(value) {
         var currentRoute = Router.current();
-        if (currentRoute.lookupTemplate() === 'editOption') {
+        if (currentRoute.lookupTemplate() === 'EditOption') {
           var optionId = currentRoute.params.option_id;
           Options.removeTag(value, 'Options', {_id: optionId});
         }

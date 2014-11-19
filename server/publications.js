@@ -45,3 +45,29 @@ Meteor.publish('Notes', function(placeId){
 Meteor.publish('MyNotes', function(userId){
   return Notes.find({user: userId});
 });
+
+Meteor.publish('PlaceWaiters', function (placeId) {
+  var self = this;
+  var contactEmail = function (user) {
+    if (user.emails && user.emails.length)
+      return user.emails[0].address;
+    if (user.services && user.services.facebook && user.services.facebook.email)
+      return user.services.facebook.email;
+    if (user.services && user.services.google && user.services.google.email)
+      return user.services.google.email;
+    if (user.services && user.services.twitter && user.services.twitter.email)
+      return user.services.twitter.email;
+    return null;
+  };
+  var place = Places.findOne({_id: placeId});
+  // var result = [];
+  _.each(place.waiter, function(waiterId) {
+    var user = users.findOne({_id: waiterId});
+    if (user) {
+      var waiterInfo = {'name': user.profile.name, 'mail':  contactEmail(user)};
+      self.added( "PlaceWaiters", waiterId, waiterInfo);
+    }
+  });
+  // return result;
+  self.ready();
+});

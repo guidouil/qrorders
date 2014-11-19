@@ -37,7 +37,7 @@ Template.orders.helpers({
   },
   sayMyName: function (name, placeId) {
     var currentRoute = Router.current();
-    if (currentRoute.lookupTemplate() === 'cart') {
+    if (currentRoute.lookupTemplate() === 'Cart') {
       var place = Places.findOne({_id: placeId});
       return place.placename;
     } else {

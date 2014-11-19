@@ -16,9 +16,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        {{#if isLoggedIn}}
         {{#unless order.paid}}
         <button type="button" class="btn btn-success {{addClass}}" id="{{product._id}}" name="{{product.name}}">Commander</button>
         {{/unless}}
+        {{/if}}
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

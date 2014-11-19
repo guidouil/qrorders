@@ -163,5 +163,29 @@ Meteor.methods({
     "Vous pouvez consulter cette commade à cette adresse : \n" + Meteor.absoluteUrl() + "editorder/" + order.place + "/" + order._id + "\n\n";
 
     sendMessage(userId, message);
+  },
+  get_waiters: function (placeId) {
+    var contactEmail = function (user) {
+      if (user.emails && user.emails.length)
+        return user.emails[0].address;
+      if (user.services && user.services.facebook && user.services.facebook.email)
+        return user.services.facebook.email;
+      if (user.services && user.services.google && user.services.google.email)
+        return user.services.google.email;
+      if (user.services && user.services.twitter && user.services.twitter.email)
+        return user.services.twitter.email;
+      return null;
+    };
+    var place = Places.findOne({_id: placeId});
+    var result = [];
+    _.each(place.waiter, function(waiterId) {
+      var user = Meteor.users.findOne({_id: waiterId});
+      if (user) {
+        var waiter = {'_id': waiterId, 'name': user.profile.name, 'mail':  contactEmail(user)};
+        result.push(waiter);
+      }
+    });
+    // console.log(result);
+    return result;
   }
 });
