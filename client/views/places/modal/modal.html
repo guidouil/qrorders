@@ -17,6 +17,10 @@
             <a href="tel:{{place.phone}}">{{place.phone}}</a>
           </address>
           <p>{{{showTags place.PlacesTags}}}</p>
+          {{#if place.loyaltyCard}}
+            <p>Tout les {{formatPrice place.lcPrice}} dépensés, 1 point est ajouté à votre carte fidélité.<br>
+            Tout les {{place.lcSize}} points un avoir de {{formatPrice place.lcReward}} vous est offert. <span class="glyphicon glyphicon-gift"></span></p>
+          {{/if}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>

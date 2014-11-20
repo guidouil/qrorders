@@ -57,6 +57,9 @@ Template.payOrder.events({
 
           // loyaltyCard management
           if (place && place.loyaltyCard) {
+            if (order.rebate) {
+              order.total -= order.rebate;
+            }
             if (order.total >= place.lcPrice) {
               var nbPoints = ~~(order.total/place.lcPrice);
               var loyaltyCard = LoyaltyCards.findOne({place: placeId, user: order.user});
@@ -179,6 +182,9 @@ Template.payOrder.events({
 
       // loyaltyCard management
       if (place && place.loyaltyCard) {
+        if (order.rebate) {
+          order.total -= order.rebate;
+        }
         if (order.total >= place.lcPrice) {
           var nbPoints = ~~(order.total/place.lcPrice);
           var loyaltyCard = LoyaltyCards.findOne({place: placeId, user: order.user});
