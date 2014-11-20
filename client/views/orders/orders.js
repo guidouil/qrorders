@@ -46,7 +46,8 @@ Template.orders.helpers({
   },
   dontSayMyName: function (placename) {
     if (placename !== null) {
-      return placename;
+      var placeId = Router.current().params._id;
+      return '<a href="#" class="placeModal" id="'+placeId+'">'+placename+'</a>';
     } else {
       var user = Meteor.user();
       if (user) {
