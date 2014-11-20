@@ -102,6 +102,11 @@ Template.formOrder.events({
     Session.set('productId', productId);
     $('#productModal').modal();
   },
+  'click .placeModal': function (evt,tmpl) {
+    var placeId = evt.currentTarget.attributes.id.value;
+    Session.set('placeId', placeId);
+    $('#placeModal').modal();
+  },
   'click .setModal': function (evt,tmpl) {
     var setId = evt.currentTarget.attributes.id.value;
     Session.set('productId', false);

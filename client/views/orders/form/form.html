@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-md-6">
         <form class="form-horizontal well">
-          <legend>{{place.placename}} <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
+          <legend><a href="#" class="placeModal" id="{{place._id}}">{{place.placename}}</a> <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -170,4 +170,5 @@
     {{/if}}
   </div>
   {{> productModal}}
+  {{> placeModal}}
 </template>

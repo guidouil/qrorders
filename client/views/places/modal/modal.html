@@ -20,7 +20,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          {{#unless isCreateOrder}}
           <a href="{{pathFor 'createOrder' place_id=place._id}}" class="btn btn-success" title="Je Commande" >Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></a>
+          {{/unless}}
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

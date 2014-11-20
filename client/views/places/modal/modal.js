@@ -4,5 +4,11 @@ Template.placeModal.helpers({
       var placeId = Session.get('placeId');
       return Places.findOne({_id: placeId});
     }
+  },
+  isCreateOrder: function () {
+    if (Router.current().lookupTemplate() === 'CreateOrder') {
+      return true;
+    }
+    return false;
   }
 });

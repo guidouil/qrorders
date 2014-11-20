@@ -23,6 +23,11 @@ Template.profile.events({
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': selectplace}});
       growl('OK', 'Resto mise à jours', 'success');
     }
+  },
+  'click .placeModal': function (evt,tmpl) {
+    var placeId = evt.currentTarget.attributes.id.value;
+    Session.set('placeId', placeId);
+    $('#placeModal').modal();
   }
 });
 

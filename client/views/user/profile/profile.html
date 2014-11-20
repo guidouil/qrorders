@@ -43,7 +43,7 @@
             </thead>
             {{#each loyaltyCards}}
             <tr>
-              <td class="text-left">{{placeName place}}</td>
+              <td class="text-left"><a href="#" class="placeModal" id="{{place}}">{{placeName place}}</a></td>
               <td class="text-center">{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
               <td class="text-right">{{points}}</td>
             </tr>
@@ -67,7 +67,7 @@
             </thead>
             {{#each notes}}
             <tr>
-              <td class="text-left">{{placeName place}}</td>
+              <td class="text-left"><a href="#" class="placeModal" id="{{place}}">{{placeName place}}</a></td>
               <td class="text-center">{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
               <td class="text-right">{{formatPrice amount}}</td>
             </tr>
@@ -81,4 +81,5 @@
       </form>
     </div>
   </div>
+  {{> placeModal}}
 </template>
