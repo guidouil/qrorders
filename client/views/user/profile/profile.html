@@ -28,23 +28,47 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-success save">Enregiter</button>
+        <button type="submit" class="btn btn-success save">Enregistrer</button>
         <a class="btn btn-danger logout pull-right">Déconnexion</a>
         <hr>
+        <div class="table-responsive">
+          <legend>Cartes de fidélité <span class='glyphicon glyphicon-gift'></span></legend>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="text-left">Établissement</th>
+                <th class="text-center">MAJ</th>
+                <th class="text-right">Nb Points</th>
+              </tr>
+            </thead>
+            {{#each loyaltyCards}}
+            <tr>
+              <td class="text-left">{{placeName place}}</td>
+              <td class="text-center">{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
+              <td class="text-right">{{points}}</td>
+            </tr>
+            {{else}}
+            <tr>
+              <td colspan="3"><p class="lead text-center">Aucune carte de fidélité pour l'instant</p></td>
+            </tr>
+            {{/each}}
+          </table>
+        </div>
+
         <div class="table-responsive">
           <legend>Avoirs <span class='glyphicon glyphicon-send'></span></legend>
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Établissement</th>
-                <th>MAJ</th>
-                <th>Montant</th>
+                <th class="text-left">Établissement</th>
+                <th class="text-center">MAJ</th>
+                <th class="text-right">Montant</th>
               </tr>
             </thead>
             {{#each notes}}
             <tr>
-              <td>{{placeName place}}</td>
-              <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
+              <td class="text-left">{{placeName place}}</td>
+              <td class="text-center">{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
               <td class="text-right">{{formatPrice amount}}</td>
             </tr>
             {{else}}

@@ -59,11 +59,6 @@
             <p class="help">Tapez en plusieurs, séparés par des virgules. Ex : Kebab, Pizzeria, Boulangerie ...</p>
           </div>
         </div>
-        <button type="submit" class="btn btn-success save">Enregister</button>
-        <a href="{{pathFor 'owner'}}" class="btn">Annuler</a>
-        <a href="" class="btn btn-danger pull-right delete">Supprimer</a>
-        <hr>
-
         <div class="form-group" id="loyaltyCard">
           <label class="col-xs-3 control-label" >Carte de fidélité</label>
           <div class="col-xs-9">
@@ -71,10 +66,12 @@
               <input type="checkbox" id="inputLoyaltyCard"  checked="{{#if loyaltyCard}}checked{{/if}}"> Active si cochée
             </label>
             <p>Tout les <input type="number" step="any" id="inputLcPrice" value="{{lcPrice}}" class="input-lc" > &euro; dépensés, 1 point est ajouté à la carte.<br>
-              Tout les <input type="number" step="any" id="inputLcSize" value="{{lcSize}}" class="input-lc" > points un avoir de <input type="number" step="any" id="inputLcReward" value="{{lcReward}}" class="input-lc" > &euro; est offert au client.</p>
+              Tout les <input type="number" id="inputLcSize" value="{{lcSize}}" class="input-lc" > points un avoir de <input type="number" step="any" id="inputLcReward" value="{{lcReward}}" class="input-lc" > &euro; est offert au client.</p>
           </div>
         </div>
-
+        <button type="submit" class="btn btn-success save">Enregistrer</button>
+        <a href="{{pathFor 'owner'}}" class="btn">Annuler</a>
+        <a href="" class="btn btn-danger pull-right delete">Supprimer</a>
       </form>
     </div>
   </div>

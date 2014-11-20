@@ -161,6 +161,13 @@
       </div>
     </div>
     {{/if}}
+    {{#if loyaltyCard}}
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="text-center">Tout les {{formatPrice lcPrice}} dépensés, 1 point est ajouté à votre carte fidélité. Tout les {{lcSize}} points un avoir de {{formatPrice lcReward}} vous est offert. <span class="glyphicon glyphicon-gift"></span></p>
+      </div>
+    </div>
+    {{/if}}
   </div>
   {{> productModal}}
 </template>

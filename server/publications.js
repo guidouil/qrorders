@@ -46,6 +46,15 @@ Meteor.publish('MyNotes', function(userId){
   return Notes.find({user: userId});
 });
 
+Meteor.publish('LoyaltyCards', function(placeId){
+  return LoyaltyCards.find({place: placeId});
+});
+
+Meteor.publish('MyLoyaltyCards', function(userId){
+  return LoyaltyCards.find({user: userId});
+});
+
+
 Meteor.publish('PlaceWaiters', function (placeId) {
   var self = this;
   var contactEmail = function (user) {

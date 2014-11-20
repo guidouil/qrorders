@@ -151,16 +151,15 @@ Meteor.methods({
         from: fromEmail,
         to: toEmail,
         replyTo: fromEmail || undefined,
-        subject: "JeCMD: commande #" + order.number + "@" + place.placename +' -> '+statusStr(order.status),
+        subject: "JeCMD : #" + order.number + "@" + place.placename +' -> '+statusStr(order.status),
         text: "Bonjour "+to.profile.name+",\n\n"+
           msg+
-          "Merci d'utiliser JeCMD !\n\n"+
-          "L'équipe JeCMD.\n"+
-          Meteor.absoluteUrl()+"\n"
+          "Merci d'utiliser JeCMD.fr\n\n"+
+          Meteor.absoluteUrl()+" ici c'est moi qui commande.\n"
       });
     };
 
-    var message = "La commande #" + order.number + " @ " + place.placename + " viens de passer en statut : " + statusStr(order.status) + "\n" +
+    var message = "La commande #" + order.number + " chez " + place.placename + " viens de passer en statut : " + statusStr(order.status) + "\n" +
     "Vous pouvez consulter cette commade à cette adresse : \n" + Meteor.absoluteUrl() + "editorder/" + order.place + "/" + order._id + "\n\n";
 
     sendMessage(userId, message);
