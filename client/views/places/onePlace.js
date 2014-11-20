@@ -1,3 +1,11 @@
+Template.onePlace.events({
+  'click .placeModal': function (evt,tmpl) {
+    var placeId = evt.currentTarget.attributes.id.value;
+    Session.set('placeId', placeId);
+    $('#placeModal').modal();
+  }
+});
+
 Template.onePlace.helpers({
   isOwner: function () {
     var currentRoute = Router.current();
@@ -5,15 +13,6 @@ Template.onePlace.helpers({
       return true;
     } else {
       return false;
-    }
-  },
-  imageSrc: function(imageId) {
-    if (imageId) {
-      var image = Images.findOne({_id: imageId});
-      if (image) {
-        return image.name();
-        
-      }
     }
   }
 });

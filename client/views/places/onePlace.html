@@ -2,9 +2,9 @@
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
     <div class="productbox text-center">
       {{#if image}}
-      <a href="{{pathFor 'createOrder' place_id=_id}}"><img src="{{getImage image}}" alt="{{placename}}" class="img-jecmd"></a>
+      <a href="#" class="placeModal" id="{{_id}}"><img src="{{getImage image}}" alt="{{placename}}" class="img-jecmd"></a>
       {{/if}}
-      <div class="producttitle text-center">{{placename}}</div>
+      <div class="producttitle text-center"><a href="#" class="placeModal lead" id="{{_id}}">{{placename}}</a></div>
       <p class="text-center">{{placedesc}}</p>
       <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-block" title="Je Commande">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></a>
       <address>

@@ -39,7 +39,7 @@ Template.orders.helpers({
     var currentRoute = Router.current();
     if (currentRoute.lookupTemplate() === 'Cart') {
       var place = Places.findOne({_id: placeId});
-      return place.placename;
+      return '<a href="#" class="placeModal" id="'+placeId+'">'+place.placename+'</a>';
     } else {
       return name;
     }
@@ -68,6 +68,11 @@ Template.orders.helpers({
 });
 
 Template.orders.events({
+  'click .placeModal': function (evt,tmpl) {
+    var placeId = evt.currentTarget.attributes.id.value;
+    Session.set('placeId', placeId);
+    $('#placeModal').modal();
+  },
   'click .changeStatus': function (evt, tmpl) {
     evt.preventDefault();
     var newStatus = evt.currentTarget.attributes.value.value;
