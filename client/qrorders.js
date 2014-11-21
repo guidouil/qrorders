@@ -10,11 +10,12 @@ Template.layout.rendered = function () {
 };
 
 getUserLanguage = function () {
-  var language = window.navigator.userLanguage || window.navigator.language;
-  if (language.length > 2) {
-    language = language.substring(0,2).toLowerCase();
-  }
-  Session.set('language', language);
+  // var language = window.navigator.userLanguage || window.navigator.language;
+  // if (language.length > 2) {
+  //   language = language.substring(0,2).toLowerCase();
+  // }
+  // Session.set('language', language);
+  Session.set('language', 'fr');
   //return language;
 };
 

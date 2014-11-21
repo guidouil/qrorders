@@ -2,6 +2,7 @@
 body {
   background-color: #DEDEDE;
   font-family: 'Arimo', sans-serif;
+  letter-spacing:0.05em;
 }
 .navbar-brand {
   color: whitesmoke!important;
@@ -23,7 +24,10 @@ body {
   padding-left: 7px;
   padding-right: 7px;
 }
-
+.label {
+  font-weight: normal;
+  font-size: 90%;
+}
 .input-lc {
   width: 50px;
 }
@@ -57,7 +61,7 @@ body {
 
 .pricetext {
   /*font-weight:bold;*/
-  font-size:1.2em;
+  /*font-size:1.2em;*/
   line-height:1.4em;
 }
 
