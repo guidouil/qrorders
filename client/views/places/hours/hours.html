@@ -1,3 +1,75 @@
 <template name="hoursPlace">
+  <div class="container">
+    <div class="row">
+      <div class="well">
+        <legend>1 Créer des crénaux horraires</legend>
+        <div class="form-group" id="name">
+          <label class="col-xs-2 control-label" for="inputName">Crénau</label>
+          <div class="col-xs-4">
+            <div class="input-group clockpicker">
+              <span class="input-group-addon">
+                De
+              </span>
+              <input type="text" class="form-control" value="" id="timeOpen" name="timeOpen">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="input-group clockpicker">
+              <span class="input-group-addon">
+                A
+              </span>
+              <input type="text" class="form-control" value="" id="timeClose" name="timeClose">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <button name="button" class="btn btn-primary addHours">Ajouter</button>
+          </div>
+        </div>
+        {{#each hours}}
+          <p class="col-xs-2"></p>
+          <p class="col-xs-10">De {{open}} à {{close}} <a href="#" class="btn btn-danger btn-sm remove" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></a></p>
+        {{/each}}
 
+        <legend>2 Assigner les crénaux horraires aux jours</legend>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th class="col-xs-2">
+                Jours
+              </th>
+              <th class="col-xs-10">
+                Crénaux
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each days}}
+            <tr>
+              <td>
+                {{day}}
+              </td>
+              <td>
+                {{#each hours}}
+                <label for="{{../day_number}}_{{_id}}">
+                  <input type="checkbox" name="{{../day_number}}_{{_id}}" id="{{../day_number}}_{{_id}}" value="{{open}}|{{close}}"> De {{open}} à {{close}}
+                </label>
+                {{/each}}
+                <label for="{{day_number}}_closed">
+                  <input type="checkbox" name="{{day_number}}_closed" id="{{day_number}}_closed" value="{{day_number}}_closed" > Fermé
+                </label>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <legend>3 Gérer les vacances</legend>
+      </div>
+    </div>
+  </div>
 </template>

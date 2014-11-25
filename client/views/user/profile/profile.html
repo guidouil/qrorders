@@ -41,17 +41,19 @@
                 <th class="text-right">Nb Points</th>
               </tr>
             </thead>
-            {{#each loyaltyCards}}
-            <tr>
-              <td class="text-left"><a href="#" class="placeModal" id="{{place}}">{{placeName place}}</a></td>
-              <td class="text-center">{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
-              <td class="text-right">{{points}}</td>
-            </tr>
-            {{else}}
-            <tr>
-              <td colspan="3"><p class="lead text-center">Aucune carte de fidélité pour l'instant</p></td>
-            </tr>
-            {{/each}}
+            <tbody>
+              {{#each loyaltyCards}}
+              <tr>
+                <td class="text-left"><a href="#" class="placeModal" id="{{place}}">{{placeName place}}</a></td>
+                <td class="text-center">{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
+                <td class="text-right">{{points}}</td>
+              </tr>
+              {{else}}
+              <tr>
+                <td colspan="3"><p class="lead text-center">Aucune carte de fidélité pour l'instant</p></td>
+              </tr>
+              {{/each}}
+            </tbody>
           </table>
         </div>
         <hr>
@@ -65,17 +67,19 @@
                 <th class="text-right">Montant</th>
               </tr>
             </thead>
-            {{#each notes}}
-            <tr>
-              <td class="text-left"><a href="#" class="placeModal" id="{{place}}">{{placeName place}}</a></td>
-              <td class="text-center">{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
-              <td class="text-right">{{formatPrice amount}}</td>
-            </tr>
-            {{else}}
-            <tr>
-              <td colspan="3"><p class="lead text-center">Aucun avoir pour l'instant</p></td>
-            </tr>
-            {{/each}}
+            <tbody>
+              {{#each notes}}
+              <tr>
+                <td class="text-left"><a href="#" class="placeModal" id="{{place}}">{{placeName place}}</a></td>
+                <td class="text-center">{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
+                <td class="text-right">{{formatPrice amount}}</td>
+              </tr>
+              {{else}}
+              <tr>
+                <td colspan="3"><p class="lead text-center">Aucun avoir pour l'instant</p></td>
+              </tr>
+              {{/each}}
+            </tbody>
           </table>
         </div>
       </form>
