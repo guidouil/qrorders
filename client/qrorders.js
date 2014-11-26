@@ -1,5 +1,10 @@
 Meteor.subscribe('Places');
 Meteor.subscribe('Images');
+if (Meteor.userId()) {
+  Meteor.subscribe('Orders', Meteor.userId());
+  Meteor.subscribe('MyOrders', Meteor.userId());
+}
+
 
 Template.layout.rendered = function () {
   var user = Meteor.user();

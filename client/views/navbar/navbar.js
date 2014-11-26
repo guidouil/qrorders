@@ -9,5 +9,11 @@ Template.navbar.helpers({
   },
   isOwnerUser: function() {
     return Roles.userIsInRole(Meteor.user(), ['owner']);
+  },
+  NotifyCount: function() {
+    return Orders.find({notify: true}).count();
+  },
+  MyNotifyCount: function() {
+    return MyOrders.find({notify: true}).count();
   }
 });

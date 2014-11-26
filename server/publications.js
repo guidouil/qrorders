@@ -19,7 +19,7 @@ Meteor.publish('Orders', function(placeId){
 });
 
 Meteor.publish('MyOrders', function(userId){
-  return Orders.find({user: userId});
+  return MyOrders.find({user: userId});
 });
 
 Meteor.publish('OrdersNumbers', function(placeId){

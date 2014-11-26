@@ -20,7 +20,7 @@ Template.chatOrder.events({
         letter: letter
       };
       console.log(chat);
-      Orders.update({_id: orderId}, {$set: {updated: Date.now()}, $push: {chats: chat}});
+      Orders.update({_id: orderId}, {$set: {updated: Date.now(), notify: true}, $push: {chats: chat}});
     }
   }
 });
@@ -40,7 +40,7 @@ Template.chatOrder.helpers({
     return 'right';
   },
   isRight: function (side) {
-    if (side === ' right') {
+    if (side === 'right') {
       return 'pull-right';
     }
   }
