@@ -4,7 +4,7 @@ Template.formOrder.rendered = function () {
       align: 'left',
       autoclose: true
     });
-    var orderId = Session.get('orderId');
+    var orderId = Router.current().params.order_id;
     if (orderId) {
       var order = Orders.findOne({_id: orderId});
       if (order && order.notify) {
