@@ -12,7 +12,7 @@ Template.hoursPlace.events({
     var placeId = this._id;
     var timeOpen = tmpl.find('#timeOpen').value;
     var timeClose = tmpl.find('#timeClose').value;
-    if (timeOpen && timeClose && timeOpen > timeClose) {
+    if (timeOpen && timeClose) {
       var hourId = new Meteor.Collection.ObjectID()._str;
       Places.update({_id: placeId},
         {
