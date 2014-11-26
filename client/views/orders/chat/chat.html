@@ -1,0 +1,49 @@
+<template name="chatOrder">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        <div class="panel panel-primary">
+          <div class="panel-heading" id="accordion" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            <span class="glyphicon glyphicon-comment"></span> Chat
+            <div class="btn-group pull-right">
+              <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+              </a>
+            </div>
+          </div>
+          <div class="panel-collapse collapse" id="collapseOne">
+            <div class="panel-body">
+              <ul class="chat">
+                {{#each chats}}
+                <li class="left clearfix">
+                  <span class="chat-img pull-{{side}}">
+                    <img src="http://placehold.it/50/55C1E7/fff&text={{letter}}" alt="User Avatar" class="img-circle" />
+                  </span>
+                  <div class="chat-body clearfix">
+                    <div class="header">
+                      <small class="pull-{{invert side}} text-muted"><span class="glyphicon glyphicon-time"></span>{{fromNow created}}</small>
+                      <strong class="{{isRight side}} primary-font">{{username}}</strong>
+                    </div>
+                    <p class="{{isRight side}}">
+                      {{message}}
+                    </p>
+                  </div>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+            <div class="panel-footer">
+              <div class="input-group">
+                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Tapez votre message ici..." />
+                <span class="input-group-btn">
+                  <button class="btn btn-success btn-sm" id="btn-chat">Envoyer</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
