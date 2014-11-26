@@ -39,7 +39,7 @@ Template.orders.helpers({
     var currentRoute = Router.current();
     if (currentRoute.lookupTemplate() === 'Cart') {
       var place = Places.findOne({_id: placeId});
-      return '<a href="#" class="placeModal" id="'+placeId+'">'+place.placename+' - '+place.town+'</a>';
+      return '<a href="#" class="placeModal" id="'+placeId+'">'+place.placename+(place.town?' - '+place.town:'')+'</a>';
     } else {
       return name;
     }
@@ -104,7 +104,6 @@ Template.orders.events({
   },
   'click .deleteOrder': function (evt, tmpl) {
     evt.preventDefault();
-
     swal(
       {
         title: "Êtes vous sur ?",

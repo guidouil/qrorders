@@ -34,8 +34,8 @@
             <th>#</th>
             <th>Nom</th>
             <th>Statut</th>
-            <th>Total</th>
             <th>Quand</th>
+            <th class="text-right">Total</th>
             <th></th>
           </tr>
         </thead>
@@ -45,8 +45,8 @@
             <td>{{number}}</td>
             <td>{{{sayMyName name place}}}</td>
             <td>{{{textStatus status}}}</td>
-            <td>{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
             <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}{{#if wanted}} (pour {{wanted}}){{/if}}</td>
+            <td class="text-right">{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
             <td class="text-right">
               {{#unless paid}}
               <button class="btn btn-danger btn-sm deleteOrder" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>

@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="placeModalLabel">{{place.placename}}</h4>
+          <h4 class="modal-title text-center" id="placeModalLabel">{{place.placename}}</h4>
         </div>
         <div class="modal-body text-center">
           {{#if place.image}}
@@ -20,6 +20,21 @@
           {{#if place.loyaltyCard}}
             <p>Tout les {{formatPrice place.lcPrice}} dépensés, 1 point est ajouté à votre carte fidélité.<br>
             Tout les {{place.lcSize}} points un avoir de {{formatPrice place.lcReward}} vous est offert. <span class="glyphicon glyphicon-gift"></span></p>
+          {{/if}}
+          {{#if place.days}}
+            <table class="table table-condensed text-center">
+              <thead>
+                <tr>
+                  <th class="text-center">Jours</th>
+                  <th class="text-center">Horraires</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each days}}
+                  {{{showHours day_number day}}}
+                {{/each}}
+              </tbody>
+            </table>
           {{/if}}
         </div>
         <div class="modal-footer">

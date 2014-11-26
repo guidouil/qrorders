@@ -12,18 +12,48 @@ Template.hoursPlace.events({
     var placeId = this._id;
     var timeOpen = tmpl.find('#timeOpen').value;
     var timeClose = tmpl.find('#timeClose').value;
-    var hourId = new Meteor.Collection.ObjectID()._str;
-    Places.update({_id: placeId},
-      {
-        $set: {updated: Date.now()},
-        $push: {hours: { _id: hourId, open: timeOpen, close: timeClose} }
-      }
-    );
+    if (timeOpen && timeClose && timeOpen > timeClose) {
+      var hourId = new Meteor.Collection.ObjectID()._str;
+      Places.update({_id: placeId},
+        {
+          $set: {updated: Date.now()},
+          $push: {hours: { _id: hourId, open: timeOpen, close: timeClose} }
+        }
+      );
+    }
   },
   'click .remove': function (evt, tmpl) {
     var placeId = Router.current().params._id;
     var hour = this;
     Places.update({_id: placeId},{$set: {updated: Date.now()}, $pull: {'hours': hour }});
+  },
+  'click .save': function (evt, tmpl) {
+    var placeId = Router.current().params._id;
+    var previousDay = 1;
+    var dayTemp = [];
+    var days = [];
+    var len = $('.hour:checked').length;
+    $('.hour:checked').each(function(index, checked) {
+      var dayHour = checked.id.split("_");
+      var day = dayHour[0];
+      var hourId = dayHour[1];
+      if (day !== previousDay) {
+        days[previousDay] = dayTemp;
+        previousDay = day;
+        dayTemp = [];
+      }
+      if (hourId === 'closed') {
+        dayTemp = [];
+      }
+      dayTemp.push(hourId);
+      if (index === len - 1) {
+        days[day] = dayTemp;
+      }
+    });
+    if (days.length > 0) {
+      Places.update({_id: placeId},{$set: {updated: Date.now(), days: days}});
+      Router.go('editPlace', {_id: placeId});
+    }
   }
 });
 
@@ -43,5 +73,16 @@ Template.hoursPlace.helpers({
         ];
       return result;
     }
+  },
+  isChecked: function (dayNum, hourId) {
+    var placeId = Router.current().params._id;
+    var place = Places.findOne({_id: placeId});
+    if (place && place.days && place.days[dayNum]) {
+      var found = $.inArray(hourId, place.days[dayNum]);
+      if (found >= 0) {
+        return 'checked';
+      }
+    }
+    return false;
   }
 });

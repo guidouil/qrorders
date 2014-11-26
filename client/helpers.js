@@ -107,5 +107,7 @@ UI.registerHelper('showTags', function (tags) {
 
 UI.registerHelper('getImage', function (imgId) {
   var image = Images.findOne({_id: imgId});
-  return image.url();
+  if (image && image.url()) {
+    return image.url();
+  }
 });

@@ -3,8 +3,8 @@
     <div class="row">
       <div class="well">
         <legend>1 Créer des crénaux horraires</legend>
-        <div class="form-group" id="name">
-          <label class="col-xs-2 control-label" for="inputName">Crénau</label>
+        <div class="form-group">
+          <label class="col-xs-2 control-label" for="timeOpen">Créer</label>
           <div class="col-xs-4">
             <div class="input-group clockpicker">
               <span class="input-group-addon">
@@ -31,10 +31,15 @@
             <button name="button" class="btn btn-primary addHours">Ajouter</button>
           </div>
         </div>
-        {{#each hours}}
-          <p class="col-xs-2"></p>
-          <p class="col-xs-10">De {{open}} à {{close}} <a href="#" class="btn btn-danger btn-sm remove" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></a></p>
-        {{/each}}
+
+        <div class="form-group">
+          <div class="col-xs-2 control-label">Disponibles</div>
+          <div class="col-xs-10">
+            {{#each hours}}
+              | de {{open}} à {{close}} <a href="#" class="btn btn-danger btn-sm remove" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></a>
+            {{/each}} |
+            </div>
+        </div>
 
         <legend>2 Assigner les crénaux horraires aux jours</legend>
         <table class="table table-condensed">
@@ -57,11 +62,11 @@
               <td>
                 {{#each hours}}
                 <label for="{{../day_number}}_{{_id}}">
-                  <input type="checkbox" name="{{../day_number}}_{{_id}}" id="{{../day_number}}_{{_id}}" value="{{open}}|{{close}}"> De {{open}} à {{close}}
+                  <input type="checkbox" name="{{../day_number}}" id="{{../day_number}}_{{_id}}" value="{{open}}|{{close}}" class="hour open" checked="{{isChecked ../day_number _id}}"> De {{open}} à {{close}}
                 </label>
                 {{/each}}
                 <label for="{{day_number}}_closed">
-                  <input type="checkbox" name="{{day_number}}_closed" id="{{day_number}}_closed" value="{{day_number}}_closed" > Fermé
+                  <input type="checkbox" name="{{day_number}}" id="{{day_number}}_closed" value="{{day_number}}_closed" class="hour closed" checked="{{isChecked day_number 'closed'}}" > Fermé
                 </label>
               </td>
             </tr>
@@ -69,6 +74,8 @@
           </tbody>
         </table>
         <legend>3 Gérer les vacances</legend>
+        <button type="submit" class="btn btn-success save">Enregistrer</button>
+        <a href="{{pathFor 'editPlace'}}" class="btn">Annuler</a>
       </div>
     </div>
   </div>
