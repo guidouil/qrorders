@@ -19,7 +19,11 @@ body {
   background-color : #5cb85c;
   box-shadow       : 0 0 0 #5cb85c;
 }
-
+.docs-flip-horizontal {
+  -ms-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
 .well {
   padding-left: 7px;
   padding-right: 7px;

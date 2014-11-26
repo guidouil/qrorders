@@ -34,10 +34,10 @@ Template.placeModal.helpers({
           placeHours[hour._id] = 'de '+hour.open+' à '+hour.close+' | ';
         });
         var addTdTr = false;
-        result = '<tr class="success"><td>'+dayTxt+'</td><td>| ';
+        result = '<tr class="success"><td class="text-right">'+dayTxt+'</td><td>| ';
         $.each(place.days[dayNum], function (index, hourId) {
           if (hourId === 'closed') {
-            result = '<tr class="danger"><td>'+dayTxt+'</td><td>| Fermé |</td></tr>';
+            result = '<tr class="danger"><td class="text-right">'+dayTxt+'</td><td>| Fermé |</td></tr>';
           } else {
             result += placeHours[hourId];
             addTdTr = true;

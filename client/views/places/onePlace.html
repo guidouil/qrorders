@@ -5,7 +5,7 @@
       <a href="#" class="placeModal" id="{{_id}}"><img src="{{getImage image}}" alt="{{placename}}" class="img-jecmd"></a>
       {{/if}}
       <div class="producttitle text-center"><a href="#" class="placeModal lead" id="{{_id}}">{{placename}}</a></div>
-      <p class="text-center">{{placedesc}}</p>
+      <p class="text-center">{{truncate placedesc 80}}</p>
       <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-block" title="Je Commande">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></a>
       <address>
         {{#if street}}{{street}}<br>{{/if}}

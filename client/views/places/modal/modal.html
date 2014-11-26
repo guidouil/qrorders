@@ -22,11 +22,11 @@
             Tout les {{place.lcSize}} points un avoir de {{formatPrice place.lcReward}} vous est offert. <span class="glyphicon glyphicon-gift"></span></p>
           {{/if}}
           {{#if place.days}}
+          <small>
             <table class="table table-condensed text-center">
               <thead>
                 <tr>
-                  <th class="text-center">Jours</th>
-                  <th class="text-center">Horraires</th>
+                  <th class="text-center" colspan=2>Horraires</th>
                 </tr>
               </thead>
               <tbody>
@@ -35,6 +35,7 @@
                 {{/each}}
               </tbody>
             </table>
+          </small>
           {{/if}}
         </div>
         <div class="modal-footer">

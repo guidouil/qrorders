@@ -55,3 +55,16 @@ Template.imageModal.rendered = function() {
     $image.cropper("destroy");
   });
 };
+
+Template.imageModal.events({
+  'click .left': function (evt,tmpl) {
+    var $modal = $("#imageModal"),
+    $image = $modal.find(".bootstrap-modal-cropper img");
+    $image.cropper('rotate', -90);
+  },
+  'click .right': function (evt,tmpl) {
+    var $modal = $("#imageModal"),
+    $image = $modal.find(".bootstrap-modal-cropper img");
+    $image.cropper('rotate', 90);
+  }
+});

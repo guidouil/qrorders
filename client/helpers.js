@@ -41,6 +41,8 @@ Number.prototype.toMoney = function(decimals, decimal_sep, thousands_sep)
 UI.registerHelper('formatDate', function(date){
   return moment(date).format('DD/MM/YYYY HH:mm');
 });
+
+
 UI.registerHelper('fromNow', function(date){
   if(date !== null) {
     var oDate = moment(date);
@@ -48,6 +50,11 @@ UI.registerHelper('fromNow', function(date){
     return oDate.fromNow();
   }
 });
+
+UI.registerHelper('truncate', function(string,length){
+  return string.substring(0, length);
+});
+
 
 UI.registerHelper('textStatus', function(status) {
   var result = false;
