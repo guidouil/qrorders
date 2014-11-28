@@ -3,7 +3,6 @@ Template.chatOrder.events({
     var orderId = Router.current().params.order_id;
     var order = Orders.findOne({_id: orderId});
     var message = tmpl.find('#btn-input').value.trim();
-    console.log(order);
     if (order && message) {
       var side = 'right';
       var letter = 'Q';
@@ -19,11 +18,10 @@ Template.chatOrder.events({
         side: side,
         letter: letter
       };
-      console.log(chat);
-      if (oder.waiter[0] === Meteor.userId()) {
+      if (order.waiter[0] === Meteor.userId()) {
         Orders.update({_id: orderId}, {$set: {updated: Date.now(), notifyWaiter: false, notifyUser: true}, $push: {chats: chat}});
       }
-      if (oder.user === Meteor.userId()) {
+      if (order.user === Meteor.userId()) {
         Orders.update({_id: orderId}, {$set: {updated: Date.now(), notifyWaiter: true, notifyUser: false}, $push: {chats: chat}});
       }
     }
@@ -48,5 +46,24 @@ Template.chatOrder.helpers({
     if (side === 'right') {
       return 'pull-right';
     }
+  },
+  isLeft: function (side) {
+    if (side === 'left') {
+      return 'pull-right';
+    }
+  },
+  getColor: function (side) {
+    if (side === 'left') {
+      return '55C1E7';
+    }
+    return '5CB85C';
+  },
+  notify: function () {
+    var orderId = Router.current().params.order_id;
+    var order = Orders.findOne({_id: orderId});
+    if (order && (order.notifyUser || order.notifyWaiter)) {
+      return true;
+    }
+    return false;
   }
 });

@@ -4,16 +4,19 @@ Template.formOrder.rendered = function () {
       align: 'left',
       autoclose: true
     });
-    var orderId = Router.current().params.order_id;
-    if (orderId) {
-      var order = Orders.findOne({_id: orderId});
-      if (order && order.waiter[0] === Meteor.userId() && order.notifyWaiter) {
-        Orders.update({_id: orderId}, {$set: {notifyWaiter: false, updated: Date.now()}});
-      }
-      if (order && order.user === Meteor.userId() && order.notifyUser) {
-        Orders.update({_id: orderId}, {$set: {notifyUser: false, updated: Date.now()}});
+    function readNotification() {
+      var orderId = Router.current().params.order_id;
+      if (orderId) {
+        var order = Orders.findOne({_id: orderId});
+        if (order && order.waiter[0] === Meteor.userId() && order.notifyWaiter) {
+          Orders.update({_id: orderId}, {$set: {notifyWaiter: false, updated: Date.now()}});
+        }
+        if (order && order.user === Meteor.userId() && order.notifyUser) {
+          Orders.update({_id: orderId}, {$set: {notifyUser: false, updated: Date.now()}});
+        }
       }
     }
+    Meteor.setTimeout(readNotification,2000);
 };
 
 Template.formOrder.helpers({
