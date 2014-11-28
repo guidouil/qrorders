@@ -70,7 +70,8 @@ Template.editPlace.events({
     var file = template.find('#inputImage').files[0];
     var reader = new FileReader();
     reader.onload = function(e) {
-      Places.update({_id: placeId}, {$set: {imageTmp: e.target.result}});
+      // Places.update({_id: placeId}, {$set: {imageTmp: e.target.result}});
+      Session.set('imageTemp', e.target.result);
     };
     reader.readAsDataURL(file);
     $('#imageModal').modal();

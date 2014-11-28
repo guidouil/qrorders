@@ -7,9 +7,9 @@ Template.orders.helpers({
     if (dateFilter == 'today') {
       var yesterday = moment().subtract('days', 1).valueOf();
       if (statusFilter == 'all') {
-        return Orders.find({$and: [{created: {$gt: yesterday}}, {paid: paidFilter} ]},{sort: {created: -1}}).fetch();
+        return Orders.find({$or: [{created: {$gt: yesterday}}, {updated: {$gt: yesterday}}], paid: paidFilter} ,{sort: {updated: -1, created: -1}}).fetch();
       } else {
-        return Orders.find({status: parseFloat(statusFilter), created: {$gt: yesterday}, paid: paidFilter},{sort: {created: -1}}).fetch();
+        return Orders.find({status: parseFloat(statusFilter), $or: [{created: {$gt: yesterday}}, {updated: {$gt: yesterday}}], paid: paidFilter},{sort: {updated: -1, created: -1}}).fetch();
       }
     } else {
       if (statusFilter == 'all') {

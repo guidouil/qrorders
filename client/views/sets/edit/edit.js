@@ -62,7 +62,8 @@ Template.editSet.events({
     var file = template.find('#inputImage').files[0];
     var reader = new FileReader();
     reader.onload = function(e) {
-      Sets.update({_id: setId}, {$set: {imageTmp: e.target.result}});
+      // Sets.update({_id: setId}, {$set: {imageTmp: e.target.result}});
+      Session.set('imageTemp', e.target.result);
     };
     reader.readAsDataURL(file);
     $('#imageModal').modal();

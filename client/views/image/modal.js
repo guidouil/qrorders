@@ -32,7 +32,7 @@ Template.imageModal.rendered = function() {
           if (place.image ) {
             Meteor.call('delete_image', place.image);
           }
-          Places.update({_id: placeId}, {$set: {image: image._id, imageTmp: ''}});
+          Places.update({_id: placeId}, {$set: {image: image._id}});
         }
         if (currentRoute.lookupTemplate() === 'EditProduct') {
           var productId = currentRoute.params.product_id;
@@ -40,7 +40,7 @@ Template.imageModal.rendered = function() {
           if (product.image ) {
             Meteor.call('delete_image', product.image);
           }
-          Products.update({_id: productId}, {$set: {image: image._id, imageTmp: ''}});
+          Products.update({_id: productId}, {$set: {image: image._id}});
         }
         if (currentRoute.lookupTemplate() === 'EditSet') {
           var setId = currentRoute.params.set_id;
@@ -48,8 +48,9 @@ Template.imageModal.rendered = function() {
           if (set.image ) {
             Meteor.call('delete_image', set.image);
           }
-          Sets.update({_id: setId}, {$set: {image: image._id, imageTmp: ''}});
+          Sets.update({_id: setId}, {$set: {image: image._id}});
         }
+        Session.set('imageTemp', '');
     });
 
     $image.cropper("destroy");
@@ -66,5 +67,13 @@ Template.imageModal.events({
     var $modal = $("#imageModal"),
     $image = $modal.find(".bootstrap-modal-cropper img");
     $image.cropper('rotate', 90);
+  }
+});
+
+Template.imageModal.helpers({
+  imageTemp: function() {
+    if (Session.get("imageTemp")) {
+      return Session.get("imageTemp");
+    }
   }
 });
