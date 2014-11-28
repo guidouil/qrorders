@@ -95,6 +95,8 @@ Template.editPlace.events({
         }
         Places.remove({_id: placeId});
         Meteor.call('clean_the_place',placeId);
+        Meteor.call('user_unset_owner');
+        Meteor.call('user_unset_waiter',placeId);
         growl('OK', 'Établissement supprimé', 'danger');
         Router.go('owner');
       }

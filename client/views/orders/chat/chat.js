@@ -20,7 +20,12 @@ Template.chatOrder.events({
         letter: letter
       };
       console.log(chat);
-      Orders.update({_id: orderId}, {$set: {updated: Date.now(), notify: true}, $push: {chats: chat}});
+      if (oder.waiter[0] === Meteor.userId()) {
+        Orders.update({_id: orderId}, {$set: {updated: Date.now(), notifyWaiter: false, notifyUser: true}, $push: {chats: chat}});
+      }
+      if (oder.user === Meteor.userId()) {
+        Orders.update({_id: orderId}, {$set: {updated: Date.now(), notifyWaiter: true, notifyUser: false}, $push: {chats: chat}});
+      }
     }
   }
 });

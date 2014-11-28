@@ -55,6 +55,10 @@ UI.registerHelper('truncate', function(string,length){
   return string.substring(0, length);
 });
 
+UI.registerHelper('firstLetter', function(string){
+  return string.substring(0, 1);
+});
+
 
 UI.registerHelper('textStatus', function(status) {
   var result = false;

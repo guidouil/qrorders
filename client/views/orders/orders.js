@@ -80,7 +80,7 @@ Template.orders.events({
     var orderId = evt.currentTarget.attributes.id.value;
     var order = Orders.findOne({_id: orderId});
     if ( _.contains(order.waiter, Meteor.userId()) ) {
-      Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now(), notify: true}});
+      Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now(), notifyUser: true}});
       if (order.user !== Meteor.userId()) {
         Meteor.call('notify_order_status', orderId, order.user, newStatus);
       }

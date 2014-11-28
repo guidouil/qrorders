@@ -41,7 +41,7 @@
         </thead>
         <tbody>
           {{#each orders}}
-          <tr class="{{#if notify}}warning{{/if}}">
+          <tr class="{{#if notifyUser}}warning{{/if}} {{#if notifyWaiter}}danger{{/if}} ">
             <td>{{number}}</td>
             <td>{{{sayMyName name place}}}</td>
             <td>{{{textStatus status}}}</td>

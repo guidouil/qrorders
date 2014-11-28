@@ -14,10 +14,28 @@ Meteor.methods({
       Roles.addUsersToRoles(Meteor.userId(), ['owner']);
     }
   },
+  user_unset_owner: function () {
+    if (Meteor.userId()) {
+      var placeCount = Places.find({owner: Meteor.userId()}).count();
+      console.log(placeCount);
+      if (placeCount === 0) {
+        Roles.removeUsersFromRoles(Meteor.userId(), ['owner']);
+      }
+    }
+  },
   user_set_waiter: function (placeId) {
     if (Meteor.userId()) {
       Roles.addUsersToRoles(Meteor.userId(), ['waiter']);
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': placeId}});
+    }
+  },
+  user_unset_waiter: function (placeId) {
+    if (Meteor.userId()) {
+      var placeCount = Places.find({waiter: Meteor.userId()}).count();
+      if (placeCount === 0) {
+        Roles.removeUsersFromRoles(Meteor.userId(), ['waiter']);
+      }
+      Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.place': ''}});
     }
   },
   delete_order: function(orderId) {

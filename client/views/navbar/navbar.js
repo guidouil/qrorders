@@ -11,9 +11,9 @@ Template.navbar.helpers({
     return Roles.userIsInRole(Meteor.user(), ['owner']);
   },
   NotifyCount: function() {
-    return Orders.find({notify: true}).count();
+    return Orders.find({notifyWaiter: true, waiter: Meteor.userId()}).count();
   },
   MyNotifyCount: function() {
-    return MyOrders.find({notify: true}).count();
+    return MyOrders.find({notifyUser: true, user: Meteor.userId()}).count();
   }
 });

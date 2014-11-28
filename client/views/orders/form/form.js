@@ -7,8 +7,11 @@ Template.formOrder.rendered = function () {
     var orderId = Router.current().params.order_id;
     if (orderId) {
       var order = Orders.findOne({_id: orderId});
-      if (order && order.notify) {
-        Orders.update({_id: orderId}, {$set: {notify: false, updated: Date.now()}});
+      if (order && order.waiter[0] === Meteor.userId() && order.notifyWaiter) {
+        Orders.update({_id: orderId}, {$set: {notifyWaiter: false, updated: Date.now()}});
+      }
+      if (order && order.user === Meteor.userId() && order.notifyUser) {
+        Orders.update({_id: orderId}, {$set: {notifyUser: false, updated: Date.now()}});
       }
     }
 };
@@ -126,7 +129,7 @@ Template.formOrder.events({
     var orderId = Session.get('orderId');
     var order = Orders.findOne({_id: orderId});
     if ( _.contains(order.waiter, Meteor.userId()) ) {
-      Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now(), notify: true}});
+      Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now(), notifyUser: true}});
       if (order.user !== Meteor.userId()) {
         Meteor.call('notify_order_status', orderId, order.user, newStatus);
       }
@@ -153,7 +156,7 @@ Template.formOrder.events({
     if (timeWanted < inTen) {
       timeWanted = inTen;
     }
-    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now(), wanted: timeWanted, notify: true}});
+    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now(), wanted: timeWanted, notifyWaiter: true}});
     var order = Orders.findOne({_id: orderId});
     Meteor.call('notify_order_status', orderId, order.waiter[0], 2);
     swal('Merci','Votre commande est validée','success');
