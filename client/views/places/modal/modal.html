@@ -17,10 +17,6 @@
             <a href="tel:{{place.phone}}">{{place.phone}}</a>
           </address>
           <p>{{{showTags place.PlacesTags}}}</p>
-          {{#if place.loyaltyCard}}
-            <p>Tout les {{formatPrice place.lcPrice}} dépensés, 1 point est ajouté à votre carte fidélité.<br>
-            Tout les {{place.lcSize}} points un avoir de {{formatPrice place.lcReward}} vous est offert. <span class="glyphicon glyphicon-gift"></span></p>
-          {{/if}}
           {{#if place.days}}
           <small>
             <table class="table table-condensed text-center">
@@ -36,6 +32,10 @@
               </tbody>
             </table>
           </small>
+          {{/if}}
+          {{#if place.loyaltyCard}}
+            <p>Tout les {{formatPrice place.lcPrice}} dépensés,<br>1 point est ajouté à votre carte fidélité.<br>
+            Tout les {{place.lcSize}} points un avoir de {{formatPrice place.lcReward}} vous est offert. <span class="glyphicon glyphicon-gift"></span></p>
           {{/if}}
         </div>
         <div class="modal-footer">

@@ -72,7 +72,7 @@ iron:middleware-stack@1.0.3
 iron:router@1.0.3
 iron:url@1.0.3
 jeremy:selectize@0.2.0
-jonblum:jquery-cropper@0.7.3
+jonblum:jquery-cropper@0.7.4
 joshowens:accounts-entry@1.0.1
 joshowens:simple-form@0.1.8
 jquery@1.0.1

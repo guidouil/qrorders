@@ -39,7 +39,9 @@ Number.prototype.toMoney = function(decimals, decimal_sep, thousands_sep)
 };
 
 UI.registerHelper('formatDate', function(date){
-  return moment(date).format('DD/MM/YYYY HH:mm');
+  if (date !== '') {
+    return moment(date).format('DD/MM/YYYY HH:mm');
+  }
 });
 
 
@@ -52,11 +54,15 @@ UI.registerHelper('fromNow', function(date){
 });
 
 UI.registerHelper('truncate', function(string,length){
-  return string.substring(0, length);
+  if (string) {
+    return string.substring(0, length);
+  }
 });
 
 UI.registerHelper('firstLetter', function(string){
-  return string.substring(0, 1);
+  if (string) {
+    return string.substring(0, 1);
+  }
 });
 
 
