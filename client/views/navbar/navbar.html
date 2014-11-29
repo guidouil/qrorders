@@ -17,9 +17,9 @@
             <li class="{{ activeIfTemplateIs 'Waiter' }}"><a href="{{pathFor 'waiter' _id=currentUser.profile.place}}" title="waiter"><span class="glyphicon glyphicon-phone"></span>{{#if NotifyCount}}<span class="badge">{{NotifyCount}}</span>{{/if}}</a></li>
             {{/if}}
             {{#if isOwnerUser}}
-            <li class="{{ activeIfTemplateIs 'Owner' }}"><a href="{{pathFor 'owner'}}" title="owner"><span class="glyphicon glyphicon-globe"></span></a></li>
+            <li class="{{ activeIfTemplateIs 'Owner' }}"><a href="{{pathFor 'owner'}}" title="owner"><span class="glyphicon glyphicon-cutlery"></span></a></li>
             {{else}}
-            <li class="{{ activeIfTemplateIs 'Resto' }}"><a href="{{pathFor 'resto'}}" title="resto"><span class="glyphicon glyphicon-globe"></span></a></li>
+            <li class="{{ activeIfTemplateIs 'Resto' }}"><a href="{{pathFor 'resto'}}" title="resto"><span class="glyphicon glyphicon-cutlery"></span></a></li>
             {{/if}}
             {{#if isLoggedIn}}
             <li class="{{ activeIfTemplateIs 'Cart' }}"><a href="{{pathFor 'cart'}}" title="cart"><span class="glyphicon glyphicon-shopping-cart"></span>{{#if MyNotifyCount}}<span class="badge">{{MyNotifyCount}}</span>{{/if}}</a></li>
