@@ -3,8 +3,8 @@ Template.createPlace.events({
     evt.preventDefault();
     var  inputMail, inputPassword = '';
     if (tmpl.find('#inputMail')) {
-      inputMail = tmpl.find('#inputMail').value;
-      inputPassword = tmpl.find('#inputPassword').value;
+      inputMail = tmpl.find('#inputMail').value.trim();
+      inputPassword = tmpl.find('#inputPassword').value.trim();
     }
 
     if ( inputMail !== '' && inputPassword !== '') {
@@ -27,7 +27,7 @@ Template.createPlace.events({
         // mot de passe trop court
         $('#password').addClass('has-error');
         $('#inputPassword').focus();
-        growl('Erreur', 'Mot de passe trop court');
+        growl('Erreur', 'Mot de passe trop court, 7 caractères minimum');
         valid = false;
       }
 
@@ -37,7 +37,7 @@ Template.createPlace.events({
           if (err) {
             swal("Oops...", "Problème avec la création du compte", "error");
           } else {
-            swal("Impec !", "Le compte à été créé!", "success");
+            swal("Bienvenue !", "Votre compte "+inputMail+" à été créé.", "success");
             $('#inputName').focus();
           }
         });
@@ -77,7 +77,7 @@ Template.createPlace.events({
           created: Date.now()
         });
         OrdersNumbers.insert({_id: placeId, seq: 0});
-        swal("Génial !", "Le restaurant " + inputName + " à été créé!", "success");
+        swal("Génial !", "L'établissement " + inputName + " à été créé.", "success");
         Meteor.call('user_set_owner');
         Meteor.call('user_set_waiter', placeId);
         Router.go('editPlace', {_id: placeId});

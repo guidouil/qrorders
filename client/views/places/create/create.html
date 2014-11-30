@@ -5,7 +5,7 @@
       <form class="form-horizontal well">
 
         {{#if isNotLoggedIn}}
-        <legend>Créez votre compte</legend>
+        <legend>1. Créez votre compte</legend>
         <div class="form-group" id="mail">
           <label class="col-xs-3 control-label" for="inputMail">Mail</label>
           <div class="col-xs-9">
@@ -27,7 +27,7 @@
         </div>
         {{/if}}
 
-        <legend>Inscrivez votre établissement</legend>
+        <legend>{{#if isNotLoggedIn}}2. {{/if}}Inscrivez votre établissement</legend>
         <div class="form-group" id="name">
           <label class="col-xs-3 control-label" for="inputName">Nom</label>
           <div class="col-xs-9">
@@ -43,7 +43,7 @@
         <div class="form-group">
           <label class="col-xs-3 control-label"></label>
           <div class="col-xs-9">
-            <button  class="btn btn-success addPlace">Valider <span class="glyphicon glyphicon-globe"></span></button>
+            <button  class="btn btn-success addPlace {{#if isNotLoggedIn}}disabled{{/if}}">Valider <span class="glyphicon glyphicon-globe"></span></button>
           </div>
         </div>
 
