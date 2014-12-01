@@ -6,6 +6,9 @@ Meteor.startup(function () {
     Roles.addUsersToRoles("6nedcPXypfWZRBbjo", ['admin']);
 
   // Ensuring indexes
+  if (Places.find().count() === 0) {
+    Places._ensureIndex({ "loc.coordinates" : "2d" });
+  }
   if (Products.find().count() === 0) {
     Products._ensureIndex({ "places": 1});
   }
@@ -19,14 +22,15 @@ Meteor.startup(function () {
     Lines._ensureIndex({ "place": 1, "user": 1, "waiter": 1 });
   }
   if (Options.find().count() === 0) {
-    Options._ensureIndex({ "places": 1});
+    Options._ensureIndex({ "products": 1});
   }
   if (Payments.find().count() === 0) {
-    Payments._ensureIndex({ "places": 1});
+    Payments._ensureIndex({ "place": 1});
   }
   if (Notes.find().count() === 0) {
-    Notes._ensureIndex({ "places": 1});
+    Notes._ensureIndex({ "place": 1});
   }
+
 
   //MailGun Conf
   process.env.MAIL_URL = 'smtp://postmaster%40jecmd.fr:a4a921f720e8ab89f03325dfb2a46439@smtp.mailgun.org:587';

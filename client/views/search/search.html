@@ -2,16 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <form class="form-horizontal" role="form">
-          <div class="input-group btn-block">
-            <input type="text" class="search-query form-control" placeholder="Rechercher une ville, un restaurant, un commerce, un code postal..." value="{{searched}}" />
-            <span class="input-group-btn">
-              <button class="btn btn-success search" type="submit">
-                <span class=" glyphicon glyphicon-search"></span>
-              </button>
-            </span>
-          </div>
-        </form>
+        {{> searchInput}}
       </div>
     </div>
 

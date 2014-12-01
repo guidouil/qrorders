@@ -14,17 +14,22 @@ Template.placeMap.rendered = function () {
 
     tmpl.mapEngine = VazcoMaps.gMaps();
 
+
     tmpl.newMap = new tmpl.mapEngine({
       div: '#map-canvas',
       lat: 49.17682,
       lng: -0.35400,
       zoom: 16
     });
+
     tmpl.mapEngine.geocode({
       address: searchInput,
       callback: function(results, status) {
         if (status == 'OK') {
           var latlng = results[0].geometry.location;
+          if (place && Router.current().lookupTemplate() === 'EditPlace') {
+            Places.update({_id: placeId},{$set: {loc: { "type": "Point", "coordinates": [latlng.lat(), latlng.lng()] } } });
+          }
           tmpl.newMap.setCenter(latlng.lat(), latlng.lng());
           tmpl.newMap.addMarker({
             lat: latlng.lat(),
