@@ -7,7 +7,6 @@ meteor-platform
 iron:router
 accounts-password
 ian:bootstrap-3
-jquery
 alanning:roles
 mrt:accounts-admin-ui-bootstrap-3
 kevohagan:sweetalert
@@ -27,12 +26,10 @@ accounts-facebook
 accounts-twitter
 accounts-google
 joshowens:accounts-entry@1.0.0
-pestouille:qrcodejs
 andrasph:clockpicker
 meteorhacks:kadira
 jonblum:jquery-cropper
 http
-facts
 cfs:standard-packages
 cfs:filesystem
 fuatsengul:iron-router-progress
