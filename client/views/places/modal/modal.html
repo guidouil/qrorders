@@ -18,20 +18,7 @@
           </address>
           <p>{{{showTags place.PlacesTags}}}</p>
           {{#if place.days}}
-          <small>
-            <table class="table table-condensed text-center">
-              <thead>
-                <tr>
-                  <th class="text-center" colspan=2>Horraires</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each days}}
-                  {{{showHours day_number day}}}
-                {{/each}}
-              </tbody>
-            </table>
-          </small>
+            {{> openHours}}
           {{/if}}
           {{#if place.loyaltyCard}}
             <p>Tout les {{formatPrice place.lcPrice}} dépensés,<br>1 point est ajouté à votre carte fidélité.<br>

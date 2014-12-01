@@ -1,0 +1,16 @@
+<template name="openHours">
+  <small>
+    <table class="table table-condensed text-center">
+      <thead>
+        <tr>
+          <th class="text-center" colspan=2>Horraires</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each days}}
+        {{{showHours day_number day}}}
+        {{/each}}
+      </tbody>
+    </table>
+  </small>
+</template>

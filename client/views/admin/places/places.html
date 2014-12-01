@@ -1,0 +1,14 @@
+<template name="adminPlaces">
+  <div class="container">
+    {{#if isAdminUser}}
+    <div class="row">
+      {{#each places}}
+      {{> onePlace}}
+      {{/each}}
+      {{> placeModal}}
+    </div>
+    {{else}}
+        Must be admin to see this...
+    {{/if}}
+  </div>
+</template>

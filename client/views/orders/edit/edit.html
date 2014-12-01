@@ -1,6 +1,4 @@
 <template name="editOrder">
-  {{> formOrder}}
-  {{> chatOrder}}
   {{#if isWaiter}}
   <div class="container">
     <div class="row">
@@ -10,4 +8,6 @@
     </div>
   </div>
   {{/if}}
+  {{> chatOrder}}
+  {{> formOrder}}
 </template>

@@ -168,6 +168,9 @@
       </div>
     </div>
     {{/if}}
+    {{#if place.days}}
+      {{> openHours}}
+    {{/if}}
   </div>
   {{> productModal}}
   {{> placeModal}}

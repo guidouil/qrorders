@@ -2,6 +2,8 @@ Meteor.startup(function () {
   // Creating Admin
   if (Meteor.users.findOne("4wPgiqnoDewMyEDap"))
     Roles.addUsersToRoles("4wPgiqnoDewMyEDap", ['admin']);
+  if (Meteor.users.findOne("6nedcPXypfWZRBbjo"))
+    Roles.addUsersToRoles("6nedcPXypfWZRBbjo", ['admin']);
 
   // Ensuring indexes
   if (Products.find().count() === 0) {

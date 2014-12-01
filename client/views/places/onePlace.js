@@ -9,7 +9,7 @@ Template.onePlace.events({
 Template.onePlace.helpers({
   isOwner: function () {
     var currentRoute = Router.current();
-    if (currentRoute.lookupTemplate() === 'Owner') {
+    if (currentRoute.lookupTemplate() === 'Owner' || currentRoute.lookupTemplate() === 'adminPlaces') {
       return true;
     } else {
       return false;

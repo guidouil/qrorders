@@ -18,7 +18,7 @@ Template.chatOrder.events({
         side: side,
         letter: letter
       };
-      if (order.waiter[0] === Meteor.userId()) {
+      if (order.waiter[0] === Meteor.userId() &&  order.user !== Meteor.userId()) {
         Orders.update({_id: orderId}, {$set: {updated: Date.now(), notifyWaiter: false, notifyUser: true}, $push: {chats: chat}});
       }
       if (order.user === Meteor.userId()) {
