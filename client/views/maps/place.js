@@ -17,7 +17,8 @@ Template.placeMap.rendered = function () {
     tmpl.newMap = new tmpl.mapEngine({
       div: '#map-canvas',
       lat: 49.17682,
-      lng: -0.35400
+      lng: -0.35400,
+      zoom: 16
     });
     tmpl.mapEngine.geocode({
       address: searchInput,
