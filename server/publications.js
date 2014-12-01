@@ -15,7 +15,7 @@ Meteor.publish('Sets', function(placeId){
 });
 
 Meteor.publish('Orders', function(placeId){
-  return Orders.find({place: placeId, $or:[{user: this.userId}, {waiter: this.userId}]});
+  return Orders.find({place: placeId, waiter: this.userId});
 });
 
 Meteor.publish('MyOrders', function(userId){

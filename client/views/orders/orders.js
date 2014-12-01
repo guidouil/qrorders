@@ -3,22 +3,21 @@ Template.orders.helpers({
     var dateFilter = Session.get('dateFilter');
     var statusFilter = Session.get('statusFilter');
     var paidFilter = Session.get('paidFilter');
+    var placeId = Router.current().params._id;
+
+    var orderQuery = {paid: paidFilter};
 
     if (dateFilter == 'today') {
       var yesterday = moment().subtract('days', 1).valueOf();
-      if (statusFilter == 'all') {
-        return Orders.find({$or: [{created: {$gt: yesterday}}, {updated: {$gt: yesterday}}], paid: paidFilter} ,{sort: {updated: -1, created: -1}}).fetch();
-      } else {
-        return Orders.find({status: parseFloat(statusFilter), $or: [{created: {$gt: yesterday}}, {updated: {$gt: yesterday}}], paid: paidFilter},{sort: {updated: -1, created: -1}}).fetch();
-      }
-    } else {
-      if (statusFilter == 'all') {
-        return Orders.find({paid: paidFilter},{sort: {created: -1}}).fetch();
-      } else {
-        return Orders.find({status: parseFloat(statusFilter), paid: paidFilter},{sort: {created: -1}}).fetch();
-      }
-
+      orderQuery.$or = [{created: {$gt: yesterday}}, {updated: {$gt: yesterday}}];
     }
+    if (statusFilter != 'all') {
+      orderQuery.status  = parseFloat(statusFilter);
+    }
+    if (placeId) {
+      orderQuery.place = placeId;
+    }
+    return Orders.find(orderQuery ,{sort: {updated: -1, created: -1}}).fetch();
   },
   placeId: function () {
     return Router.current().params._id;
