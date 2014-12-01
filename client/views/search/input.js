@@ -1,6 +1,8 @@
 Template.searchInput.helpers({
   searched: function () {
-    return decodeURI(Router.current().params.searched);
+    if (Router.current().params.searched) {
+      return decodeURI(Router.current().params.searched);
+    }
   }
 });
 
