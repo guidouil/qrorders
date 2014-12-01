@@ -98,7 +98,6 @@ mongo-livedata@1.0.6
 mongo@1.0.8
 mrt:accounts-admin-ui-bootstrap-3@0.2.7
 mrt:momentjs@2.1.0
-mrt:qr-scanner@0.2.0
 mrt:underscore-string-latest@2.3.3
 npm-bcrypt@0.7.7
 oauth1@1.1.2

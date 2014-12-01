@@ -171,6 +171,10 @@
     {{#if place.days}}
       {{> openHours}}
     {{/if}}
+    {{#if place.town}}
+    <br>
+    {{> placeMap}}
+    {{/if}}
   </div>
   {{> productModal}}
   {{> placeModal}}

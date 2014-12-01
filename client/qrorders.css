@@ -28,6 +28,9 @@ body {
   padding-left: 7px;
   padding-right: 7px;
 }
+.map-canvas {
+  height: 300px;
+}
 .label {
   font-weight: normal;
   font-size: 90%;

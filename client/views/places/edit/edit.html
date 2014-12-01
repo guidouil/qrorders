@@ -72,6 +72,10 @@
         <button type="submit" class="btn btn-success save">Enregistrer</button>
         <a href="{{pathFor 'owner'}}" class="btn">Annuler</a>
         <a href="" class="btn btn-danger pull-right delete">Supprimer</a>
+        {{#if town}}
+        <p></p>
+        {{> placeMap}}
+        {{/if}}
       </form>
     </div>
   </div>

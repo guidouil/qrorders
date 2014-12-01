@@ -28,7 +28,6 @@ accounts-twitter
 accounts-google
 joshowens:accounts-entry@1.0.0
 pestouille:qrcodejs
-mrt:qr-scanner
 andrasph:clockpicker
 meteorhacks:kadira
 jonblum:jquery-cropper
