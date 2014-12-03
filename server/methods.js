@@ -210,6 +210,26 @@ Meteor.methods({
     var place = Places.findOne({_id: placeId});
     if (place && _.contains(place.waiter, waiterId)) {
       Places.update({_id: placeId}, {$pull: {waiter: waiterId}});
+      var waiter = Meteor.users.findOne({_id: waiterId});
+      if (waiter.profile.place === placeId) {
+        Meteor.user.update({_id:waiterId}, {$set: {'profile.place': ''}});
+      }
+      var nbPlaces = Places.find({waiter: waiterId}).count();
+      if (nbPlaces === 0) {
+        Roles.removeUsersFromRoles(waiterId, ['waiter']);
+      }
+      return true;
     }
+    return false;
+  },
+  add_place_waiter: function (placeId, mail) {
+    var waiter = Meteor.users.findOne({'emails.address': mail});
+    if (waiter && waiter._id) {
+      Places.update({_id: placeId}, {$push: {waiter: waiter._id}});
+      Roles.addUsersToRoles(waiter._id, ['waiter']);
+      Meteor.user.update({_id:waiterId}, {$set: {'profile.place': placeId}});
+      return true;
+    }
+    return false;
   }
 });

@@ -15,7 +15,7 @@ Template.placeWaiters.events({
     var waiterId = evt.currentTarget.attributes.id.value;
     var placeId = Router.current().params._id;
     Meteor.call('remove_place_waiter',placeId,waiterId, function (error, result) {
-      if (!error) {
+      if (result) {
         growl('OK', 'Serveur retiré', 'danger');
       }
     });
@@ -23,7 +23,13 @@ Template.placeWaiters.events({
   'click .addWaiter': function (evt, tmpl) {
     evt.preventDefault();
     var mail = tmpl.find('#waiterMail').value.trim();
-    alert('soon '+mail);
     var placeId = Router.current().params._id;
+    Meteor.call('add_place_waiter',placeId,mail, function (error, result) {
+      if (result) {
+        growl('OK', 'Serveur ajouté', 'success');
+      } else {
+        growl('KO', mail+' inconnu', 'danger');
+      }
+    });
   }
 });
