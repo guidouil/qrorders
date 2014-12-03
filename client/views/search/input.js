@@ -16,9 +16,17 @@ Template.searchInput.events({
   },
   'click .locate': function (evt, tmpl) {
     evt.preventDefault();
-    if (Geolocation.currentLocation()) {
-      Session.set('here', Geolocation.latLng());
+    $("#geoloc").attr('src', '/ajax-loader.gif');
+    Session.set('here', Geolocation.latLng());
+
+    function loadSearch() {
+      setTimeout(function () {
+        Session.set('here', Geolocation.latLng());
+        $("#geoloc").attr('src', '/geolocation.png');
+        Router.go('/search/');
+      }, 4000);
     }
-    Router.go('/search/');
+
+    loadSearch();
   }
 });

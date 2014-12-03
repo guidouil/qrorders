@@ -9,6 +9,8 @@
     <div class="row">
       {{#each places}}
         {{> onePlace}}
+      {{else}}
+        <p class="text-center lead">Aucun résultat :(</p>
       {{/each}}
     </div>
   </div>
