@@ -205,5 +205,11 @@ Meteor.methods({
     });
     // console.log(result);
     return result;
+  },
+  remove_place_waiter: function (placeId, waiterId) {
+    var place = Places.findOne({_id: placeId});
+    if (place && _.contains(place.waiter, waiterId)) {
+      Places.update({_id: placeId}, {$pull: {waiter: waiterId}});
+    }
   }
 });

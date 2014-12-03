@@ -18,7 +18,8 @@ Template.searchInput.events({
     evt.preventDefault();
     if (Geolocation.currentLocation()) {
       Session.set('here', Geolocation.latLng());
-      Router.go('/search/geolocation');
+      console.log(Session.get('here'));
+      Router.go('/search/');
     }
   }
 });
