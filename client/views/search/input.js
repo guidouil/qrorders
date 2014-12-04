@@ -7,7 +7,7 @@ Template.searchInput.helpers({
 });
 
 Template.searchInput.events({
-  'click .search': function (evt,tmpl) {
+  'submit .search': function (evt,tmpl) {
     evt.preventDefault();
     var searchQuery = tmpl.find('.search-query').value.trim();
     if (searchQuery !== '') {
