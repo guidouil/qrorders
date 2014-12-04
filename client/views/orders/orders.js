@@ -79,7 +79,18 @@ Template.orders.events({
     var orderId = evt.currentTarget.attributes.id.value;
     var order = Orders.findOne({_id: orderId});
     if ( _.contains(order.waiter, Meteor.userId()) ) {
-      Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now(), notifyUser: true}});
+      var chat = {
+        userId: Meteor.userId(),
+        username: Meteor.user().profile.name,
+        created: Date.now(),
+        message: 'La commande vient de passer en statut : '+orderStatus(newStatus),
+        side: 'left'
+      };
+      var notify = true;
+      if (order.user === Meteor.userId()) {
+        notify = false;
+      }
+      Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now(), notifyUser: notify}, $push: {chats: chat}});
       if (order.user !== Meteor.userId()) {
         Meteor.call('notify_order_status', orderId, order.user, newStatus);
       }

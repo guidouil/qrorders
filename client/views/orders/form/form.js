@@ -132,7 +132,18 @@ Template.formOrder.events({
     var orderId = Session.get('orderId');
     var order = Orders.findOne({_id: orderId});
     if ( _.contains(order.waiter, Meteor.userId()) ) {
-      Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now(), notifyUser: true}});
+      var chat = {
+        userId: Meteor.userId(),
+        username: Meteor.user().profile.name,
+        created: Date.now(),
+        message: 'La commande vient de passer en statut : '+orderStatus(newStatus),
+        side: 'left'
+      };
+      var notify = true;
+      if (order.user === Meteor.userId()) {
+        notify = false;
+      }
+      Orders.update({_id: orderId}, {$set: {status: newStatus, updated: Date.now(), notifyUser: notify}, $push: {chats: chat}});
       if (order.user !== Meteor.userId()) {
         Meteor.call('notify_order_status', orderId, order.user, newStatus);
       }
@@ -159,7 +170,14 @@ Template.formOrder.events({
     if (timeWanted < inTen) {
       timeWanted = inTen;
     }
-    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now(), wanted: timeWanted, notifyWaiter: true}});
+    var chat = {
+      userId: Meteor.userId(),
+      username: Meteor.user().profile.name,
+      created: Date.now(),
+      message: 'La commande vient de passer en statut : '+orderStatus(2),
+      side: 'right'
+    };
+    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now(), wanted: timeWanted, notifyWaiter: true}, $push: {chats: chat}});
     var order = Orders.findOne({_id: orderId});
     Meteor.call('notify_order_status', orderId, order.waiter[0], 2);
     swal('Merci','Votre commande est validée','success');
