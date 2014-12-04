@@ -1,7 +1,7 @@
 Template.editQrCode.events({
   'click .save': function (evt, tmpl) {
     evt.preventDefault();
-    var inputCode = tmpl.find('#inputCode').value;
+    var inputCode = tmpl.find('#inputCode').value.trim();
     check(inputCode, String);
     if (inputCode !== '') {
       var codeCount = Places.find({code: inputCode}).count();

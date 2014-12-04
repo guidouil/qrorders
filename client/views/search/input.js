@@ -26,7 +26,11 @@ Template.searchInput.events({
         Router.go('/search/');
       }, 4000);
     }
-
-    loadSearch();
+    if (Session.get('here') === null) {
+      loadSearch();
+    } else {
+      $("#geoloc").attr('src', '/geolocation.png');
+      Router.go('/search/');
+    }
   }
 });
