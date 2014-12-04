@@ -1,4 +1,11 @@
 Template.openHours.helpers({
+  today: function () {
+    return moment().day();
+  },
+  daystr: function () {
+    var today = moment().day();
+    return weekday(today);
+  },
   days: function () {
     var result =  [
     {day: 'Lundi', day_number: 1},

@@ -1,12 +1,13 @@
 <template name="openHours">
   <small>
     <table class="table table-condensed text-center">
-      <thead>
+      <thead id="time-accordion" data-toggle="collapse" data-parent="#time-accordion" href="#collapseTime">
         <tr>
-          <th class="text-center" colspan=2>Horraires</th>
+          <th class="text-center" colspan=2><button class="btn btn-default btn-sm" name="Horraires">Horraires</button></th>
         </tr>
+        {{{showHours today daystr}}}
       </thead>
-      <tbody>
+      <tbody class="collapse" id="collapseTime">
         {{#each days}}
         {{{showHours day_number day}}}
         {{/each}}

@@ -34,7 +34,7 @@ Template.placeMap.rendered = function () {
           tmpl.newMap.addMarker({
             lat: latlng.lat(),
             lng: latlng.lng(),
-            draggable: true,
+            draggable: false,
             dragend: function() {
               var point = this.getPosition();
               tmpl.mapEngine.geocode({location: point, callback: function(results) {
@@ -51,5 +51,17 @@ Template.placeMap.rendered = function () {
     });
 
   });
-
 };
+
+Template.placeMap.helpers({
+  placeAddress: function () {
+    var placeId = Router.current().params._id;
+    if (!placeId) {
+      placeId = Session.get('placeId');
+    }
+    var place = Places.findOne({_id: placeId});
+    if (place && place.town) {
+      return encodeURI(place.street + ' ' + place.zip + ' ' + place.town);
+    }
+  }
+});
