@@ -146,7 +146,7 @@ Meteor.methods({
           break;
       }
       return result;
-    }
+    };
 
     var contactEmail = function (user) {
       if (user.emails && user.emails.length)
@@ -203,7 +203,6 @@ Meteor.methods({
         result.push(waiter);
       }
     });
-    // console.log(result);
     return result;
   },
   remove_place_waiter: function (placeId, waiterId) {
@@ -220,16 +219,56 @@ Meteor.methods({
       }
       return true;
     }
-    return false;
   },
   add_place_waiter: function (placeId, mail) {
     var waiter = Meteor.users.findOne({'emails.address': mail});
     if (waiter && waiter._id) {
-      Places.update({_id: placeId}, {$push: {waiter: waiter._id}});
+      Places.update({_id: placeId}, {$addToSet: {waiter: waiter._id}});
       Roles.addUsersToRoles(waiter._id, ['waiter']);
       Meteor.user.update({_id:waiterId}, {$set: {'profile.place': placeId}});
       return true;
     }
-    return false;
+  },
+  get_owners: function (placeId) {
+    var contactEmail = function (user) {
+      if (user.emails && user.emails.length)
+        return user.emails[0].address;
+      if (user.services && user.services.facebook && user.services.facebook.email)
+        return user.services.facebook.email;
+      if (user.services && user.services.google && user.services.google.email)
+        return user.services.google.email;
+      if (user.services && user.services.twitter && user.services.twitter.email)
+        return user.services.twitter.email;
+      return null;
+    };
+    var place = Places.findOne({_id: placeId});
+    var result = [];
+    _.each(place.owner, function(ownerId) {
+      var user = Meteor.users.findOne({_id: ownerId});
+      if (user) {
+        var owner = {'_id': ownerId, 'name': user.profile.name, 'mail':  contactEmail(user)};
+        result.push(owner);
+      }
+    });
+    return result;
+  },
+  remove_place_owner: function (placeId, ownerId) {
+    var place = Places.findOne({_id: placeId});
+    if (place && place.owner.length > 1 && _.contains(place.owner, ownerId)) {
+      Places.update({_id: placeId}, {$pull: {owner: ownerId}});
+      var nbPlaces = Places.find({owner: ownerId}).count();
+      if (nbPlaces === 0) {
+        Roles.removeUsersFromRoles(ownerId, ['owner']);
+      }
+      return true;
+    }
+  },
+  add_place_owner: function (placeId, mail) {
+    var owner = Meteor.users.findOne({'emails.address': mail});
+    if (owner && owner._id) {
+      Places.update({_id: placeId}, {$addToSet: {owner: owner._id}});
+      Roles.addUsersToRoles(owner._id, ['owner']);
+      return true;
+    }
   }
 });

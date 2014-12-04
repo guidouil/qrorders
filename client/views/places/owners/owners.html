@@ -1,0 +1,35 @@
+<template name="placeOwners">
+  <hr>
+  <div class="table-responsive">
+    <legend>Propriétaire <span class='glyphicon glyphicon-cutlery'></span></legend>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th class="text-right">
+            <div class="col-xs-6">
+              <input type="text" class="form-control" id="ownerMail" name="ownerMail" value="" placeholder="Adresse mail du propriétaire">
+            </div>
+            <div class="col-xs-1">
+              <a href="#" class="btn btn-primary addOwner"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each placeOwners}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{mail}}</td>
+          <td class="text-right"><a href="#" class="btn btn-danger removeOwner" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="3"><p class="lead text-center">Aucun propriétaire pour l'instant</p></td>
+        </tr>
+      {{/each}}
+    </tbody>
+    </table>
+  </div>
+</template>
