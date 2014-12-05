@@ -16,7 +16,7 @@ Template.formOrder.rendered = function () {
         }
       }
     }
-    Meteor.setTimeout(readNotification,2000);
+    Meteor.setTimeout(readNotification,3000);
 };
 
 Template.formOrder.helpers({
