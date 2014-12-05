@@ -3,12 +3,15 @@ Template.searchInput.helpers({
     if (Router.current().params.searched) {
       return decodeURI(Router.current().params.searched);
     }
+    if (Router.current().params.query.searched) {
+      return decodeURI(Router.current().params.query.searched);
+    }
   }
 });
 
 Template.searchInput.events({
   'submit .search': function (evt,tmpl) {
-    evt.preventDefault();
+    // evt.preventDefault();
     var searchQuery = tmpl.find('.search-query').value.trim();
     if (searchQuery !== '') {
       Router.go('/search/'+encodeURI(searchQuery));

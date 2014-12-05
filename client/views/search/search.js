@@ -1,6 +1,10 @@
 Template.search.helpers({
   places: function () {
-    var searched = decodeURI(Router.current().params.searched);
+    var query = Router.current().params.query;
+    var searched = query.searched;
+    if (searched === undefined) {
+      searched = decodeURI(Router.current().params.searched);
+    }
     if (searched === 'undefined' && Session.get('here') !== 'undefined') {
       var here = Session.get('here');
       return Places.find({loc: { $near: { $geometry: { type:"Point", coordinates:[here.lon, here.lat]}}, $maxDistance: 3000} }).fetch();
