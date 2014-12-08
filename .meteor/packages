@@ -39,4 +39,5 @@ ground:db
 vazco:maps
 mdg:geolocation
 msavin:mongoinspector
+mdg:camera
 

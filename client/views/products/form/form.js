@@ -21,7 +21,6 @@ Template.formProduct.rendered = function () {
 
           var productId = currentRoute.params.product_id;
           var msg = Products.removeTag(value, 'Products', {_id: productId});
-          console.log(msg, value, productId);
         }
       }
     });

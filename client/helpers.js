@@ -112,6 +112,13 @@ UI.registerHelper('isLoggedIn', function () {
   return false;
 });
 
+UI.registerHelper('isMobile', function () {
+  if (Meteor.isCordova) {
+    return true;
+  }
+  return false;
+});
+
 UI.registerHelper('showTags', function (tags) {
   if (tags && tags.length > 0) {
     var tagsString = '';

@@ -74,9 +74,19 @@ Template.editProduct.events({
     reader.onload = function(e) {
       // Products.update({_id: productId}, {$set: {imageTmp: e.target.result}});
       Session.set('imageTemp', e.target.result);
+      $('#imageModal').modal();
     };
     reader.readAsDataURL(file);
-    $('#imageModal').modal();
+  },
+  'click #inputImageMobile': function (event, template) {
+    MeteorCamera.getPicture(cameraOptions, function (error, data) {
+      var cameraOptions = {
+        width: 1024,
+        height: 633
+      };
+      Session.set("imageTemp", data);
+      $('#imageModal').modal();
+    });
   }
 });
 
