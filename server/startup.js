@@ -1,7 +1,8 @@
 Meteor.startup(function () {
-  // Creating Admin
+  // Creating Admin Prod
   if (Meteor.users.findOne("4wPgiqnoDewMyEDap"))
     Roles.addUsersToRoles("4wPgiqnoDewMyEDap", ['admin']);
+  // Creating Admin Dev
   if (Meteor.users.findOne("6nedcPXypfWZRBbjo"))
     Roles.addUsersToRoles("6nedcPXypfWZRBbjo", ['admin']);
 
@@ -20,6 +21,7 @@ Meteor.startup(function () {
   }
   if (Lines.find().count() === 0) {
     Lines._ensureIndex({ "place": 1, "user": 1, "waiter": 1 });
+    Lines._ensureIndex({ "order": 1, "user": 1, "waiter": 1 });
   }
   if (Options.find().count() === 0) {
     Options._ensureIndex({ "products": 1});

@@ -1,9 +1,5 @@
 Meteor.subscribe('Places');
 Meteor.subscribe('Images');
-if (Meteor.userId()) {
-  Meteor.subscribe('Orders', Meteor.userId());
-  Meteor.subscribe('MyOrders', Meteor.userId());
-}
 
 
 Template.layout.rendered = function () {
@@ -11,6 +7,10 @@ Template.layout.rendered = function () {
   if (user && user.username !== undefined && user.profile.name === undefined) {
     var name = user.username.charAt(0).toUpperCase() + user.username.slice(1).toLowerCase();
     Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.name': name}});
+  }
+  if (Meteor.userId()) {
+    Meteor.subscribe('Orders');
+    Meteor.subscribe('MyOrders');
   }
 };
 

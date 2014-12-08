@@ -14,20 +14,24 @@ Meteor.publish('Sets', function(placeId){
   return Sets.find({places: placeId});
 });
 
-Meteor.publish('Orders', function(placeId){
-  return Orders.find({place: placeId, waiter: this.userId});
+Meteor.publish('Orders', function(){
+  if (this.userId !== undefined) {
+    return Orders.find({$or:[{owner: this.userId}, {waiter: this.userId}]});
+  }
 });
 
-Meteor.publish('MyOrders', function(userId){
-  return Orders.find({user: userId});
+Meteor.publish('MyOrders', function(){
+  if (this.userId !== undefined) {
+    return Orders.find({user: this.userId});
+  }
 });
 
 Meteor.publish('OrdersNumbers', function(placeId){
   return OrdersNumbers.find({_id: placeId});
 });
 
-Meteor.publish('Lines', function(placeId){
-  return Lines.find({place: placeId, $or:[{user: this.userId}, {waiter: this.userId}]});
+Meteor.publish('Lines', function(orderId){
+  return Lines.find({order: orderId, $or:[{user: this.userId}, {waiter: this.userId}]});
 });
 
 Meteor.publish('Options', function(placeId){

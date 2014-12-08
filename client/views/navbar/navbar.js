@@ -14,6 +14,6 @@ Template.navbar.helpers({
     return Orders.find({notifyWaiter: true, waiter: Meteor.userId()}).count();
   },
   MyNotifyCount: function() {
-    return MyOrders.find({notifyUser: true, user: Meteor.userId()}).count();
+    return Orders.find({notifyUser: true, user: Meteor.userId()}).count();
   }
 });

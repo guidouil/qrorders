@@ -192,6 +192,9 @@ Template.formOrder.events({
     var productId = evt.currentTarget.attributes.id.value;
     var productName = evt.currentTarget.attributes.name.value;
     var quantity = $('#qty-'+productId).val();
+    if (!quantity) {
+      quantity = 1;
+    }
     var product = Products.findOne({_id: productId});
 
     // Product Options Mgmt
@@ -255,20 +258,8 @@ Template.formOrder.events({
     }
 
     function addOrderLine (optionsString) {
-
-      var currentWaiter = '';
+      var place = Places.findOne({_id: placeId});
       var userId = Meteor.userId();
-      if (!Roles.userIsInRole(Meteor.user(), ['waiter'])) {
-        // online cutomer order belong to place owner
-        currentWaiter = tmpl.data.owner[0];
-      } else {
-        // this place waiter ?
-        if (_.contains(tmpl.data.waiter, userId)) {
-          currentWaiter = userId;
-        } else {
-          currentWaiter = tmpl.data.owner[0];
-        }
-      }
       if (!orderId) {
         OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
         orderNumber = OrdersNumbers.findOne({_id: placeId});
@@ -285,7 +276,7 @@ Template.formOrder.events({
           total: 0.00,
           created: Date.now(),
           place: placeId,
-          waiter: [currentWaiter],
+          waiter: place.waiter,
           status: 1,
           user: userId,
           paid: false
@@ -297,7 +288,7 @@ Template.formOrder.events({
       var lineId = Lines.insert({
         order: orderId,
         place: placeId,
-        waiter: currentWaiter,
+        waiter: place.waiter,
         productId: productId,
         productName: productName,
         quantity: quantity,
@@ -391,19 +382,8 @@ Template.formOrder.events({
 
 
     function addOrderLine (optionsString) {
-
-      var currentWaiter = '';
+      var place = Places.findOne({_id: placeId});
       var userId = Meteor.userId();
-      if (!Roles.userIsInRole(Meteor.user(), ['waiter'])) {
-        currentWaiter = tmpl.data.owner[0];
-      } else {
-        // this place waiter ?
-        if (_.contains(tmpl.data.waiter, userId)) {
-          currentWaiter = userId;
-        } else {
-          currentWaiter = tmpl.data.owner[0];
-        }
-      }
       if (!orderId) {
         OrdersNumbers.update({_id: placeId}, {$inc: {seq: 1}});
         orderNumber = OrdersNumbers.findOne({_id: placeId});
@@ -420,7 +400,7 @@ Template.formOrder.events({
           total: 0.00,
           created: Date.now(),
           place: placeId,
-          waiter: [currentWaiter],
+          waiter: place.waiter,
           status: 1,
           user: userId,
           paid: false
@@ -431,7 +411,7 @@ Template.formOrder.events({
       var lineId = Lines.insert({
         order: orderId,
         place: placeId,
-        waiter: currentWaiter,
+        waiter: place.waiter,
         setId: setId,
         setName: setName,
         quantity: quantity,
