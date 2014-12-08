@@ -79,14 +79,15 @@ Template.editProduct.events({
     reader.readAsDataURL(file);
   },
   'click #inputImageMobile': function (event, template) {
+    event.preventDefault();
+    var cameraOptions = {
+      width: 1024,
+      height: 633
+    };
     MeteorCamera.getPicture(cameraOptions, function (error, data) {
-      var cameraOptions = {
-        width: 1024,
-        height: 633
-      };
       Session.set("imageTemp", data);
-      $('#imageModal').modal();
     });
+    $('#imageModal').modal();
   }
 });
 
