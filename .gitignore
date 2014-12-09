@@ -2,3 +2,5 @@
 mup.json
 settings.json
 .idea
+server/mailgun.js
+server/kadira.js

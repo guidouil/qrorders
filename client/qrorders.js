@@ -41,14 +41,14 @@ Meteor.startup(function () {
     showOtherLoginServices: true//,     // Set to false to hide oauth login buttons on the signin/signup pages. Useful if you are using
   });
 
-  Session.set("showLoadingIndicator", true);
-
-  TAPi18n.setLanguage(Session.get('language'))
-    .done(function () {
-      Session.set("showLoadingIndicator", false);
-    })
-    .fail(function (error_message) {
-      // Handle the situation
-      console.log(error_message);
-    });
+  // Session.set("showLoadingIndicator", true);
+  //
+  // TAPi18n.setLanguage(Session.get('language'))
+  //   .done(function () {
+  //     Session.set("showLoadingIndicator", false);
+  //   })
+  //   .fail(function (error_message) {
+  //     // Handle the situation
+  //     console.log(error_message);
+  //   });
 });
