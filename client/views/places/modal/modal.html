@@ -28,7 +28,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
           {{#unless isCreateOrder}}
-          <a href="{{pathFor 'createOrder' place_id=place._id}}" class="btn btn-success" title="Je Commande" >Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></a>
+          <button type="button" class="btn btn-success createOrder" title="Je Commande" id="{{place._id}}">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></button>
           {{/unless}}
         </div>
       </div><!-- /.modal-content -->

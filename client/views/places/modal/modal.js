@@ -51,3 +51,15 @@ Template.placeModal.helpers({
     }
   }
 });
+
+Template.placeModal.events({
+  'click .createOrder': function (evt, tmpl) {
+    evt.preventDefault();
+    var placeId = evt.currentTarget.attributes.id.value;
+    $('#placeModal').modal('hide');
+    function goCreate() {
+      Router.go('createOrder', {place_id: placeId});
+    }
+    Meteor.setTimeout(goCreate,500);
+  }
+});
