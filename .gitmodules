@@ -1,3 +1,6 @@
 [submodule "packages/cfs:http-methods"]
 	path = packages/cfs:http-methods
 	url = https://github.com/guidouil/Meteor-http-methods.git
+[submodule "packages/cfs:standard-packages"]
+	path = packages/cfs:standard-packages
+	url = https://github.com/CollectionFS/Meteor-CollectionFS.git

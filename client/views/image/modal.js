@@ -19,8 +19,10 @@ Template.imageModal.rendered = function() {
     // });
     var defaultChunkSize = 10 * 1024 * 1024;
     var newFile = new FS.File();
+    console.log(newFile);
     newFile.attachData(originalData, {type: 'image/jpeg'}, function(error){
         if(error) throw error;
+        console.log(newFile);
         newFile.name('jecmd.jpg');
         var image = Images.insert(newFile);
         // console.log(image._id);
