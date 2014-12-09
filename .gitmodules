@@ -1,0 +1,3 @@
+[submodule "packages/cfs:http-methods"]
+	path = packages/cfs:http-methods
+	url = https://github.com/guidouil/Meteor-http-methods.git
