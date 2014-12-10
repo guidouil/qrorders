@@ -24,6 +24,7 @@ Template.imageModal.rendered = function() {
         if(error) throw error;
         console.log(newFile);
         newFile.name('jecmd.jpg');
+        console.log(FS.HTTP.uploadUrl);
         var image = Images.insert(newFile);
         // console.log(image._id);
         // Meteor.call('tiny_images', image._id);
