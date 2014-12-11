@@ -18,13 +18,16 @@ Template.imageModal.rendered = function() {
     //   console.log(error, result);
     // });
     var defaultChunkSize = 10 * 1024 * 1024;
+    alert(FS.HTTP.uploadUrl);
     var newFile = new FS.File();
+    alert(FS.HTTP.uploadUrl);
     console.log(newFile);
     newFile.attachData(originalData, {type: 'image/jpeg'}, function(error){
+        alert(error);
         if(error) throw error;
         console.log(newFile);
         newFile.name('jecmd.jpg');
-        growl(FS.HTTP.uploadUrl,'','danger');
+        alert(FS.HTTP.uploadUrl);
         var image = Images.insert(newFile);
         // console.log(image._id);
         // Meteor.call('tiny_images', image._id);
