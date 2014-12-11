@@ -18,10 +18,10 @@ blaze-tools@1.0.1
 blaze@2.0.3
 boilerplate-generator@1.0.1
 callback-hook@1.0.1
-cfs:access-point@0.0.0
+cfs:access-point@0.1.1
 cfs:base-package@0.0.0
 cfs:collection-filters@0.0.0
-cfs:collection@0.0.0
+cfs:collection@0.0.1
 cfs:data-man@0.0.0
 cfs:file@0.0.0
 cfs:filesystem@0.0.0
@@ -76,7 +76,7 @@ joshowens:accounts-entry@1.0.3
 joshowens:simple-form@0.2.2
 jquery@1.0.1
 json@1.0.1
-kevohagan:sweetalert@0.3.1
+kevohagan:sweetalert@0.3.2
 launch-screen@1.0.0
 less@1.0.11
 linto:fontawesome@4.2.2

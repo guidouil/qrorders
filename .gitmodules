@@ -4,3 +4,15 @@
 [submodule "packages/cfs:standard-packages"]
 	path = packages/cfs:standard-packages
 	url = https://github.com/CollectionFS/Meteor-CollectionFS.git
+[submodule "packages/cfs:access-point"]
+	path = packages/cfs:access-point
+	url = https://github.com/CollectionFS/Meteor-cfs-access-point.git
+[submodule "packages/cfs:collection"]
+	path = packages/cfs:collection
+	url = https://github.com/CollectionFS/Meteor-cfs-collection.git
+[submodule "packages/cfs:http-publish"]
+	path = packages/cfs:http-publish
+	url = https://github.com/CollectionFS/Meteor-http-publish.git
+[submodule "packages/cfs:upload-http"]
+	path = packages/cfs:upload-http
+	url = https://github.com/CollectionFS/Meteor-cfs-upload-http.git

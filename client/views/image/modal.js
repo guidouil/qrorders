@@ -21,11 +21,8 @@ Template.imageModal.rendered = function() {
     alert(FS.HTTP.uploadUrl);
     var newFile = new FS.File();
     alert(FS.HTTP.uploadUrl);
-    console.log(newFile);
     newFile.attachData(originalData, {type: 'image/jpeg'}, function(error){
-        alert(error);
         if(error) throw error;
-        console.log(newFile);
         newFile.name('jecmd.jpg');
         alert(FS.HTTP.uploadUrl);
         var image = Images.insert(newFile);
