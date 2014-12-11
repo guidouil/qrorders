@@ -16,7 +16,7 @@ Meteor.publish('Sets', function(placeId){
 
 Meteor.publish('Orders', function(){
   if (this.userId !== undefined) {
-    return Orders.find({$or:[{owner: this.userId}, {waiter: this.userId}]});
+    return Orders.find({$or:[{owner: this.userId}, {waiter: this.userId}, {user: this.userId}]});
   }
 });
 

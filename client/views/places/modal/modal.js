@@ -59,6 +59,7 @@ Template.placeModal.events({
     $('#placeModal').modal('hide');
     function goCreate() {
       Router.go('createOrder', {place_id: placeId});
+      $('html, body').animate({ scrollTop: 0 }, 'fast');
     }
     Meteor.setTimeout(goCreate,500);
   }
