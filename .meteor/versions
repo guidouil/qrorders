@@ -101,7 +101,7 @@ mongo@1.0.9
 mrt:accounts-admin-ui-bootstrap-3@0.2.7
 mrt:momentjs@2.1.0
 mrt:underscore-string-latest@2.3.3
-msavin:mongoinspector@2.0.0
+msavin:mongoinspector@2.1.0
 npm-bcrypt@0.7.7
 oauth1@1.1.2
 oauth2@1.1.1
