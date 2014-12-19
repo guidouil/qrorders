@@ -131,9 +131,7 @@ UI.registerHelper('showTags', function (tags) {
 
 UI.registerHelper('getImage', function (imgId) {
   var image = Images.findOne({_id: imgId});
-  if (image && image.url()) {
-    var base = Meteor.absoluteUrl();
-    base = base.substring(0, base.length - 1);
-    return base+image.url();
+  if (image && image.data) {
+    return image.data;
   }
 });

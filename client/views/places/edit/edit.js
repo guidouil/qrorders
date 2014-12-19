@@ -76,6 +76,17 @@ Template.editPlace.events({
     reader.readAsDataURL(file);
     $('#imageModal').modal();
   },
+  'click #inputImageMobile': function (event, template) {
+    event.preventDefault();
+    var cameraOptions = {
+      width: 1024,
+      height: 633
+    };
+    MeteorCamera.getPicture(cameraOptions, function (error, data) {
+      Session.set("imageTemp", data);
+    });
+    $('#imageModal').modal();
+  },
   'click .delete': function (evt, tmpl) {
     var placeId = this._id;
     swal(

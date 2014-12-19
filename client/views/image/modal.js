@@ -17,15 +17,16 @@ Template.imageModal.rendered = function() {
     // Meteor.call('tiny_images', '', '', originalData, function(error, result){
     //   console.log(error, result);
     // });
-    var defaultChunkSize = 10 * 1024 * 1024;
+    var imageId = Images.insert({data: originalData});
+    // var defaultChunkSize = 10 * 1024 * 1024;
     // alert(FS.HTTP.uploadUrl);
-    var newFile = new FS.File();
+    // var newFile = new FS.File();
     // alert(FS.HTTP.uploadUrl);
-    newFile.attachData(originalData, {type: 'image/jpeg'}, function(error){
-        if(error) throw error;
-        newFile.name('jecmd.jpg');
+    // newFile.attachData(originalData, {type: 'image/jpeg'}, function(error){
+        // if(error) throw error;
+        // newFile.name('jecmd.jpg');
         // alert(FS.HTTP.uploadUrl);
-        var image = Images.insert(newFile);
+        // var image = Images.insert(newFile);
         // console.log(image._id);
         // Meteor.call('tiny_images', image._id);
         var currentRoute = Router.current();
@@ -35,7 +36,7 @@ Template.imageModal.rendered = function() {
           if (place.image ) {
             Meteor.call('delete_image', place.image);
           }
-          Places.update({_id: placeId}, {$set: {image: image._id}});
+          Places.update({_id: placeId}, {$set: {image: imageId}});
         }
         if (currentRoute.lookupTemplate() === 'EditProduct') {
           var productId = currentRoute.params.product_id;
@@ -43,7 +44,7 @@ Template.imageModal.rendered = function() {
           if (product.image ) {
             Meteor.call('delete_image', product.image);
           }
-          Products.update({_id: productId}, {$set: {image: image._id}});
+          Products.update({_id: productId}, {$set: {image: imageId}});
         }
         if (currentRoute.lookupTemplate() === 'EditSet') {
           var setId = currentRoute.params.set_id;
@@ -51,10 +52,10 @@ Template.imageModal.rendered = function() {
           if (set.image ) {
             Meteor.call('delete_image', set.image);
           }
-          Sets.update({_id: setId}, {$set: {image: image._id}});
+          Sets.update({_id: setId}, {$set: {image: imageId}});
         }
         Session.set('imageTemp', '');
-    });
+    // });
 
     $image.cropper("destroy");
   });

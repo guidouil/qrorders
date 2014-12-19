@@ -30,8 +30,6 @@ andrasph:clockpicker
 meteorhacks:kadira
 jonblum:jquery-cropper
 http
-cfs:standard-packages
-cfs:filesystem
 fuatsengul:iron-router-progress
 email
 steeve:jquery-qrcode
@@ -41,4 +39,4 @@ mdg:geolocation
 msavin:mongoinspector
 mdg:camera
 fortawesome:fontawesome
-
+doctorpangloss:admin

@@ -32,7 +32,7 @@ Meteor.startup(function () {
   if (Notes.find().count() === 0) {
     Notes._ensureIndex({ "place": 1});
   }
-  FS.debug = true;
+  // FS.debug = true;
   // Accounts.config({
   //   sendVerificationEmail: true
   // });
