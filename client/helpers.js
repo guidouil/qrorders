@@ -115,8 +115,9 @@ UI.registerHelper('isLoggedIn', function () {
 UI.registerHelper('isMobile', function () {
   if (Meteor.isCordova) {
     return true;
+  } else {
+    return false;
   }
-  return false;
 });
 
 UI.registerHelper('showTags', function (tags) {
