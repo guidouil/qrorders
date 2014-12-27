@@ -1,0 +1,29 @@
+<template name="paymentsPlace">
+  <div class="container">
+    <div class="row">
+      <div class="well">
+        <div class="table-responsive">
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Quand</th>
+                <th class="text-right">Réduc.</th>
+                <th class="text-right">Total</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each payments}}
+              <tr>
+                <td>{{fromNow date}}</td>
+                <td class="text-right">{{formatPrice rebate}}</td>
+                <td class="text-right">{{formatPrice total}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

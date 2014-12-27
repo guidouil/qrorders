@@ -27,6 +27,9 @@ Template.payOrder.events({
     $('.cashForm').addClass('hidden');
     var orderId = Router.current().params.order_id;
     var order = Orders.findOne({_id: orderId});
+    if (!order.rebate) {
+      order.rebate = 0;
+    }
     swal(
       {
         title: "Paiement par carte",
@@ -49,7 +52,8 @@ Template.payOrder.events({
           owner: Meteor.userId(),
           order: orderId,
           total: order.total,
-          user: order.user
+          user: order.user,
+          rebate: order.rebate
         });
         if (order.user !== Meteor.userId()) {
           var note = Notes.findOne({place: placeId, user: order.user});
@@ -157,6 +161,9 @@ Template.payOrder.events({
     evt.preventDefault();
     var orderId = Router.current().params.order_id;
     var order = Orders.findOne({_id: orderId});
+    if (!order.rebate) {
+      order.rebate = 0;
+    }
     var placeId = Router.current().params.place_id;
     var cash = tmpl.find('#inputCash').value;
     var ticket = tmpl.find('#inputTicket').value;
@@ -172,7 +179,8 @@ Template.payOrder.events({
       owner: Meteor.userId(),
       order: orderId,
       total: order.total,
-      user: order.user
+      user: order.user,
+      rebate: order.rebate
     });
     Orders.update({_id: orderId}, {$set: {paid: true}});
 
