@@ -41,3 +41,5 @@ fortawesome:fontawesome
 doctorpangloss:admin
 momentjs:moment
 rzymek:moment-locale-fr
+d3js:d3
+pfafman:nvd3

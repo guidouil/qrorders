@@ -4,25 +4,25 @@
         <div class="navbar-header">
           <ul class="nav navbar-nav nav-pills">
             {{#if isLoggedIn}}
-            <li ><a href="" onclick="window.history.back()" title="Retour"><span class="glyphicon glyphicon-arrow-left"></span></a></li>
+            <li><a href="" onclick="window.history.back()" title="Retour"><span class="glyphicon glyphicon-arrow-left"></span></a></li>
             {{/if}}
-            <li class="{{ activeIfTemplateIs 'Home' }}"><a href="{{pathFor 'home'}}" title="QodeResto"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="{{ activeIfTemplateIs 'Home' }}"><a href="{{pathFor 'home'}}" title="QodeResto"><span class="glyphicon glyphicon-home"></span><span class="hidden-xs"> Accueil</span></a></li>
             <!-- <li class="{{ activeIfTemplateIs 'search' }}"><a href="{{pathFor 'search'}}" title="search"><span class="glyphicon glyphicon-search"></span></a></li> -->
             {{#if isNotLoggedIn}}
-            <li class="{{ activeIfTemplateIs 'entrySignIn' }}"><a href="{{pathFor 'entrySignIn'}}" title="connexion"><span class="glyphicon glyphicon-user"></span></a></li>
+            <li class="{{ activeIfTemplateIs 'entrySignIn' }}"><a href="{{pathFor 'entrySignIn'}}" title="connexion"><span class="glyphicon glyphicon-user"></span><span class="hidden-xs"> Connexion</span></a></li>
             {{else}}
-            <li class="{{ activeIfTemplateIs 'Profile' }}"><a href="{{pathFor 'profile'}}" title="profile"><span class="glyphicon glyphicon-user"></span></a></li>
+            <li class="{{ activeIfTemplateIs 'Profile' }}"><a href="{{pathFor 'profile'}}" title="profile"><span class="glyphicon glyphicon-user"></span><span class="hidden-xs"> Profil</span></a></li>
             {{/if}}
             {{#if isWaiterUser}}
-            <li class="{{ activeIfTemplateIs 'Waiter' }}"><a href="{{pathFor 'waiter' _id=currentUser.profile.place}}" title="waiter"><span class="glyphicon glyphicon-phone"></span>{{#if NotifyCount}}<span class="badge">{{NotifyCount}}</span>{{/if}}</a></li>
+            <li class="{{ activeIfTemplateIs 'Waiter' }}"><a href="{{pathFor 'waiter' _id=currentUser.profile.place}}" title="waiter"><span class="glyphicon glyphicon-phone"></span>{{#if NotifyCount}}<span class="badge">{{NotifyCount}}</span>{{/if}}<span class="hidden-xs"> CMDs</span></a></li>
             {{/if}}
             {{#if isOwnerUser}}
-            <li class="{{ activeIfTemplateIs 'Owner' }}"><a href="{{pathFor 'owner'}}" title="owner"><span class="glyphicon glyphicon-cutlery"></span></a></li>
+            <li class="{{ activeIfTemplateIs 'Owner' }}"><a href="{{pathFor 'owner'}}" title="owner"><span class="glyphicon glyphicon-cog"></span><span class="hidden-xs"> Admin</span></a></li>
             {{else}}
-            <li class="{{ activeIfTemplateIs 'Resto' }}"><a href="{{pathFor 'resto'}}" title="resto"><span class="glyphicon glyphicon-cutlery"></span></a></li>
+            <li class="{{ activeIfTemplateIs 'Resto' }}"><a href="{{pathFor 'resto'}}" title="resto"><span class="glyphicon glyphicon-cog"></span><span class="hidden-xs"> Admin</span></a></li>
             {{/if}}
             {{#if isLoggedIn}}
-            <li class="{{ activeIfTemplateIs 'Cart' }}"><a href="{{pathFor 'cart'}}" title="cart"><span class="glyphicon glyphicon-shopping-cart"></span>{{#if MyNotifyCount}}<span class="badge">{{MyNotifyCount}}</span>{{/if}}</a></li>
+            <li class="{{ activeIfTemplateIs 'Cart' }}"><a href="{{pathFor 'cart'}}" title="cart"><span class="glyphicon glyphicon-shopping-cart"></span>{{#if MyNotifyCount}}<span class="badge">{{MyNotifyCount}}</span>{{/if}}<span class="hidden-xs"> Panier</span></a></li>
             {{/if}}
             <!-- <li class="{{ activeIfTemplateIs 'scanQrCode' }}"><a href="{{pathFor 'scanQrCode'}}" title="Scan QR Code"><span class="glyphicon glyphicon-qrcode"></span></a></li> -->
           </ul>
