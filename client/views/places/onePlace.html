@@ -6,7 +6,7 @@
       {{/if}}
       <div class="producttitle text-center"><a href="#" class="placeModal lead" id="{{_id}}">{{placename}}</a></div>
       <p class="text-center">{{truncate placedesc 80}}</p>
-      <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-block" title="Je Commande">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></a>
+      <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-block createOrder" title="Je Commande">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></a>
       <address>
         {{#if street}}{{street}}<br>{{/if}}
         {{#if town}}{{zip}} {{town}}<br>{{/if}}

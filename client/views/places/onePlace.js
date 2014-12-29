@@ -3,6 +3,9 @@ Template.onePlace.events({
     var placeId = evt.currentTarget.attributes.id.value;
     Session.set('placeId', placeId);
     $('#placeModal').modal();
+  },
+  'click .createOrder': function (evt, tmpl) {
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
   }
 });
 
