@@ -47,9 +47,8 @@ UI.registerHelper('formatDate', function(date){
 
 UI.registerHelper('fromNow', function(date){
   if(date !== null) {
-    var oDate = moment(date);
-    oDate.lang(Session.get('language'));
-    return oDate.fromNow();
+    moment.locale(Session.get('language'));
+    return moment(date).fromNow();
   }
 });
 

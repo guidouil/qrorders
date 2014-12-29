@@ -19,7 +19,6 @@ aldeed:collection2
 aldeed:simple-schema
 patrickleet:tags
 jeremy:selectize
-mrt:momentjs
 mizzao:bootboxjs
 mizzao:user-status
 accounts-facebook
@@ -40,3 +39,5 @@ msavin:mongoinspector
 mdg:camera
 fortawesome:fontawesome
 doctorpangloss:admin
+momentjs:moment
+rzymek:moment-locale-fr
