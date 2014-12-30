@@ -329,8 +329,8 @@ Template.formOrder.events({
           optionMessage += '<label class="col-xs-3 control-label" for="'+option.title+'">'+option.title+'</label>';
           optionMessage += '<div class="col-xs-9">';
           $.each(option.choices, function(i, choice) {
-            optionMessage += '<label class="'+option.type+'-inline" for="'+option.title+'-'+i+'">';
-            optionMessage += '<input class="productOptions" type="'+option.type+'" name="'+option.title+'" id="'+option.title+'-'+i+'" value="'+choice+'">'+choice;
+            optionMessage += '<label class="'+option.type+'-inline" for="'+product.name+option.title+'-'+i+'">';
+            optionMessage += '<input class="productOptions" type="'+option.type+'" name="'+product.name+option.title+'" id="'+product.name+option.title+'-'+i+'" value="'+choice+'">'+choice;
             optionMessage += '</label>';
           });
           optionMessage += '</div>';
