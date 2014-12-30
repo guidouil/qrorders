@@ -29,7 +29,7 @@ Template.formOrder.helpers({
     return Products.find({},{sort:{ProductsTags: -1, price: -1}}).fetch();
   },
   sets: function () {
-    return Sets.find().fetch();
+    return Sets.find({},{sort:{SetsTags: -1, price: -1}}).fetch();
   },
   order: function () {
     var orderId = Session.get('orderId');
