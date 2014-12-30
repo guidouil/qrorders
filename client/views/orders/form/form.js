@@ -26,7 +26,7 @@ Template.formOrder.helpers({
     return Places.findOne({_id: placeId});
   },
   products: function () {
-    return Products.find().fetch();
+    return Products.find({},{sort:{ProductsTags: -1, price: -1}}).fetch();
   },
   sets: function () {
     return Sets.find().fetch();
