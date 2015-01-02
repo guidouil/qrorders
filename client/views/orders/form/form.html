@@ -16,17 +16,17 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th class="col-xs-1 col-md-1">Type</th>
-                  <th class="col-xs-4 col-md-5">Produit</th>
-                  <th class="col-xs-2 col-md-2 text-right">Prix</th>
-                  <th class="col-xs-4 col-md-3 hidden-xs text-center">Quantité</th>
-                  <th class="col-xs-1 col-md-1">&nbsp;</th>
+                  <th class="col-md-1 hidden-xs">Type</th>
+                  <th class="col-md-5">Produit</th>
+                  <th class="col-md-2 text-right">Prix</th>
+                  <th class="col-md-3 hidden-xs text-center">Quantité</th>
+                  <th class="col-md-1">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
                 {{#each sets}}
                 <tr>
-                  <td>{{{showTags SetsTags}}}</td>
+                  <td class="hidden-xs">{{{showTags SetsTags}}}</td>
                   <td><a href="#" class="setModal" id="{{_id}}">{{name}}</a></td>
                   <td class="text-right">{{formatPrice price}}</td>
                   <td class="hidden-xs text-center">
