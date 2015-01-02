@@ -17,7 +17,7 @@ Template.formSet.rendered = function () {
       options: result,
       onItemRemove: function(value) {
         var currentRoute = Router.current();
-        if (currentRoute.path.search('editproduct/') == 1) {
+        if (currentRoute.lookupTemplate() === 'EditSet') {
           var setId = currentRoute.params.set_id;
           Sets.removeTag(value, 'Sets', {_id: setId});
         }

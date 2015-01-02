@@ -137,7 +137,7 @@ Template.editPlace.rendered = function () {
       },
       options: result,
       onItemRemove: function(value) {
-        if (Router.current().path.search('edit/') == 1) {
+        if (Router.current().lookupTemplate() === 'EditPlace') {
           var placeId = Router.current().params._id;
           Places.removeTag(value, 'Places', {_id: placeId});
         }

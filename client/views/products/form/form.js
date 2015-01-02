@@ -17,8 +17,7 @@ Template.formProduct.rendered = function () {
       options: result,
       onItemRemove: function(value) {
         var currentRoute = Router.current();
-        if (currentRoute.path.search('editproduct/') == 1) {
-
+        if (currentRoute.lookupTemplate() === 'EditProduct') {
           var productId = currentRoute.params.product_id;
           var msg = Products.removeTag(value, 'Products', {_id: productId});
         }
