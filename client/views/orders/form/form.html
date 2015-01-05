@@ -32,18 +32,18 @@
                   <td class="hidden-xs text-center">
                     <div class="input-group">
                       <span class="input-group-btn">
-                        <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
+                        <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus-sign"></span></button>
                       </span>
                       <input type="text" class="form-control input-sm text-center" name="quantity" id="qty-{{_id}}" value="1">
                       <span class="input-group-btn">
-                        <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus-sign"></span></button>
                       </span>
                     </div>
                   </td>
                   <td>
                     {{#if isLoggedIn}}
                     {{#unless order.paid}}
-                    <button class="btn btn-success btn-sm addSet" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    <button class="btn btn-success btn-sm addSet" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-plus"></span></button>
                     {{/unless}}
                     {{/if}}
                   </td>
@@ -57,18 +57,18 @@
                   <td class="hidden-xs text-center">
                     <div class="input-group">
                       <span class="input-group-btn">
-                        <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus"></span></button>
+                        <button class="btn btn-default btn-sm decQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-minus-sign"></span></button>
                       </span>
                       <input type="text" class="form-control input-sm text-center" name="quantity" id="qty-{{_id}}" value="1">
                       <span class="input-group-btn">
-                        <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button class="btn btn-default btn-sm incQty" type="button" id="{{_id}}"><span class="glyphicon glyphicon-plus-sign"></span></button>
                       </span>
                     </div>
                   </td>
                   <td>
                     {{#if isLoggedIn}}
                     {{#unless order.paid}}
-                    <button class="btn btn-success btn-sm addProduct" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    <button class="btn btn-success btn-sm addProduct" id="{{_id}}" name="{{name}}"><span class="glyphicon glyphicon-plus"></span></button>
                     {{/unless}}
                     {{/if}}
                   </td>
@@ -81,7 +81,8 @@
       </div>
       <div class="col-md-6">
         <form class="form-horizontal well">
-          <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}}{{#if order.name}} par {{order.name}}{{/if}}&nbsp;
+          <fieldset>
+          <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}}{{#if order.togo}} A emporter{{/if}}{{#if order.name}} par {{order.name}}{{/if}}&nbsp;
             {{#if isActiveOrder}}
             <div class="btn-group text-center" data-toggle="buttons">
               <label class="btn btn-danger btn-sm {{isStatusActive 0}} changeStatus" for="status-0" value="0">
@@ -107,7 +108,7 @@
             </div>
             {{{textStatus order.status}}}{{#if order.paid}} Payée{{/if}}&nbsp;
             {{/if}}
-            <span class="pull-right">{{formatPrice order.total}}</span>
+            <strong class="pull-right">{{formatPrice order.total}}</strong>
           </legend>
           <div class="table-responsive">
             <table class="table table-condensed">
@@ -143,6 +144,52 @@
               </tbody>
             </table>
           </div>
+          {{#if inCreation}}
+          <div class="form-group">
+            <label class="col-xs-5 col-md-3 control-label" for="togos">Où ?</label>
+            <div class="col-xs-7 col-md-9">
+              <div class="radio">
+                <label for="togos-0">
+                  <input type="radio" name="togos" id="togos-0" value="true" checked="checked">
+                  A emporter
+                </label>
+              </div>
+              <div class="radio">
+                <label for="togos-1">
+                  <input type="radio" name="togos" id="togos-1" value="false">
+                  Sur place
+                </label>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+          {{#if isNotWaiter}}
+            <div class="col-xs-5 col-md-3">
+              <div class="input-group clockpicker">
+                <input type="text" class="form-control" value="{{theTime}}" id="timeWanted" name="timeWanted">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time"></span>
+                </span>
+              </div>
+            </div>
+            <div class="col-xs-7 col-md-9">
+              <button class="btn btn-success btn-block customerValidation">Valider la commande</button>
+            </div>
+          {{/if}}
+          {{#if isWaiter}}
+          <div class="col-xs-5 col-md-3">
+            <div class="input-group clockpicker">
+              <input type="text" class="form-control" value="{{theTime}}" id="timeWanted" name="timeWanted">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-7 col-md-9">
+            <button class="btn btn-success btn-block waiterValidation">Valider la commande</button>
+          </div>
+          {{/if}}
+        </fieldset>
         </form>
       </div>
     </div>
@@ -153,21 +200,8 @@
       </div>
     </div>
     {{/if}}
-    {{#if isNotWaiter}}
-    <div class="row">
-      <div class="col-xs-5 col-md-2">
-        <div class="input-group clockpicker">
-          <input type="text" class="form-control" value="{{theTime}}" id="timeWanted" name="timeWanted">
-          <span class="input-group-addon">
-              <span class="glyphicon glyphicon-time"></span>
-          </span>
-        </div>
-      </div>
-      <div class="col-xs-7 col-md-10">
-        <button class="btn btn-success btn-block customerValidation">Valider la commande</button>
-      </div>
-    </div>
-    {{/if}}
+
+
     {{#if place.days}}
       {{> openHours}}
     {{/if}}

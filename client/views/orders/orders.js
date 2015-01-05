@@ -8,7 +8,7 @@ Template.orders.helpers({
     var orderQuery = {paid: paidFilter};
 
     if (dateFilter == 'today') {
-      var yesterday = moment().subtract('days', 1).valueOf();
+      var yesterday = moment().subtract(1, 'days').valueOf();
       orderQuery.$or = [{created: {$gt: yesterday}}, {updated: {$gt: yesterday}}];
     }
     if (statusFilter != 'all') {

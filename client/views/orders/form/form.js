@@ -74,6 +74,11 @@ Template.formOrder.helpers({
     if (!Meteor.userId()) {
       return false;
     }
+    var placeId = Router.current().params.place_id;
+    var place = Places.findOne({_id: placeId});
+    if (place && _.contains(place.waiter, Meteor.userId())) {
+      return false;
+    }
     var orderId = Router.current().params.order_id;
     if (orderId) {
       var order = Orders.findOne({_id: orderId});
@@ -83,16 +88,31 @@ Template.formOrder.helpers({
         return false;
       }
     }
+  },
+  isWaiter: function () {
+    if (!Meteor.userId()) {
+      return false;
+    }
     var placeId = Router.current().params.place_id;
     var place = Places.findOne({_id: placeId});
-    if (place && _.contains(place.waiter, Meteor.userId())) {
-      return false;
-    } else {
+    if (place && _.contains(place.waiter, Meteor.userId()) && (Session.get('orderStatus') === false || Session.get('orderStatus') === 1)) {
       return true;
+    } else {
+      return false;
+    }
+  },
+  inCreation: function () {
+    if (!Meteor.userId()) {
+      return false;
+    }
+    if (Session.get('orderStatus') === false || Session.get('orderStatus') === 1) {
+      return true;
+    } else {
+      return false;
     }
   },
   theTime: function () {
-    return moment().add('minutes',10).format('HH:mm');
+    return moment().add(10, 'minutes').format('HH:mm');
   }
 });
 
@@ -166,10 +186,12 @@ Template.formOrder.events({
     evt.preventDefault();
     var orderId = Session.get('orderId');
     var timeWanted = tmpl.find('#timeWanted').value;
-    var inTen = moment().add('minutes',10).format('HH:mm');
+    var inTen = moment().add(10, 'minutes').format('HH:mm');
     if (timeWanted < inTen) {
       timeWanted = inTen;
     }
+    var inputTogo = tmpl.find('input:radio[name=togos]:checked').value;
+    inputTogo = (inputTogo === 'true');
     var chat = {
       userId: Meteor.userId(),
       username: Meteor.user().profile.name,
@@ -177,11 +199,33 @@ Template.formOrder.events({
       message: 'La commande vient de passer en statut : '+orderStatus(2),
       side: 'right'
     };
-    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now(), wanted: timeWanted, notifyWaiter: true}, $push: {chats: chat}});
+    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now(), wanted: timeWanted, notifyWaiter: true, togo: inputTogo}, $push: {chats: chat}});
     var order = Orders.findOne({_id: orderId});
     Meteor.call('notify_order_status', orderId, order.waiter[0], 2);
     swal('Merci','Votre commande est validée','success');
     Router.go('cart');
+  },
+  'click .waiterValidation': function (evt, tmpl) {
+    evt.preventDefault();
+    var orderId = Session.get('orderId');
+    var timeWanted = tmpl.find('#timeWanted').value;
+    var inTen = moment().add(10, 'minutes').format('HH:mm');
+    if (timeWanted < inTen) {
+      timeWanted = inTen;
+    }
+    var inputTogo = tmpl.find('input:radio[name=togos]:checked').value;
+    inputTogo = (inputTogo === 'true');
+    var chat = {
+      userId: Meteor.userId(),
+      username: Meteor.user().profile.name,
+      created: Date.now(),
+      message: 'La commande vient de passer en statut : '+orderStatus(2),
+      side: 'left'
+    };
+    Orders.update({_id: orderId}, {$set: {status: 2, updated: Date.now(), wanted: timeWanted, togo: inputTogo}, $push: {chats: chat}});
+    var order = Orders.findOne({_id: orderId});
+    var placeId = Router.current().params.place_id;
+    Router.go('waiter', {_id: placeId});
   },
   'click .addProduct': function (evt,tmpl) {
     evt.preventDefault();
