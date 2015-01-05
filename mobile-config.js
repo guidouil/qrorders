@@ -23,8 +23,8 @@ App.icons({
 
 App.launchScreens({
   // iOS
-  // 'iphone': 'resources/splash/splash-320x480.png',
-  // 'iphone_2x': 'resources/splash/splash-320x480@2x.png',
+  'iphone': 'resources/splash/splash-320x480.png',
+  'iphone_2x': 'resources/splash/splash-320x480@2x.png',
   'iphone5': 'resources/splash/splash-320x568@2x.png',
   'ipad_portrait': 'resources/splash/splash-768x1024.png',
   'ipad_portrait_2x': 'resources/splash/splash-768x1024@2x.png',

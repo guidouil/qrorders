@@ -222,6 +222,15 @@ Meteor.methods({
   },
   add_place_waiter: function (placeId, mail) {
     var waiter = Meteor.users.findOne({'emails.address': mail});
+    if (!waiter) {
+      waiter = Meteor.users.findOne({'user.services.google.email': mail});
+    }
+    if (!waiter) {
+      waiter = Meteor.users.findOne({'user.services.facebook.email': mail});
+    }
+    if (!waiter) {
+      waiter = Meteor.users.findOne({'user.services.twitter.email': mail});
+    }
     if (waiter && waiter._id) {
       Places.update({_id: placeId}, {$addToSet: {waiter: waiter._id}});
       Roles.addUsersToRoles(waiter._id, ['waiter']);
@@ -265,6 +274,15 @@ Meteor.methods({
   },
   add_place_owner: function (placeId, mail) {
     var owner = Meteor.users.findOne({'emails.address': mail});
+    if (!owner) {
+      owner = Meteor.users.findOne({'user.services.google.email': mail});
+    }
+    if (!owner) {
+      owner = Meteor.users.findOne({'user.services.facebook.email': mail});
+    }
+    if (!owner) {
+      owner = Meteor.users.findOne({'user.services.twitter.email': mail});
+    }
     if (owner && owner._id) {
       Places.update({_id: placeId}, {$addToSet: {owner: owner._id}});
       Roles.addUsersToRoles(owner._id, ['owner']);
