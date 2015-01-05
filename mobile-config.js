@@ -10,9 +10,10 @@ App.info({
 App.icons({
   // iOS
   'iphone': 'resources/icons/icon-60x60.png',
-  'iphone_2x': 'resources/icons/icon-60x60@2x.png',
-  'ipad': 'resources/icons/icon-72x72.png',
-  'ipad_2x': 'resources/icons/icon-72x72@2x.png',
+  'iphone_2x': 'resources/icons/icon-120x120.png',
+  'iphone_3x': 'resources/icons/icon-180x180.png',
+  'ipad': 'resources/icons/icon-76x76.png',
+  'ipad_2x': 'resources/icons/icon-152x152.png',
 
   // Android
   'android_ldpi': 'resources/icons/icon-36x36.png',
@@ -44,3 +45,4 @@ App.launchScreens({
 
 App.setPreference('StatusBarOverlaysWebView', 'true');
 App.setPreference('StatusBarBackgroundColor', '#000000');
+App.setPreference('Orientation', 'default');
