@@ -76,38 +76,6 @@ Meteor.methods({
     Payments.remove({place: placeId});
     Notes.remove({place: placeId});
   },
-  tiny_images: function (imageId) {
-    var image = Images.findOne({_id: imageId});
-    // console.log(image.getFileRecord());
-    var input = image.createReadStream('images');
-    var output = image.createWriteStream('images');
-    // console.log(input);
-
-    // var tiny = function(data) {
-    //   HTTP.post('https://api.tinypng.com/shrink', {auth: 'api:r_NMZYPUA3YANl0rUjvGFHL8XSc8OtAx', content: data}, function (response){
-    //     console.log(response);
-    //   });
-    // };
-    // input.pipe(tiny);
-    var key = "r_NMZYPUA3YANl0rUjvGFHL8XSc8OtAx";
-    var options = url.parse("https://api.tinypng.com/shrink");
-    options.auth = "api:" + key;
-    options.method = "POST";
-
-    var request = https.request(options, function(response) {
-      if (response.statusCode === 201) {
-        /* Compression was successful, retrieve output from Location header. */
-        https.get(response.headers.location, function(response) {
-          response.pipe(output);
-        });
-      } else {
-        /* Something went wrong! You can parse the JSON body for details. */
-        console.log("Compression failed");
-      }
-      console.log(response.statusCode);
-    });
-    input.pipe(request);
-  },
   delete_image: function (imageId) {
     Images.remove({_id: imageId});
   },
@@ -211,11 +179,11 @@ Meteor.methods({
       Places.update({_id: placeId}, {$pull: {waiter: waiterId}});
       var waiter = Meteor.users.findOne({_id: waiterId});
       if (waiter.profile.place === placeId) {
-        Meteor.user.update({_id:waiterId}, {$set: {'profile.place': ''}});
+        Meteor.users.update({_id:waiter._id}, {$set: {'profile.place': ''}});
       }
       var nbPlaces = Places.find({waiter: waiterId}).count();
       if (nbPlaces === 0) {
-        Roles.removeUsersFromRoles(waiterId, ['waiter']);
+        Roles.removeUsersFromRoles(waiter._id, ['waiter']);
       }
       return true;
     }
