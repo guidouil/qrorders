@@ -69,7 +69,12 @@ body {
 .pricetext {
   /*font-weight:bold;*/
   /*font-size:1.2em;*/
-  line-height:1.4em;
+  line-height:1.5em;
+}
+
+.pricetext a {
+  font-size:1.2em;
+  margin-top:7px;
 }
 
 .img-jecmd {
