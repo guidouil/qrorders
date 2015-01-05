@@ -234,8 +234,10 @@ Meteor.methods({
     if (waiter && waiter._id) {
       Places.update({_id: placeId}, {$addToSet: {waiter: waiter._id}});
       Roles.addUsersToRoles(waiter._id, ['waiter']);
-      Meteor.user.update({_id:waiterId}, {$set: {'profile.place': placeId}});
+      Meteor.users.update({_id: waiter._id}, {$set: {'profile.place': placeId}});
       return true;
+    } else {
+      return false;
     }
   },
   get_owners: function (placeId) {
@@ -287,6 +289,8 @@ Meteor.methods({
       Places.update({_id: placeId}, {$addToSet: {owner: owner._id}});
       Roles.addUsersToRoles(owner._id, ['owner']);
       return true;
+    } else {
+      return false;
     }
   }
 });
