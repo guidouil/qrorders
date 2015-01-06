@@ -4,7 +4,6 @@
       <div class="well">
         <h1 class="text-center"><strong>JeCMD</strong> : ici c'est moi qui commande.</h1>
         <h3 class="text-center">Le système de prise de commandes en temps réel<br><small>ou comment attendre le moins possible.</small></h3>
-        <p class="text-center"><a href="{{pathFor 'resto'}}" class="btn btn-success btn-lg">Gérant d'un établissement ?</a></p>
         <img src="/qoderesto-123steps.jpg" alt="un deux troix" class="img-responsive text-center"/>
       </div>
     </div>
@@ -20,6 +19,10 @@
         {{> onePlace}}
       {{/each}}
       {{> placeModal}}
+    </div>
+    <div class="row">
+      <hr />
+      <p class="text-center"><a href="{{pathFor 'resto'}}" class="btn btn-primary btn-lg btn-block">Gérant d'un établissement ?</a></p>
     </div>
   </div>
 </template>

@@ -3,13 +3,14 @@ body {
   background-color: #E9E5DC;
   font-family: 'Arimo', sans-serif;
   letter-spacing:0.05em;
+  margin-top: 60px;
 }
 .navbar-brand {
   color: whitesmoke!important;
-  line-height: 1.5em;
+  /*line-height: 1.5em;*/
 }
 .navbar-nav {
-  margin: 7.5px 0px;
+  /*margin: 7.5px 0px;*/
 }
 .nav-pills li a{
   padding-left: 14px;
