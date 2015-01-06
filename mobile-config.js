@@ -12,7 +12,7 @@ App.icons({
   'iphone': 'resources/icons/icon-60x60.png',
   'iphone_2x': 'resources/icons/icon-120x120.png',
   'iphone_3x': 'resources/icons/icon-180x180.png',
-  'ipad': 'resources/icons/icon-76x76.png',
+  'ipad': 'resources/icons/icon-72x72-i.png',
   'ipad_2x': 'resources/icons/icon-152x152.png',
 
   // Android
