@@ -1,5 +1,5 @@
 App.info({
-  name: 'Je CMD',
+  name: 'JeCMD',
   description: 'Le système de prise de commandes en temps réel',
   author: 'QodeResto',
   email: 'gui@jecmd.fr',
