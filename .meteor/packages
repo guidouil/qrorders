@@ -6,7 +6,6 @@
 meteor-platform
 iron:router
 accounts-password
-ian:bootstrap-3
 alanning:roles
 mrt:accounts-admin-ui-bootstrap-3
 kevohagan:sweetalert
@@ -44,3 +43,4 @@ rzymek:moment-locale-fr
 d3js:d3
 pfafman:nvd3
 reywood:iron-router-ga
+fezvrasta:bootstrap-material-design

@@ -5,6 +5,9 @@ body {
   letter-spacing:0.05em;
   margin-top: 60px;
 }
+.navbar-inverse {
+  background-color: #222;
+}
 .navbar-brand {
   color: whitesmoke!important;
   /*line-height: 1.5em;*/
@@ -38,6 +41,13 @@ body {
 }
 .input-lc {
   width: 50px;
+}
+
+.btn-default:not(.btn-link):not(.btn-flat) {
+  color: #000;
+}
+.btn-default.active {
+  background-color: rgba(222, 222, 222, 0.5) !important;
 }
 
 .productbox {
