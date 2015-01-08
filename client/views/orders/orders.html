@@ -1,7 +1,7 @@
 <template name="orders">
 
   <form class="form-horizontal well" id="{{order._id}}">
-    <legend><strong>{{{dontSayMyName placename}}}</strong> <small>Commandes en cours</small>
+    <legend><strong>{{{dontSayMyName placename}}}</strong><small class="hidden-xs"> Commandes en cours</small>
       <span class="pull-right">
         <select id="selectStatus" name="selectStatus" class="form-control">
           <option value="all" selected="{{selectedStatus 'all'}}">Tous statuts</option>

@@ -4,6 +4,7 @@ body {
   font-family: 'Arimo', sans-serif;
   letter-spacing:0.05em;
   margin-top: 60px;
+  padding-right: 0 !important;
 }
 .navbar-inverse {
   background-color: #222;
