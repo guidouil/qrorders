@@ -59,16 +59,21 @@
         <div class="form-group" id="tags">
           <label class="col-xs-3 control-label" for="inputTags">Types</label>
           <div class="col-xs-9">
-            <input type="text"  id="inputTags" name="tags[]" placeholder="Types de votre restaurant" value="{{PlacesTags}}">
+            <input type="text" class="form-control"  id="inputTags" name="tags[]" placeholder="Types de votre restaurant" value="{{PlacesTags}}">
             <p class="help">Tapez en plusieurs, séparés par des virgules. Ex : Kebab, Pizzeria, Boulangerie ...</p>
           </div>
         </div>
         <div class="form-group" id="loyaltyCard">
           <label class="col-xs-3 control-label" >Carte de fidélité</label>
           <div class="col-xs-9">
-            <label for="inputLoyaltyCard">
-              <input type="checkbox" id="inputLoyaltyCard"  checked="{{#if loyaltyCard}}checked{{/if}}"> Active si cochée
-            </label>
+            <div class="checkbox">
+              <label for="inputLoyaltyCard">
+                <input type="checkbox" id="inputLoyaltyCard"  checked="{{#if loyaltyCard}}checked{{/if}}">
+                <span class="ripple"></span>
+                <span class="check"></span>
+                Active si cochée
+              </label>
+            </div>
             <p>Tout les <input type="number" step="any" id="inputLcPrice" value="{{lcPrice}}" class="input-lc" > &euro; dépensés, 1 point est ajouté à la carte.<br>
               Tout les <input type="number" id="inputLcSize" value="{{lcSize}}" class="input-lc" > points un avoir de <input type="number" step="any" id="inputLcReward" value="{{lcReward}}" class="input-lc" > &euro; est offert au client.</p>
           </div>

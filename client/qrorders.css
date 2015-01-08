@@ -51,6 +51,32 @@ body {
   background-color: rgba(222, 222, 222, 0.5) !important;
 }
 
+.selectize-control.single .selectize-input > div,
+.selectize-control.multi .selectize-input > div,
+.selectize-control.single .selectize-input.input-active > div,
+.selectize-control.multi .selectize-input.input-active > div,
+.selectize-control.single .selectize-input > .item,
+.selectize-control.multi .selectize-input > .item,
+.selectize-control.single .selectize-input.input-active > .item,
+.selectize-control.multi .selectize-input.input-active > .item {
+  display: inline-block;
+  margin: 0 8px 3px 0;
+   padding: 0 6px;
+   background-color: #1b9dec;
+  border: 0;
+}
+
+.selectize-control.single .selectize-input > div:after,
+.selectize-control.multi .selectize-input > div:after,
+.selectize-control.single .selectize-input.input-active > div:after,
+.selectize-control.multi .selectize-input.input-active > div:after,
+.selectize-control.single .selectize-input > .item:after,
+.selectize-control.multi .selectize-input > .item:after,
+.selectize-control.single .selectize-input.input-active > .item:after,
+.selectize-control.multi .selectize-input.input-active > .item:after {
+     content: "";
+}
+
 .productbox {
     background-color:#ffffff;
     padding:10px;

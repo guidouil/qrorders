@@ -17,7 +17,6 @@ fastclick
 aldeed:collection2
 aldeed:simple-schema
 patrickleet:tags
-jeremy:selectize
 mizzao:bootboxjs
 mizzao:user-status
 accounts-facebook
@@ -44,3 +43,4 @@ d3js:d3
 pfafman:nvd3
 reywood:iron-router-ga
 fezvrasta:bootstrap-material-design
+jeremy:selectize
