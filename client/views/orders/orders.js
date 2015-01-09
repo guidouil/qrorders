@@ -73,6 +73,11 @@ Template.orders.events({
     Session.set('placeId', placeId);
     $('#placeModal').modal();
   },
+  'click .orderModal': function (evt,tmpl) {
+    var orderId = evt.currentTarget.attributes.id.value;
+    Session.set('orderId', orderId);
+    $('#orderModal').modal();
+  },
   'click .changeStatus': function (evt, tmpl) {
     evt.preventDefault();
     var newStatus = evt.currentTarget.attributes.value.value;

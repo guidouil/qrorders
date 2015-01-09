@@ -32,23 +32,29 @@
       <table class="table table-condensed">
         <thead>
           <tr>
+            <th></th>
             <th>#</th>
             <th>Nom</th>
-            <th>Statut</th>
+            <th>Pour</th>
+            <th>Total</th>
+            <th class="text-center">Emporte</th>
+            <th class="text-center">Statut</th>
             <th>Quand</th>
-            <th class="text-right">Total</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {{#each orders}}
           <tr class="{{#if notifyUser}}warning{{/if}} {{#if notifyWaiter}}danger{{/if}} ">
+            <td><a href="#" class="btn btn-default orderModal" id="{{_id}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
             <td>{{number}}</td>
             <td>{{{sayMyName name place}}}</td>
-            <td>{{{textStatus status}}}{{#if togo}} A emporter{{/if}}</td>
-            <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}{{#if wanted}} (pour {{wanted}}){{/if}}</td>
+            <td>{{#if wanted}}{{wanted}}{{/if}}</td>
             <td class="text-right">{{#if total}}{{formatPrice total}}{{else}}0,00 €{{/if}}</td>
-            <td class="text-right">
+            <td class="text-center">{{#if togo}}Oui{{/if}}</td>
+            <td class="text-center">{{{textStatus status}}}</td>
+            <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
+            <td class="text-center">
               {{#unless paid}}
               <button class="btn btn-danger btn-sm deleteOrder" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
               {{/unless}}
@@ -87,4 +93,5 @@
     </div>
   </form>
   {{> placeModal}}
+  {{> orderModal}}
 </template>
