@@ -40,7 +40,7 @@
               {{/if}}
               <strong class="pull-right">{{formatPrice order.total}}</strong>
             </legend>
-            <div class="table-responsive">
+            <!-- <div class="table-responsive"> -->
               <table class="table table-condensed">
                 <thead>
                   <tr>
@@ -73,7 +73,7 @@
                   {{/each}}
                 </tbody>
               </table>
-            </div>
+            <!-- </div> -->
             {{#if inCreation}}
             <div class="form-group">
               <label class="col-xs-5 col-md-3 control-label" for="togos">Où ?</label>
@@ -130,7 +130,7 @@
       <div class="col-md-6">
         <form class="form-horizontal well well-sm">
           <legend><a href="#" class="placeModal" id="{{place._id}}">{{place.placename}}</a> <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
-          <div class="table-responsive">
+          <!-- <div class="table-responsive"> -->
             <table class="table table-condensed">
               <thead>
                 <tr>
@@ -194,7 +194,7 @@
                 {{/each}}
               </tbody>
             </table>
-          </div>
+          <!-- </div> -->
         </form>
       </div>
 
