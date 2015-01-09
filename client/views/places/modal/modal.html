@@ -11,6 +11,9 @@
           <img src="{{getImage place.image}}" alt="{{place.placename}}" class="img-jecmd">
           {{/if}}
           <h4>{{place.placedesc}}</h4>
+          {{#unless isCreateOrder}}
+          <button type="button" class="btn btn-success btn-block createOrder" title="Je Commande" id="{{place._id}}">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></button>
+          {{/unless}}
           <address>
             {{#if place.street}}{{place.street}}<br>{{/if}}
             {{#if place.town}}{{place.zip}} {{place.town}}<br>{{/if}}
@@ -27,9 +30,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-          {{#unless isCreateOrder}}
-          <button type="button" class="btn btn-success createOrder" title="Je Commande" id="{{place._id}}">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></button>
-          {{/unless}}
+
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

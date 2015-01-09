@@ -3,14 +3,132 @@
     {{#if isNotLoggedIn}}
     <div class="row">
       <div class="col-xs-12">
-        <a href="{{pathFor 'entrySignIn'}}" class="btn btn-success btn-block">Se connecter pour commander <span class="glyphicon glyphicon-shopping-cart"></span></a>
+        <a href="{{pathFor 'entrySignIn'}}" class="btn btn-success btn-lg btn-block btn-raised">Se connecter pour commander <span class="glyphicon glyphicon-shopping-cart"></span></a>
       </div>
     </div>
-    <br>
     {{/if}}
     <div class="row">
+
       <div class="col-md-6">
-        <form class="form-horizontal well">
+        <form class="form-horizontal well well-sm">
+          <fieldset>
+            <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}}{{#if order.togo}} A emporter{{/if}}{{#if order.name}} par {{order.name}}{{/if}}&nbsp;
+              {{#if isActiveOrder}}
+              <div class="btn-group text-center" data-toggle="buttons">
+                <label class="btn btn-danger btn-sm {{isStatusActive 0}} changeStatus" for="status-0" value="0">
+                  <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0}}>
+                  <span class="glyphicon glyphicon-remove"></span>
+                </label>
+                <label class="btn btn-warning btn-sm {{isStatusActive 1}} changeStatus" for="status-1" value="1">
+                  <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1}}>
+                  <span class="glyphicon glyphicon-plus"></span>
+                </label>
+                <label class="btn btn-primary btn-sm {{isStatusActive 2}} changeStatus" for="status-2"  id="defaultStatusLabel" value="2">
+                  <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2}}>
+                  <span class="glyphicon glyphicon-ok"></span>
+                </label>
+                <label class="btn btn-info btn-sm {{isStatusActive 3}} changeStatus" for="status-3" value="3">
+                  <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3}}>
+                  <span class="glyphicon glyphicon-refresh"></span>
+                </label>
+                <label class="btn btn-success btn-sm {{isStatusActive 4}} changeStatus" for="status-4" value="4">
+                  <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4}}>
+                  <span class="glyphicon glyphicon-cutlery"></span>
+                </label>
+              </div>
+              {{{textStatus order.status}}}{{#if order.paid}} Payée{{/if}}&nbsp;
+              {{/if}}
+              <strong class="pull-right">{{formatPrice order.total}}</strong>
+            </legend>
+            <div class="table-responsive">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Qtt</th>
+                    <th>Produit</th>
+                    <th>Opt</th>
+                    <th class="text-right">Prix</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each lines}}
+                  <tr>
+                    <td>{{quantity}}</td>
+                    <td>{{productName}}{{setName}}</td>
+                    <td>{{options}}</td>
+                    <td class="text-right">{{formatPrice price}}</td>
+                    <td class="text-right">
+                      {{#unless order.paid}}
+                      <button class="btn btn-danger btn-sm deleteLine" id="{{_id}}" name="{{productName}}"><span class="glyphicon glyphicon-trash"></span></button>
+                      {{/unless}}
+                    </td>
+                  </tr>
+                  {{else}}
+                  <tr>
+                    <td colspan="5">
+                      <p class="text-center">Commande vide</p>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+            {{#if inCreation}}
+            <div class="form-group">
+              <label class="col-xs-5 col-md-3 control-label" for="togos">Où ?</label>
+              <div class="col-xs-7 col-md-9">
+                <div class="radio radio-success">
+                  <label for="togos-0">
+                    <input type="radio" name="togos" id="togos-0" value="true" checked="checked" >
+                    <span class="circle"></span>
+                    <span class="check"></span>
+                    A emporter
+                  </label>
+                </div>
+                <div class="radio radio-success">
+                  <label for="togos-1">
+                    <input type="radio" name="togos" id="togos-1" value="false">
+                    <span class="circle"></span>
+                    <span class="check"></span>
+                    Sur place
+                  </label>
+                </div>
+              </div>
+            </div>
+            {{/if}}
+            {{#if isNotWaiter}}
+            <div class="col-xs-5 col-md-3">
+              <div class="input-group clockpicker">
+                <input type="text" class="form-control" value="{{theTime}}" id="timeWanted" name="timeWanted">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time"></span>
+                </span>
+              </div>
+            </div>
+            <div class="col-xs-7 col-md-9">
+              <button class="btn btn-success btn-block customerValidation">Valider la commande</button>
+            </div>
+            {{/if}}
+            {{#if isWaiter}}
+            <div class="col-xs-5 col-md-3">
+              <div class="input-group clockpicker">
+                <input type="text" class="form-control" value="{{theTime}}" id="timeWanted" name="timeWanted">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time"></span>
+                </span>
+              </div>
+            </div>
+            <div class="col-xs-7 col-md-9">
+              <button class="btn btn-success btn-block waiterValidation">Valider la commande</button>
+            </div>
+            {{/if}}
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <form class="form-horizontal well well-sm">
           <legend><a href="#" class="placeModal" id="{{place._id}}">{{place.placename}}</a> <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
           <div class="table-responsive">
             <table class="table table-condensed">
@@ -79,123 +197,7 @@
           </div>
         </form>
       </div>
-      <div class="col-md-6">
-        <form class="form-horizontal well">
-          <fieldset>
-          <legend>#{{#if order.number}}{{order.number}}{{else}}{{number}}{{/if}}{{#if order.togo}} A emporter{{/if}}{{#if order.name}} par {{order.name}}{{/if}}&nbsp;
-            {{#if isActiveOrder}}
-            <div class="btn-group text-center" data-toggle="buttons">
-              <label class="btn btn-danger btn-sm {{isStatusActive 0}} changeStatus" for="status-0" value="0">
-                <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0}}>
-                <span class="glyphicon glyphicon-remove"></span>
-              </label>
-              <label class="btn btn-warning btn-sm {{isStatusActive 1}} changeStatus" for="status-1" value="1">
-                <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1}}>
-                <span class="glyphicon glyphicon-plus"></span>
-              </label>
-              <label class="btn btn-primary btn-sm {{isStatusActive 2}} changeStatus" for="status-2"  id="defaultStatusLabel" value="2">
-                <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2}}>
-                <span class="glyphicon glyphicon-ok"></span>
-              </label>
-              <label class="btn btn-info btn-sm {{isStatusActive 3}} changeStatus" for="status-3" value="3">
-                <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3}}>
-                <span class="glyphicon glyphicon-refresh"></span>
-              </label>
-              <label class="btn btn-success btn-sm {{isStatusActive 4}} changeStatus" for="status-4" value="4">
-                <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4}}>
-                <span class="glyphicon glyphicon-cutlery"></span>
-              </label>
-            </div>
-            {{{textStatus order.status}}}{{#if order.paid}} Payée{{/if}}&nbsp;
-            {{/if}}
-            <strong class="pull-right">{{formatPrice order.total}}</strong>
-          </legend>
-          <div class="table-responsive">
-            <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <th>Qtt</th>
-                  <th>Produit</th>
-                  <th>Opt</th>
-                  <th class="text-right">Prix</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each lines}}
-                <tr>
-                  <td>{{quantity}}</td>
-                  <td>{{productName}}{{setName}}</td>
-                  <td>{{options}}</td>
-                  <td class="text-right">{{formatPrice price}}</td>
-                  <td class="text-right">
-                    {{#unless order.paid}}
-                    <button class="btn btn-danger btn-sm deleteLine" id="{{_id}}" name="{{productName}}"><span class="glyphicon glyphicon-trash"></span></button>
-                    {{/unless}}
-                  </td>
-                </tr>
-                {{else}}
-                <tr>
-                  <td colspan="5">
-                    <p class="lead text-center">Commande vide</p>
-                  </td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-          {{#if inCreation}}
-          <div class="form-group">
-            <label class="col-xs-5 col-md-3 control-label" for="togos">Où ?</label>
-            <div class="col-xs-7 col-md-9">
-              <div class="radio radio-success">
-                <label for="togos-0">
-                  <input type="radio" name="togos" id="togos-0" value="true" checked="checked" >
-                  <span class="circle"></span>
-                  <span class="check"></span>
-                  A emporter
-                </label>
-              </div>
-              <div class="radio radio-success">
-                <label for="togos-1">
-                  <input type="radio" name="togos" id="togos-1" value="false">
-                  <span class="circle"></span>
-                  <span class="check"></span>
-                  Sur place
-                </label>
-              </div>
-            </div>
-          </div>
-          {{/if}}
-          {{#if isNotWaiter}}
-            <div class="col-xs-5 col-md-3">
-              <div class="input-group clockpicker">
-                <input type="text" class="form-control" value="{{theTime}}" id="timeWanted" name="timeWanted">
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-time"></span>
-                </span>
-              </div>
-            </div>
-            <div class="col-xs-7 col-md-9">
-              <button class="btn btn-success btn-block customerValidation">Valider la commande</button>
-            </div>
-          {{/if}}
-          {{#if isWaiter}}
-          <div class="col-xs-5 col-md-3">
-            <div class="input-group clockpicker">
-              <input type="text" class="form-control" value="{{theTime}}" id="timeWanted" name="timeWanted">
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-time"></span>
-              </span>
-            </div>
-          </div>
-          <div class="col-xs-7 col-md-9">
-            <button class="btn btn-success btn-block waiterValidation">Valider la commande</button>
-          </div>
-          {{/if}}
-        </fieldset>
-        </form>
-      </div>
+
     </div>
     {{#if loyaltyCard}}
     <div class="row">
