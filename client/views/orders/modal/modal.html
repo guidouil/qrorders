@@ -7,34 +7,34 @@
           <h3 class="modal-title text-center" id="orderModalLabel">#{{order.number}}{{#if order.togo}} A emporter{{/if}}{{#if order.name}} par {{order.name}}{{/if}} {{{textStatus order.status}}}</h3>
         </div>
         <div class="modal-body">
-          <div class="table-responsive">
-            <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <th class="text-center">Qtt</th>
-                  <th>Produit</th>
-                  <th>Options</th>
-                  <th class="text-right">Prix</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each lines}}
-                <tr>
-                  <td class="text-center">{{quantity}}</td>
-                  <td>{{productName}}{{setName}}</td>
-                  <td>{{options}}</td>
-                  <td class="text-right">{{formatPrice price}}</td>
-                </tr>
-                {{else}}
-                <tr>
-                  <td colspan="5">
-                    <p class="lead text-center">Commande vide</p>
-                  </td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
+
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th class="text-center">Qtt</th>
+                <th>Produit</th>
+                <th>Options</th>
+                <th class="text-right">Prix</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each lines}}
+              <tr>
+                <td class="text-center">{{quantity}}</td>
+                <td>{{productName}}{{setName}}</td>
+                <td>{{options}}</td>
+                <td class="text-right">{{formatPrice price}}</td>
+              </tr>
+              {{else}}
+              <tr>
+                <td colspan="5">
+                  <p class="lead text-center">Commande vide</p>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
           <h4><strong class="pull-right">{{formatPrice order.total}}</strong></h4>
           <div class="clearfix"></div>
           <div class="text-center">
