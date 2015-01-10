@@ -17,5 +17,13 @@ Template.orderModal.helpers({
   },
   isStatusChecked: function (status, orderStatus) {
     return (status == orderStatus?'checked':'');
+  },
+  isWaiter: function (placeId) {
+    var place = Places.findOne({_id: placeId});
+    if (place && _.contains(place.waiter, Meteor.userId())) {
+      return true;
+    } else {
+      return false;
+    }
   }
 });

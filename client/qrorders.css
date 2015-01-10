@@ -122,12 +122,12 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 .pricetext {
   /*font-weight:bold;*/
   /*font-size:1.2em;*/
-  line-height:1.5em;
+  /*line-height:1.5em;*/
 }
 
 .pricetext a {
-  font-size:1.2em;
-  margin-top:7px;
+  /*font-size:1.2em;
+  margin-top:7px;*/
 }
 
 .img-jecmd {

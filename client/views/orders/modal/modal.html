@@ -7,7 +7,9 @@
           <h3 class="modal-title text-center" id="orderModalLabel">#{{order.number}}{{#if order.togo}} A emporter{{/if}}{{#if order.name}} par {{order.name}}{{/if}} {{{textStatus order.status}}}</h3>
         </div>
         <div class="modal-body">
-
+          {{#if isWaiter order.place}}
+          <a href="{{pathFor 'payOrder' place_id=order.place order_id=order._id}}" class="btn btn-info btn-block">Encaisser la commande <span class="glyphicon glyphicon-euro"></span></a>
+          {{/if}}
           <table class="table table-condensed">
             <thead>
               <tr>
