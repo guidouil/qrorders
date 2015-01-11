@@ -60,7 +60,7 @@
               {{#unless paid}}
               <button class="btn btn-danger btn-sm deleteOrder" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
               {{/unless}}
-              <div class="btn-group text-center hidden-xs" data-toggle="buttons">
+              <div class="btn-group text-center hidden-xs hidden-sm hidden-md" data-toggle="buttons">
                 <label class="btn btn-danger btn-sm {{isStatusActive 0 status}} changeStatus" title="Annulée" for="status-0" value="0" id="{{_id}}">
                   <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0 status}}>
                   <span class="glyphicon glyphicon-remove"></span>
