@@ -1,6 +1,4 @@
 Meteor.subscribe('Places');
-Meteor.subscribe('Images');
-
 
 Template.layout.rendered = function () {
   var user = Meteor.user();

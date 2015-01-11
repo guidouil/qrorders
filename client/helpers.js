@@ -130,6 +130,7 @@ UI.registerHelper('showTags', function (tags) {
 });
 
 UI.registerHelper('getImage', function (imgId) {
+  Meteor.subscribe('Images', imgId);
   var image = Images.findOne({_id: imgId});
   if (image && image.data) {
     return image.data;
