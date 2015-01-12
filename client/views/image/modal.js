@@ -6,16 +6,15 @@ Template.imageModal.helpers({
 
 Template.imageModal.events({
   'click .left': function (evt,tmpl) {
-    $image.cropper('rotate', -90);
+    $('.modalImg').cropper('rotate', -90);
   },
   'click .right': function (evt,tmpl) {
-    $image.cropper('rotate', 90);
+    $('.modalImg').cropper('rotate', 90);
   },
   'shown.bs.modal': function (evt,tmpl) {
     console.log('yaya');
-    $image = $('.modalImg');
     var originalData = {width: 1024};
-    $image.cropper({
+    $('.modalImg').cropper({
       aspectRatio: 1.618, // Nombre d'or
       maxWidth: 2048,
       data: originalData
@@ -23,8 +22,8 @@ Template.imageModal.events({
     console.log('yaya2');
   },
   'hidden.bs.modal': function() {
-    $image = $('.modalImg');
-    var originalData = $image.cropper("getDataURL", "image/jpeg", 0.6);
+
+    var originalData = $('.modalImg').cropper("getDataURL", "image/jpeg", 0.6);
     // console.log(originalData);
     if (originalData !== '') {
       var imageId = Images.insert({data: originalData});
@@ -56,6 +55,6 @@ Template.imageModal.events({
       }
     }
     Session.set('imageTemp', '');
-    $image.cropper("destroy");
+    $('.modalImg').cropper("destroy");
   }
 });
