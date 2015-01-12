@@ -118,7 +118,7 @@ tap:http-methods@0.0.23
 tap:i18n@1.2.1
 templating@1.0.10
 tracker@1.0.4
-twbs:bootstrap@3.3.1
+twbs:bootstrap@3.3.1_2
 twitter@1.1.3
 ui@1.0.5
 underscore@1.0.2

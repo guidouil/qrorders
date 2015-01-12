@@ -43,4 +43,6 @@ d3js:d3
 pfafman:nvd3
 reywood:iron-router-ga
 jeremy:selectize
+twbs:bootstrap
 fezvrasta:bootstrap-material-design
+jquery

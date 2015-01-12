@@ -72,6 +72,8 @@ Template.editPlace.events({
     reader.onload = function(e) {
       // Places.update({_id: placeId}, {$set: {imageTmp: e.target.result}});
       Session.set('imageTemp', e.target.result);
+      // if (Session.get('imageTemp') !== '') {
+      // }
     };
     reader.readAsDataURL(file);
     $('#imageModal').modal();
