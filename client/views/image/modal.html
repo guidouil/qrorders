@@ -3,18 +3,16 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="imageModalLabel">Centrer la photo</h4>
+          <h4 class="modal-title text-center" id="imageModalLabel">(re)Cadrer la photo</h4>
         </div>
         <div class="modal-body">
-          <div class="bootstrap-modal-cropper"><img src="{{imageTemp}}" class="img-responsive modalImg"></div>
+          <div class="bootstrap-modal-cropper"><img src="{{imageTemp}}" class="img-responsive imgtocrop"></div>
           <a href="#" class="btn btn-info pull-left left"><span class="glyphicon glyphicon-share-alt docs-flip-horizontal"></span></a>
           <a href="#" class="btn btn-info pull-right right"><span class="glyphicon glyphicon-share-alt"></span></a>
           <p class="text-center">
             vous pouvez zoomer avec votre molette ou vos doigts
           </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
+          <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Enregistrer</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

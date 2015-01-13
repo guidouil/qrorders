@@ -48,10 +48,10 @@
             {{#if isMobile}}
             <button name="inputImageMobile" id="inputImageMobile" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span> Prendre une photo</button>
             {{else}}
-            <input type="file" id="inputImage">
-            <!-- <div class="form-control-wrapper fileinput"><input type="text" readonly="" class=" empty"><input type="file" id="inputImage" multiple="" class=""><div class="floating-label">Parcourir...</div><span class="material-input"></span></div> -->
+            <!-- <input type="file" id="inputImage"> -->
+            <div class="form-control-wrapper fileinput"><input type="text" readonly="" class="form-control empty"><input type="file" id="inputImage" multiple="" class=""><div class="floating-label">Parcourir...</div><span class="material-input"></span></div>
             {{/if}}
-            <p class="help-block">De preference en vue paysage.</p>
+            <p class="help-block">De préférence orientée en paysage.</p>
             {{#if image}}
               <img src="{{getImage image}}" alt="{{placename}}" class="img-jecmd"/>
             {{/if}}
@@ -80,7 +80,7 @@
           </div>
         </div>
         <button type="submit" class="btn btn-success save">Enregistrer</button>
-        <a href="{{pathFor 'owner'}}" class="btn">Annuler</a>
+        <a href="{{pathFor 'owner'}}" class="btn btn-default">Annuler</a>
         <a href="" class="btn btn-danger pull-right delete">Supprimer</a>
         {{> placeWaiters}}
         {{> placeOwners}}

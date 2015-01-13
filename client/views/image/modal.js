@@ -6,24 +6,29 @@ Template.imageModal.helpers({
 
 Template.imageModal.events({
   'click .left': function (evt,tmpl) {
-    $('.modalImg').cropper('rotate', -90);
+    $(".bootstrap-modal-cropper > img").cropper('rotate', -90);
   },
   'click .right': function (evt,tmpl) {
-    $('.modalImg').cropper('rotate', 90);
+    $(".bootstrap-modal-cropper > img").cropper('rotate', 90);
   },
   'shown.bs.modal': function (evt,tmpl) {
     console.log('yaya');
-    var originalData = {width: 1024};
-    $('.modalImg').cropper({
-      aspectRatio: 1.618, // Nombre d'or
-      maxWidth: 2048,
-      data: originalData
-    });
-    console.log('yaya2');
+    if(Session.get('imageTemp') !== '') {
+      var originalData = {width: 1024};
+      // $image = $(".bootstrap-modal-cropper > img");
+      $('.imgtocrop').attr("src",Session.get('imageTemp'));
+      $('.imgtocrop').cropper({
+        aspectRatio: 1.618,
+        maxWidth: 2048,
+        data: originalData
+      });
+      console.log('yaya2');
+
+    }
   },
   'hidden.bs.modal': function() {
-
-    var originalData = $('.modalImg').cropper("getDataURL", "image/jpeg", 0.6);
+    console.log('hidden');
+    var originalData = $('.imgtocrop').cropper("getDataURL", "image/jpeg", 0.6);
     // console.log(originalData);
     if (originalData !== '') {
       var imageId = Images.insert({data: originalData});
@@ -55,6 +60,6 @@ Template.imageModal.events({
       }
     }
     Session.set('imageTemp', '');
-    $('.modalImg').cropper("destroy");
+    $('.imgtocrop').cropper("destroy");
   }
 });

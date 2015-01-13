@@ -9,7 +9,6 @@ accounts-password
 alanning:roles
 mrt:accounts-admin-ui-bootstrap-3
 kevohagan:sweetalert
-tap:i18n
 zimme:bootstrap-growl
 accounts-ui
 coffeescript
@@ -22,7 +21,7 @@ mizzao:user-status
 accounts-facebook
 accounts-twitter
 accounts-google
-joshowens:accounts-entry@1.0.0
+joshowens:accounts-entry
 andrasph:clockpicker
 meteorhacks:kadira
 jonblum:jquery-cropper
@@ -46,3 +45,4 @@ jeremy:selectize
 twbs:bootstrap
 fezvrasta:bootstrap-material-design
 jquery
+tap:i18n

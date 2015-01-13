@@ -72,11 +72,12 @@ Template.editPlace.events({
     reader.onload = function(e) {
       // Places.update({_id: placeId}, {$set: {imageTmp: e.target.result}});
       Session.set('imageTemp', e.target.result);
-      // if (Session.get('imageTemp') !== '') {
-      // }
+      if (Session.get('imageTemp') !== '') {
+        // Meteor.setTimeout($('#imageModal').modal(),4000);
+        $('#imageModal').modal();
+      }
     };
     reader.readAsDataURL(file);
-    $('#imageModal').modal();
   },
   'click #inputImageMobile': function (event, template) {
     event.preventDefault();
