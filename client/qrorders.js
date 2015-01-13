@@ -39,6 +39,13 @@ Meteor.startup(function () {
     showOtherLoginServices: true//,     // Set to false to hide oauth login buttons on the signin/signup pages. Useful if you are using
   });
 
+  $.material.options = {
+    "withRipples": " .card-image, .navbar a:not(.withoutripple), .nav-tabs a:not(.withoutripple), .withripple",
+    "inputElements": "input.form-control, textarea.form-control, select.form-control",
+    "checkboxElements": ".checkbox > label > input[type=checkbox]",
+    "radioElements": ".radio > label > input[type=radio]"
+  }
+
   // Session.set("showLoadingIndicator", true);
   //
   // TAPi18n.setLanguage(Session.get('language'))
