@@ -48,7 +48,7 @@
         <tbody>
           {{#each orders}}
           <tr class="{{#if notifyUser}}warning{{/if}} {{#if notifyWaiter}}danger{{/if}} ">
-            <td><a href="#" class="btn btn-default orderModal" id="{{_id}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+            <td><a href="#" class="btn btn-default orderModal withoutripple" id="{{_id}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
             <td>{{number}}</td>
             <td>{{{sayMyName name place}}}</td>
             <td>{{#if wanted}}{{wanted}}{{/if}}</td>
@@ -58,7 +58,7 @@
             <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
             <td class="text-center">
               {{#unless paid}}
-              <button class="btn btn-danger btn-sm deleteOrder" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
+              <button class="btn btn-danger btn-sm deleteOrder withoutripple" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
               {{/unless}}
               <div class="btn-group text-center hidden-xs hidden-sm hidden-md" data-toggle="buttons">
                 <label class="btn btn-danger btn-sm {{isStatusActive 0 status}} changeStatus" title="Annulée" for="status-0" value="0" id="{{_id}}">
@@ -82,7 +82,7 @@
                   <span class="glyphicon glyphicon-cutlery"></span>
                 </label>
               </div>
-              <a class="btn btn-primary btn-sm editOrder" href="{{pathFor 'editOrder' place_id=place order_id=_id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+              <a class="btn btn-primary btn-sm editOrder withoutripple" href="{{pathFor 'editOrder' place_id=place order_id=_id}}"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
           </tr>
           {{else}}

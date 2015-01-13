@@ -22,6 +22,12 @@ getUserLanguage = function () {
   //return language;
 };
 
+$.material.options = {
+  "withRipples": ".btn:not(.withoutripple), .card-image, .navbar a:not(.withoutripple), .nav-tabs a:not(.withoutripple), .withripple",
+  "inputElements": "input.form-control, textarea.form-control, select.form-control",
+  "checkboxElements": ".checkbox > label > input[type=checkbox]",
+  "radioElements": ".radio > label > input[type=radio]"
+};
 
 Meteor.startup(function () {
   Accounts.ui.config({
@@ -38,13 +44,6 @@ Meteor.startup(function () {
     language: Session.get('language'),
     showOtherLoginServices: true//,     // Set to false to hide oauth login buttons on the signin/signup pages. Useful if you are using
   });
-
-  $.material.options = {
-    "withRipples": " .card-image, .navbar a:not(.withoutripple), .nav-tabs a:not(.withoutripple), .withripple",
-    "inputElements": "input.form-control, textarea.form-control, select.form-control",
-    "checkboxElements": ".checkbox > label > input[type=checkbox]",
-    "radioElements": ".radio > label > input[type=radio]"
-  }
 
   // Session.set("showLoadingIndicator", true);
   //
