@@ -272,6 +272,7 @@ Template.formOrder.events({
       optionMessage += '</form>';
 
       bootbox.dialog({
+        animate: false,
         message: optionMessage,
         title: '<strong>'+productName+'</strong> Options',
         buttons: {
@@ -404,6 +405,7 @@ Template.formOrder.events({
 
     if(optionFound === true) {
       bootbox.dialog({
+        animate: false,
         message: optionMessage,
         title: 'Options de la formule <strong>'+setName+'</strong>',
         buttons: {
