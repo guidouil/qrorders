@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <form class="form-horizontal well">
-        <legend>Éditer {{placename}} <a href="{{pathFor 'hoursPlace'}}" class="btn btn-info btn-sm pull-right"><span class="glyphicon glyphicon-time"></span> Horaires</a></legend>
+        <legend>Éditer {{placename}} <a href="{{pathFor 'hoursPlace'}}" class="btn btn-info btn-sm pull-right"><span class="fa fa-clock-o"></span> Horaires</a></legend>
         <div class="form-group" id="name">
           <label class="col-xs-3 control-label" for="inputName">Nom</label>
           <div class="col-xs-9">
@@ -46,10 +46,9 @@
           <label class="col-xs-3 control-label" for="inputImage">Photo</label>
           <div class="col-xs-9">
             {{#if isMobile}}
-            <button name="inputImageMobile" id="inputImageMobile" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span> Prendre une photo</button>
+            <button name="inputImageMobile" id="inputImageMobile" class="btn btn-default"><span class="fa fa-camera"></span> Prendre une photo</button>
             {{else}}
-            <!-- <input type="file" id="inputImage"> -->
-            <div class="form-control-wrapper fileinput"><input type="text" readonly="" class="form-control empty"><input type="file" id="inputImage" multiple="" class=""><div class="floating-label">Parcourir...</div><span class="material-input"></span></div>
+            <input type="file" id="inputImage">
             {{/if}}
             <p class="help-block">De préférence orientée en paysage.</p>
             {{#if image}}

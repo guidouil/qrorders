@@ -2,13 +2,13 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-        <a href="{{pathFor 'createProduct'}}" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-plus"></span> Produit</a>
+        <a href="{{pathFor 'createProduct'}}" class="btn btn-primary btn-lg btn-block"><span class="fa fa-plus"></span> Produit</a>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-        <a href="{{pathFor 'setsPlace'}}" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-arrow-right"></span> Formules</a>
+        <a href="{{pathFor 'setsPlace'}}" class="btn btn-info btn-lg btn-block"><span class="fa fa-arrow-right"></span> Formules</a>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-        <a href="{{pathFor 'optionsPlace'}}" class="btn btn-warning btn-lg btn-block"><span class="glyphicon glyphicon-arrow-right"></span> Options</a>
+        <a href="{{pathFor 'optionsPlace'}}" class="btn btn-warning btn-lg btn-block"><span class="fa fa-arrow-right"></span> Options</a>
       </div>
     </div>
     <div class="row">
@@ -20,7 +20,7 @@
             {{/if}}
             <div class="producttitle text-center">{{name}}</div>
             <p class="text-center">{{desc}}</p>
-            <a href="/editproduct/{{place_id}}/{{_id}}" class="btn btn-success btn-block" title="Éditer {{name}}">Éditer <span class="glyphicon glyphicon-edit"></span></a>
+            <a href="/editproduct/{{place_id}}/{{_id}}" class="btn btn-success btn-block" title="Éditer {{name}}">Éditer <span class="fa fa-pencil"></span></a>
             <div class="productprice">
               <div class="pull-right">
                 {{formatPrice price}}

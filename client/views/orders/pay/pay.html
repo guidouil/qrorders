@@ -28,14 +28,14 @@
     <div class='row'>
       {{#if note.amount}}
       <div class='col-md-12'>
-        <button class='btn btn-info btn-block btn-lg useNote'>Utiliser avoir {{formatPrice note.amount}} <span class='glyphicon glyphicon-send'></span></button>
+        <button class='btn btn-info btn-block btn-lg useNote'>Utiliser avoir {{formatPrice note.amount}} <span class='fa fa-send'></span></button>
       </div>
       {{/if}}
       <div class='col-md-6'>
-        <button class='btn btn-primary btn-block btn-lg cardPay'>Carte <span class='glyphicon glyphicon-credit-card'></span></button>
+        <button class='btn btn-primary btn-block btn-lg cardPay'>Carte <span class='fa fa-credit-card'></span></button>
       </div>
       <div class='col-md-6'>
-        <button class='btn btn-primary btn-block btn-lg cashPay'>Espèces ou tickets <span class='glyphicon glyphicon-euro'></span></button>
+        <button class='btn btn-primary btn-block btn-lg cashPay'>Espèces ou tickets <span class='fa fa-euro'></span></button>
       </div>
     </div>
     <div class='row'>
@@ -58,7 +58,7 @@
           <input type="hidden" id="cashBack" value="0">
           <p class="lead">Avoir :<span class="pull-right creditNote">0.00€</span></p>
           <input type="hidden" id="creditNote" value="0">
-          <button class='btn btn-success btn-block btn-lg validCashPay'>Valider le paiement <span class='glyphicon glyphicon-euro'></span></button>
+          <button class='btn btn-success btn-block btn-lg validCashPay'>Valider le paiement <span class='fa fa-euro'></span></button>
         </form>
       </div>
     </div>

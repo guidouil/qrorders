@@ -20,7 +20,7 @@
             <tbody>
               {{#each payments}}
               <tr>
-                <td>{{#if card}}<span class="glyphicon glyphicon-credit-card"></span>{{else}}<span class="glyphicon glyphicon-euro"></span>{{/if}}</td>
+                <td>{{#if card}}<span class="fa fa-credit-card"></span>{{else}}<span class="fa fa-euro"></span>{{/if}}</td>
                 <td>{{fromNow date}}</td>
                 <td class="text-right">{{formatPrice rebate}}</td>
                 <td class="text-right">{{formatPrice total}}</td>

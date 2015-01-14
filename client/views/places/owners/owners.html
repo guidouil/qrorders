@@ -1,7 +1,7 @@
 <template name="placeOwners">
   <hr>
   <div class="table-responsive">
-    <legend>Propriétaire <span class='glyphicon glyphicon-cutlery'></span></legend>
+    <legend>Propriétaire <span class='fa fa-cutlery'></span></legend>
     <table class="table table-condensed">
       <thead>
         <tr>
@@ -12,7 +12,7 @@
               <input type="email" class="form-control floating-label" id="ownerMail" name="ownerMail" value="" placeholder="Adresse mail du propriétaire">
             </div>
             <div class="col-xs-1">
-              <a href="#" class="btn btn-primary addOwner"><span class="glyphicon glyphicon-plus"></span></a>
+              <a href="#" class="btn btn-primary addOwner"><span class="fa fa-plus"></span></a>
             </div>
           </th>
         </tr>
@@ -22,7 +22,7 @@
         <tr>
           <td>{{name}}</td>
           <td>{{mail}}</td>
-          <td class="text-right"><a href="#" class="btn btn-danger removeOwner" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></a></td>
+          <td class="text-right"><a href="#" class="btn btn-danger removeOwner" id="{{_id}}"><span class="fa fa-trash"></span></a></td>
         </tr>
         {{else}}
         <tr>

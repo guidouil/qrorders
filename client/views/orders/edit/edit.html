@@ -3,11 +3,12 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <a href="{{pathFor 'payOrder' place_id=placeId order_id=orderId}}" class="btn btn-info btn-block">Encaisser la commande <span class="glyphicon glyphicon-euro"></span></a>
+        <a href="{{pathFor 'payOrder' place_id=placeId order_id=orderId}}" class="btn btn-info btn-block">Encaisser la commande <span class="fa fa-euro"></span></a>
+        <br>
       </div>
     </div>
   </div>
   {{/if}}
-  {{> formOrder}}
   {{> chatOrder}}
+  {{> formOrder}}
 </template>

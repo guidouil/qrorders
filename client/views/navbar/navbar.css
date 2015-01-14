@@ -1,3 +1,7 @@
 .navbar span.glyphicon {
-    font-size: 1.4em;
+  font-size: 1.4em;
+}
+
+.navbar i.fa {
+    font-size: 2em;
 }

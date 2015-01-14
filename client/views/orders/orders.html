@@ -48,7 +48,7 @@
         <tbody>
           {{#each orders}}
           <tr class="{{#if notifyUser}}warning{{/if}} {{#if notifyWaiter}}danger{{/if}} ">
-            <td><a href="#" class="btn btn-default orderModal withoutripple" id="{{_id}}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+            <td><a href="#" class="btn btn-default btn-sm orderModal withoutripple" id="{{_id}}"><span class="fa fa-eye"></span></a></td>
             <td>{{number}}</td>
             <td>{{{sayMyName name place}}}</td>
             <td>{{#if wanted}}{{wanted}}{{/if}}</td>
@@ -58,31 +58,31 @@
             <td>{{#if updated}}{{fromNow updated}}{{else}}{{fromNow created}}{{/if}}</td>
             <td class="text-center">
               {{#unless paid}}
-              <button class="btn btn-danger btn-sm deleteOrder withoutripple" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
+              <button class="btn btn-danger btn-sm deleteOrder withoutripple" id="{{_id}}"><span class="fa fa-trash"></span></button>
               {{/unless}}
               <div class="btn-group text-center hidden-xs hidden-sm hidden-md" data-toggle="buttons">
                 <label class="btn btn-danger btn-sm {{isStatusActive 0 status}} changeStatus" title="Annulée" for="status-0" value="0" id="{{_id}}">
                   <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0 status}}>
-                  <span class="glyphicon glyphicon-remove"></span>
+                  <span class="fa fa-remove"></span>
                 </label>
                 <label class="btn btn-warning btn-sm {{isStatusActive 1 status}} changeStatus" title="En création" for="status-1" value="1" id="{{_id}}">
                   <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1 status}}>
-                  <span class="glyphicon glyphicon-plus"></span>
+                  <span class="fa fa-plus"></span>
                 </label>
                 <label class="btn btn-primary btn-sm {{isStatusActive 2 status}} changeStatus" title="Validée" for="status-2" value="2" id="{{_id}}">
                   <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2 status}}>
-                  <span class="glyphicon glyphicon-ok"></span>
+                  <span class="fa fa-check"></span>
                 </label>
                 <label class="btn btn-info btn-sm {{isStatusActive 3 status}} changeStatus" title="En cours" for="status-3" value="3" id="{{_id}}">
                   <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3 status}}>
-                  <span class="glyphicon glyphicon-refresh"></span>
+                  <span class="fa fa-refresh"></span>
                 </label>
                 <label class="btn btn-success btn-sm {{isStatusActive 4 status}} changeStatus" title="Servie" for="status-4" value="4" id="{{_id}}">
                   <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4 status}}>
-                  <span class="glyphicon glyphicon-cutlery"></span>
+                  <span class="fa fa-cutlery"></span>
                 </label>
               </div>
-              <a class="btn btn-primary btn-sm editOrder withoutripple" href="{{pathFor 'editOrder' place_id=place order_id=_id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+              <a class="btn btn-primary btn-sm editOrder withoutripple" href="{{pathFor 'editOrder' place_id=place order_id=_id}}"><span class="fa fa-pencil"></span></a>
             </td>
           </tr>
           {{else}}

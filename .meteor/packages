@@ -41,7 +41,8 @@ d3js:d3
 pfafman:nvd3
 reywood:iron-router-ga
 jeremy:selectize
-twbs:bootstrap
 jquery
 cfs:http-methods
 patrickleet:tags
+panter:bootswatch-paper
+twbs:bootstrap-noglyph

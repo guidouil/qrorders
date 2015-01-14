@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-6">
-        <a href="{{pathFor 'productsPlace'}}" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-arrow-left"></span> Produits</a>
+        <a href="{{pathFor 'productsPlace'}}" class="btn btn-primary btn-lg btn-block"><span class="fa fa-arrow-left"></span> Produits</a>
       </div>
       <div class="col-xs-6">
-        <a href="{{pathFor 'createSet'}}" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-plus"></span> Formule</a>
+        <a href="{{pathFor 'createSet'}}" class="btn btn-info btn-lg btn-block"><span class="fa fa-plus"></span> Formule</a>
       </div>
 
     </div>
@@ -19,7 +19,7 @@
             <div class="producttitle text-center">{{name}}</div>
             <p class="text-center">{{desc}}</p>
             <p class="text-center">{{arrayLength products}} produits</p>
-            <a href="/editset/{{place_id}}/{{_id}}" class="btn btn-success btn-block" title="Éditer {{name}}">Éditer <span class="glyphicon glyphicon-edit"></span></a>
+            <a href="/editset/{{place_id}}/{{_id}}" class="btn btn-success btn-block" title="Éditer {{name}}">Éditer <span class="fa fa-pencil"></span></a>
             <div class="productprice">
               <div class="pull-right">
                 {{formatPrice price}}

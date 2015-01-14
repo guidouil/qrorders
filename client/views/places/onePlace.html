@@ -6,7 +6,7 @@
       {{/if}}
       <div class="producttitle text-center"><a href="#" class="placeModal lead" id="{{_id}}">{{placename}}</a></div>
       <p class="text-center">{{truncate placedesc 80}}</p>
-      <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-block createOrder" title="Je Commande">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></a>
+      <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-block createOrder" title="Je Commande">Je Commande <span class="fa fa-shopping-cart"></span></a>
       <address>
         {{#if street}}{{street}}<br>{{/if}}
         {{#if town}}{{zip}} {{town}}<br>{{/if}}
@@ -18,10 +18,10 @@
         </div>
         {{#if isOwner}}
         <div class="pricetext">
-          <a href="/products/{{_id}}" class="btn btn-primary" title="Produits">Produits <span class="glyphicon glyphicon-list"></span></a>&nbsp;
-          <a href="/edit/{{_id}}" class="btn btn-warning" title="Éditer">Editer <span class="glyphicon glyphicon-cog"></span></a>&nbsp;
-          <a href="/payements/{{_id}}" class="btn btn-info" title="Payements">Payements <span class="glyphicon glyphicon-euro"></span></a>&nbsp;
-          <a href="/editqrcode/{{_id}}" class="btn btn-default" title="QR Code">QR <span class="glyphicon glyphicon-qrcode"></span></a>
+          <a href="/products/{{_id}}" class="btn btn-primary" title="Produits">Produits <span class="fa fa-list"></span></a>&nbsp;
+          <a href="/edit/{{_id}}" class="btn btn-warning" title="Éditer">Editer <span class="fa fa-cog"></span></a>&nbsp;
+          <a href="/payements/{{_id}}" class="btn btn-info" title="Payements">Payements <span class="fa fa-euro"></span></a>&nbsp;
+          <a href="/editqrcode/{{_id}}" class="btn btn-default" title="QR Code">QR <span class="fa fa-qrcode"></span></a>
 
         </div>
         {{/if}}

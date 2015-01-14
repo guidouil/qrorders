@@ -12,7 +12,7 @@
           {{/if}}
           <h4>{{place.placedesc}}</h4>
           {{#unless isCreateOrder}}
-          <button type="button" class="btn btn-success btn-block createOrder" title="Je Commande" id="{{place._id}}">Je Commande <span class="glyphicon glyphicon-shopping-cart"></span></button>
+          <button type="button" class="btn btn-success btn-block createOrder" title="Je Commande" id="{{place._id}}">Je Commande <span class="fa fa-shopping-cart"></span></button>
           {{/unless}}
           <address>
             {{#if place.street}}{{place.street}}<br>{{/if}}
@@ -25,7 +25,7 @@
           {{/if}}
           {{#if place.loyaltyCard}}
             <p>Tout les {{formatPrice place.lcPrice}} dépensés,<br>1 point est ajouté à votre carte fidélité.<br>
-            Tout les {{place.lcSize}} points un avoir de {{formatPrice place.lcReward}} vous est offert. <span class="glyphicon glyphicon-gift"></span></p>
+            Tout les {{place.lcSize}} points un avoir de {{formatPrice place.lcReward}} vous est offert. <span class="fa fa-gift"></span></p>
           {{/if}}
         </div>
         <div class="modal-footer">
