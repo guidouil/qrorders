@@ -45,4 +45,4 @@ jeremy:selectize
 twbs:bootstrap
 fezvrasta:bootstrap-material-design
 jquery
-tap:i18n
+cfs:http-methods

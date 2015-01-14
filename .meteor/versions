@@ -18,6 +18,7 @@ blaze@2.0.4
 blaze-tools@1.0.2
 boilerplate-generator@1.0.2
 callback-hook@1.0.2
+cfs:http-methods@0.0.27
 check@1.0.3
 coffeescript@1.0.5
 d3js:d3@3.4.13
@@ -70,7 +71,7 @@ mdg:camera@1.1.3
 mdg:geolocation@1.0.2
 meteor@1.1.4
 meteor-platform@1.2.1
-meteorhacks:kadira@2.15.2
+meteorhacks:kadira@2.16.1
 meteorhacks:kadira-binary-deps@1.3.1
 meteorhacks:meteorx@1.2.1
 minifiers@1.1.3
@@ -114,8 +115,6 @@ spacebars-compiler@1.0.4
 srp@1.0.2
 standard-app-packages@1.0.4
 steeve:jquery-qrcode@0.2.2
-tap:http-methods@0.0.23
-tap:i18n@1.2.1
 templating@1.0.10
 tracker@1.0.4
 twbs:bootstrap@3.3.1_2
