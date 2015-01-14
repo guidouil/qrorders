@@ -15,7 +15,6 @@ coffeescript
 fastclick
 aldeed:collection2
 aldeed:simple-schema
-patrickleet:tags
 mizzao:bootboxjs
 mizzao:user-status
 accounts-facebook
@@ -46,3 +45,4 @@ twbs:bootstrap
 fezvrasta:bootstrap-material-design
 jquery
 cfs:http-methods
+patrickleet:tags
