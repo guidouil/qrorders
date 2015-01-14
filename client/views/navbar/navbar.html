@@ -4,9 +4,7 @@
         <div class="navbar-header">
           <ul class="nav navbar-nav nav-pills">
             {{#if isLoggedIn}}
-            {{#unless isMobile}}
             <li><a href="" onclick="window.history.back()" title="Retour" class="withoutripple"><i class="fa fa-arrow-left"></i></a></li>
-            {{/unless}}
             {{/if}}
             <li class="{{ activeIfTemplateIs 'Home' }}"><a href="{{pathFor 'home'}}" title="QodeResto" class="withoutripple"><i class="fa fa-home"></i><span class="hidden-xs"> Accueil</span></a></li>
             <!-- <li class="{{ activeIfTemplateIs 'search' }}"><a href="{{pathFor 'search'}}" title="search"><span class="fa fa-search"></span></a></li> -->
