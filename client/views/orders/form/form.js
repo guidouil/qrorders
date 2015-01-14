@@ -253,15 +253,15 @@ Template.formOrder.events({
         optionMessage += '<label class="col-xs-3 control-label" for="'+option.title+'">'+option.title+'</label>';
         optionMessage += '<div class="col-xs-9">';
         $.each(option.choices, function(i, choice) {
-          optionMessage += '<div class="'+option.type+' '+option.type+'-success">';
+          optionMessage += '<div class="'+option.type+'-inline '+option.type+'-success">';
           optionMessage += '<label for="'+option.title+'-'+i+'">';
           optionMessage += '<input class="productOptions" type="'+option.type+'" name="'+option.title+'" id="'+option.title+'-'+i+'" value="'+choice+'">';
-          if(option.type === 'radio') {
-            optionMessage += '<span class="circle"></span>';
-          } else {
-            optionMessage += '<span class="ripple"></span>';
-          }
-          optionMessage += '<span class="check"></span>';
+          // if(option.type === 'radio') {
+          //   optionMessage += '<span class="circle"></span>';
+          // } else {
+          //   optionMessage += '<span class="ripple"></span>';
+          // }
+          // optionMessage += '<span class="check"></span>';
           optionMessage += choice;
           optionMessage += '</label>';
           optionMessage += '</div>';
@@ -383,15 +383,15 @@ Template.formOrder.events({
           optionMessage += '<label class="col-xs-3 control-label" for="'+option.title+'">'+option.title+'</label>';
           optionMessage += '<div class="col-xs-9">';
           $.each(option.choices, function(i, choice) {
-            optionMessage += '<div class="'+option.type+' '+option.type+'-success">';
+            optionMessage += '<div class="'+option.type+'-inline '+option.type+'-success">';
             optionMessage += '<label for="'+product.name+option.title+'-'+i+'">';
             optionMessage += '<input class="productOptions" type="'+option.type+'" name="'+product.name+option.title+'" id="'+product.name+option.title+'-'+i+'" value="'+choice+'">';
-            if(option.type === 'radio') {
-              optionMessage += '<span class="circle"></span>';
-            } else {
-              optionMessage += '<span class="ripple"></span>';
-            }
-            optionMessage += '<span class="check"></span>';
+            // if(option.type === 'radio') {
+            //   optionMessage += '<span class="circle"></span>';
+            // } else {
+            //   optionMessage += '<span class="ripple"></span>';
+            // }
+            // optionMessage += '<span class="check"></span>';
             optionMessage += choice;
             optionMessage += '</label>';
             optionMessage += '</div>';
