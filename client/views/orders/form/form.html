@@ -17,23 +17,23 @@
               <div class="btn-group text-center" data-toggle="buttons">
                 <label class="btn btn-danger btn-sm {{isStatusActive 0}} changeStatus" for="status-0" value="0">
                   <input type="radio" name="radiosStatus" id="status-0" value="0" {{isStatusChecked 0}}>
-                  <span class="fa fa-remove"></span>
+                  <span class="fa fa-remove fa-lg"></span>
                 </label>
                 <label class="btn btn-warning btn-sm {{isStatusActive 1}} changeStatus" for="status-1" value="1">
                   <input type="radio" name="radiosStatus" id="status-1" value="1" {{isStatusChecked 1}}>
-                  <span class="fa fa-plus"></span>
+                  <span class="fa fa-plus fa-lg"></span>
                 </label>
                 <label class="btn btn-primary btn-sm {{isStatusActive 2}} changeStatus" for="status-2"  id="defaultStatusLabel" value="2">
                   <input type="radio" name="radiosStatus" id="status-2" value="2" {{isStatusChecked 2}}>
-                  <span class="fa fa-check"></span>
+                  <span class="fa fa-check fa-lg"></span>
                 </label>
                 <label class="btn btn-info btn-sm {{isStatusActive 3}} changeStatus" for="status-3" value="3">
                   <input type="radio" name="radiosStatus" id="status-3" value="3" {{isStatusChecked 3}}>
-                  <span class="fa fa-refresh"></span>
+                  <span class="fa fa-refresh fa-lg"></span>
                 </label>
                 <label class="btn btn-success btn-sm {{isStatusActive 4}} changeStatus" for="status-4" value="4">
                   <input type="radio" name="radiosStatus" id="status-4" value="4" {{isStatusChecked 4}}>
-                  <span class="fa fa-cutlery"></span>
+                  <span class="fa fa-cutlery fa-lg"></span>
                 </label>
               </div>
               {{{textStatus order.status}}}{{#if order.paid}} Payée{{/if}}&nbsp;
@@ -60,7 +60,7 @@
                     <td class="text-right">{{formatPrice price}}</td>
                     <td class="text-right">
                       {{#unless order.paid}}
-                      <button class="btn btn-danger btn-sm deleteLine" id="{{_id}}" name="{{productName}}"><span class="fa fa-trash"></span></button>
+                      <button class="btn btn-danger btn-sm deleteLine" id="{{_id}}" name="{{productName}}"><span class="fa fa-trash fa-2x"></span></button>
                       {{/unless}}
                     </td>
                   </tr>
@@ -161,7 +161,7 @@
                   <td>
                     {{#if isLoggedIn}}
                     {{#unless order.paid}}
-                    <button class="btn btn-success btn-sm addSet withoutripple btn-raised" id="{{_id}}" name="{{name}}"><span class="fa fa-plus"></span></button>
+                    <button class="btn btn-success btn-sm addSet withoutripple btn-raised" id="{{_id}}" name="{{name}}"><span class="fa fa-plus fa-2x"></span></button>
                     {{/unless}}
                     {{/if}}
                   </td>
@@ -186,7 +186,7 @@
                   <td>
                     {{#if isLoggedIn}}
                     {{#unless order.paid}}
-                    <button class="btn btn-success btn-sm addProduct withoutripple btn-raised" id="{{_id}}" name="{{name}}"><span class="fa fa-plus"></span></button>
+                    <button class="btn btn-success btn-sm addProduct withoutripple btn-raised" id="{{_id}}" name="{{name}}"><span class="fa fa-plus fa-2x"></span></button>
                     {{/unless}}
                     {{/if}}
                   </td>

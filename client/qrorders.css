@@ -3,7 +3,7 @@ body {
   background-color: #E9E5DC;
   font-family: 'Arimo', sans-serif !important;
   letter-spacing:0.05em;
-  margin-top: 55px;
+  margin-top: 70px;
   padding-right: 0 !important;
 }
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
@@ -30,9 +30,6 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 #iron-router-progress {
   background-color : #5cb85c;
   box-shadow       : 0 0 0 #5cb85c;
-}
-.fa {
-  font-size: 1.6em;
 }
 .docs-flip-horizontal {
   -ms-transform: scale(-1, 1);
