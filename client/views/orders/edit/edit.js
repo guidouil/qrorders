@@ -22,5 +22,9 @@ Template.editOrder.helpers({
   },
   orderId: function () {
     return Router.current().params.order_id;
+  },
+  order: function () {
+    var orderId = Router.current().params.order_id;
+    return Orders.findOne({_id: orderId});
   }
 });
