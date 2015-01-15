@@ -1,6 +1,3 @@
-var https = Npm && Npm.require('https');
-var url = Npm && Npm.require('url');
-
 Meteor.methods({
   user_profile_name: function () {
     var user = Meteor.user();
@@ -41,7 +38,7 @@ Meteor.methods({
   delete_order: function(orderId) {
     check(orderId, String);
     var localOrder = Orders.findOne({_id: orderId});
-    if ( _.contains(localOrder.waiter, Meteor.userId()) || (localOrder.user == Meteor.userId() && localOrder.status <= 1) ) {
+    if (  (localOrder.waiter && _.contains(localOrder.waiter, Meteor.userId())) || (localOrder.user && localOrder.user == Meteor.userId() && localOrder.status <= 1) ) {
       Lines.remove({order: localOrder._id});
       Orders.remove({_id: localOrder._id});
       // console.log(localOrder, 'Deleted');
