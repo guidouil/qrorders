@@ -11,7 +11,7 @@ Template.searchInput.helpers({
 
 Template.searchInput.events({
   'submit .search': function (evt,tmpl) {
-    // evt.preventDefault();
+    evt.preventDefault();
     var searchQuery = tmpl.find('.search-query').value.trim();
     if (searchQuery !== '') {
       Router.go('/search/'+encodeURI(searchQuery));
