@@ -130,17 +130,20 @@ Template.formOrder.events({
     $('#qty-'+productId).val(parseFloat(value) + 1);
   },
   'click .productModal': function (evt,tmpl) {
+    evt.preventDefault();
     var productId = evt.currentTarget.attributes.id.value;
     Session.set('setId', false);
     Session.set('productId', productId);
     $('#productModal').modal();
   },
   'click .placeModal': function (evt,tmpl) {
+    evt.preventDefault();
     var placeId = evt.currentTarget.attributes.id.value;
     Session.set('placeId', placeId);
     $('#placeModal').modal();
   },
   'click .setModal': function (evt,tmpl) {
+    evt.preventDefault();
     var setId = evt.currentTarget.attributes.id.value;
     Session.set('productId', false);
     Session.set('setId', setId);

@@ -129,7 +129,7 @@
 
       <div class="col-md-6">
         <form class="form-horizontal well well-sm">
-          <legend><a href="#" class="placeModal" id="{{place._id}}">{{place.placename}}</a> <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
+          <legend><a href="" class="placeModal" id="{{place._id}}">{{place.placename}}</a> <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
           <!-- <div class="table-responsive"> -->
             <table class="table table-condensed">
               <thead>
@@ -145,7 +145,7 @@
                 {{#each sets}}
                 <tr>
                   <td>{{{showTags SetsTags}}}</td>
-                  <td><a href="#" class="setModal" id="{{_id}}">{{name}}</a></td>
+                  <td><a href="" class="setModal" id="{{_id}}">{{name}}</a></td>
                   <td class="text-right">{{formatPrice price}}</td>
                   <td class="hidden-xs text-center">
                     <div class="input-group">
@@ -170,7 +170,7 @@
                 {{#each products}}
                 <tr>
                   <td>{{{showTags ProductsTags}}}</td>
-                  <td><a href="#" class="productModal" id="{{_id}}">{{name}}</a></td>
+                  <td><a href="" class="productModal" id="{{_id}}">{{name}}</a></td>
                   <td class="text-right">{{formatPrice price}}</td>
                   <td class="hidden-xs text-center">
                     <div class="input-group">

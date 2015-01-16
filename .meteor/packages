@@ -31,7 +31,6 @@ steeve:jquery-qrcode
 ground:db
 vazco:maps
 mdg:geolocation
-msavin:mongoinspector
 mdg:camera
 fortawesome:fontawesome
 doctorpangloss:admin
@@ -46,4 +45,3 @@ cfs:http-methods
 patrickleet:tags
 twbs:bootstrap-noglyph
 panter:bootswatch-paper
-appcache

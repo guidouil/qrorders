@@ -1,10 +1,12 @@
 <template name="home">
   <div class="container">
     <div class="row">
-      <div class="well">
-        <h1 class="text-center"><strong>JeCMD</strong> : ici c'est moi qui commande.</h1>
-        <h3 class="text-center">Le système de prise de commandes en temps réel<br><small>ou comment attendre le moins possible.</small></h3>
-        <img src="/qoderesto-123steps.jpg" alt="un deux troix" class="img-responsive text-center"/>
+      <div class="col-md-12">
+        <div class="well">
+          <h1 class="text-center"><strong>JeCMD</strong> : ici c'est moi qui commande.</h1>
+          <h3 class="text-center">Le système de prise de commandes en temps réel<br><small>ou comment attendre le moins possible.</small></h3>
+          <img src="/qoderesto-123steps.jpg" alt="un deux troix" class="img-responsive text-center"/>
+        </div>
       </div>
     </div>
 
@@ -21,7 +23,9 @@
       {{> placeModal}}
     </div>
     <div class="row">
-      <p class="text-center"><a href="{{pathFor 'resto'}}" class="btn btn-primary btn-lg btn-block">Gérant d'un établissement ?</a></p>
+      <div class="col-md-12">
+        <p class="text-center"><a href="{{pathFor 'resto'}}" class="btn btn-primary btn-lg btn-block">Gérant d'un établissement ?</a></p>
+      </div>
     </div>
   </div>
 </template>

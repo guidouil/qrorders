@@ -23,7 +23,6 @@ getUserLanguage = function () {
 };
 
 Meteor.startup(function () {
-  Meteor.AppCache.config({onlineOnly: ['/resources/']});
 
   Accounts.ui.config({
     passwordSignupFields: 'EMAIL_ONLY'

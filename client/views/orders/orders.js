@@ -38,7 +38,7 @@ Template.orders.helpers({
     var currentRoute = Router.current();
     if (currentRoute.lookupTemplate() === 'Cart') {
       var place = Places.findOne({_id: placeId});
-      return '<a href="#" class="placeModal" id="'+placeId+'">'+place.placename+'</a>';
+      return '<a href="" class="placeModal" id="'+placeId+'">'+place.placename+'</a>';
     } else {
       return name;
     }
@@ -46,7 +46,7 @@ Template.orders.helpers({
   dontSayMyName: function (placename) {
     if (placename !== null) {
       var placeId = Router.current().params._id;
-      return '<a href="#" class="placeModal" id="'+placeId+'">'+placename+'</a>';
+      return '<a href="" class="placeModal" id="'+placeId+'">'+placename+'</a>';
     } else {
       var user = Meteor.user();
       if (user) {
@@ -69,11 +69,13 @@ Template.orders.helpers({
 
 Template.orders.events({
   'click .placeModal': function (evt,tmpl) {
+    evt.preventDefault();
     var placeId = evt.currentTarget.attributes.id.value;
     Session.set('placeId', placeId);
     $('#placeModal').modal();
   },
   'click .orderModal': function (evt,tmpl) {
+    evt.preventDefault();
     var orderId = evt.currentTarget.attributes.id.value;
     Session.set('orderId', orderId);
     $('#orderModal').modal();
@@ -102,19 +104,24 @@ Template.orders.events({
     }
   },
   'change #selectStatus': function (evt, tmpl) {
+    evt.preventDefault();
     var status = tmpl.find('#selectStatus').value;
     Session.set('statusFilter', status);
   },
-  'click .filterDateToday': function () {
+  'click .filterDateToday': function (evt, tmpl) {
+    evt.preventDefault();
     Session.set('dateFilter', 'today');
   },
-  'click .filterDateAll': function () {
+  'click .filterDateAll': function (evt, tmpl) {
+    evt.preventDefault();
     Session.set('dateFilter', 'all');
   },
-  'click .filterNotPaid': function () {
+  'click .filterNotPaid': function (evt, tmpl) {
+    evt.preventDefault();
     Session.set('paidFilter', false);
   },
-  'click .filterPaid': function () {
+  'click .filterPaid': function (evt, tmpl) {
+    evt.preventDefault();
     Session.set('paidFilter', true);
   },
   'click .deleteOrder': function (evt, tmpl) {
