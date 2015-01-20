@@ -31,6 +31,33 @@
         <button type="submit" class="btn btn-success save">Enregistrer</button>
         <a class="btn btn-danger logout pull-right">Déconnexion</a>
         <hr>
+
+        <div class="table-responsive">
+          <legend>Favoris <span class='fa fa-star'></span></legend>
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th class="text-left">Établissement</th>
+                <th class="text-center">Ville</th>
+                <th class="text-right"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each stars}}
+              <tr>
+                <td class="text-left"><a href="" class="placeModal" id="{{_id}}">{{placename}}</a></td>
+                <td class="text-center">{{town}}</td>
+                <td class="text-right"><a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success createOrder" title="Je Commande">Je Commande <span class="fa fa-shopping-cart"></span></a></td>
+              </tr>
+              {{else}}
+              <tr>
+                <td colspan="3"><p class="lead text-center">Aucun favoris pour l'instant</p></td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+
         <div class="table-responsive">
           <legend>Cartes de fidélité <span class='fa fa-gift'></span></legend>
           <table class="table table-condensed">
@@ -56,7 +83,7 @@
             </tbody>
           </table>
         </div>
-        <hr>
+
         <div class="table-responsive">
           <legend>Avoirs <span class='fa fa-send'></span></legend>
           <table class="table table-condensed">

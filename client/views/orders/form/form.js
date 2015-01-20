@@ -113,6 +113,15 @@ Template.formOrder.helpers({
   },
   theTime: function () {
     return moment().add(10, 'minutes').format('HH:mm');
+  },
+  isStared: function() {
+    var placeId = Router.current().params.place_id;
+    var place = Places.findOne({_id: placeId});
+    if ( place.stars && _.contains(place.stars, Meteor.userId()) ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 });
 
@@ -148,6 +157,18 @@ Template.formOrder.events({
     Session.set('productId', false);
     Session.set('setId', setId);
     $('#productModal').modal();
+  },
+  'click .star': function (evt, tmpl) {
+    evt.preventDefault();
+    var placeId = Router.current().params.place_id;
+    var place = Places.findOne({_id: placeId});
+    if ( place.stars && _.contains(place.stars, Meteor.userId()) ) {
+      Meteor.call('remove_star', placeId);
+      growl(place.placename, 'retiré de vos favoris', 'warning');
+    } else {
+      Meteor.call('add_star', placeId);
+      growl(place.placename, 'ajouté à vos favoris', 'success');
+    }
   },
   'click .changeStatus': function (evt, tmpl) {
     evt.preventDefault();

@@ -257,5 +257,11 @@ Meteor.methods({
     } else {
       return false;
     }
+  },
+  add_star: function (placeId) {
+    Places.update({_id: placeId},{$addToSet: {stars: Meteor.userId()}});
+  },
+  remove_star: function (placeId) {
+    Places.update({_id: placeId},{$pull: {stars: Meteor.userId()}});
   }
 });
