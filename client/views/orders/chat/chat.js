@@ -25,6 +25,10 @@ Template.chatOrder.events({
         Orders.update({_id: orderId}, {$set: {updated: Date.now(), notifyWaiter: true, notifyUser: false}, $push: {chats: chat}});
       }
     }
+  },
+  'click .openChat': function (evt, tmpl) {
+    $('.panel-body').animate({scrollTop:5000}, 'slow');
+
   }
 });
 
