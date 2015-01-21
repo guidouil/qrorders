@@ -1,0 +1,16 @@
+{
+  "apn": {
+    "passphrase": "yope00",
+    "key": "apnProdKey.pem",
+    "cert": "apnProdCert.pem"
+  },
+  "gcm": {
+    "apiKey": "AIzaSyDNYkGujRE8SJ_WmTRx9ltKhdURWm9dyIE",
+    "projectNumber": 326154349417
+  },
+  "production": true,
+   "badge": true,
+   "sound": true,
+   "alert": true,
+   "vibrate": true
+}
