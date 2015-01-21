@@ -17,3 +17,9 @@ Template.navbar.helpers({
     return Orders.find({notifyUser: true, user: Meteor.userId()}).count();
   }
 });
+
+Template.navbar.events({
+  'click li': function() {
+    $('html, body').animate({ scrollTop: 0 }, 'slow');
+  }
+});

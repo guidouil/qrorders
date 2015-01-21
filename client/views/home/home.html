@@ -2,8 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="well well-sm">
-        <h1 class="text-center"><strong>JeCMD</strong> : ici c'est moi qui commande.</h1>
+        {{#if isNotLoggedIn}}
+        <h2 class="text-center"><strong>JeCMD</strong> : ici c'est moi qui commande.</h2>
         <h3 class="text-center">Le système de prise de commandes en temps réel<br><small>ou comment attendre le moins possible.</small></h3>
+        {{/if}}
         <img src="/qoderesto-123steps.jpg" alt="un deux troix" class="img-responsive text-center"/>
         {{> searchInput}}
       </div>
