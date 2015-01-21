@@ -4,7 +4,8 @@
       {{#if image}}
       <a href="" class="placeModal" id="{{_id}}"><img src="{{getImage image}}" alt="{{placename}}" class="img-jecmd"></a>
       {{/if}}
-      <div class="producttitle text-center"><a href="" class="placeModal lead" id="{{_id}}">{{placename}}</a></div>
+      <div class="producttitle text-center"><a href="" class="placeModal lead" id="{{_id}}">{{placename}}{{#if stars}} <span class="label label-primary">{{arrayLength stars}} <span class="fa fa-star"></span></span>{{/if}}</a></div>
+
       <p class="text-center">{{truncate placedesc 80}}</p>
       <a href="{{pathFor 'createOrder' place_id=_id}}" class="btn btn-success btn-block createOrder" title="Je Commande">Je Commande <span class="fa fa-shopping-cart fa-2x"></span></a>
       <address>

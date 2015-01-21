@@ -129,7 +129,7 @@
 
       <div class="col-md-6">
         <form class="form-horizontal well well-sm">
-          <legend><a href="" class="placeModal" id="{{place._id}}">{{place.placename}}</a> <button class="btn btn-sm {{#if isStared}}btn-primary{{else}}btn-default{{/if}} star"><span class="fa fa-lg fa-star{{#unless isStared}}-o{{/unless}}"></span></button> <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
+          <legend><a href="" class="placeModal" id="{{place._id}}">{{place.placename}}</a> <button class="btn btn-sm {{#if isStared}}btn-primary{{else}}btn-default{{/if}} star">{{arrayLength place.stars}} <span class="fa fa-lg fa-star{{#unless isStared}}-o{{/unless}}"></span></button> <small class="pull-right">{{#if order.created}}{{formatDate order.created}}{{else}}{{currentDate}}{{/if}}</small></legend>
           <!-- <div class="table-responsive"> -->
             <table class="table table-condensed">
               <thead>

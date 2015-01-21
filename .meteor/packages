@@ -44,4 +44,5 @@ jquery
 cfs:http-methods
 patrickleet:tags
 twbs:bootstrap-noglyph
-panter:bootswatch-paper
+tap:i18n
+guidouil:bootswatch-paper-noglyph
