@@ -3,3 +3,9 @@ Template.home.helpers({
     return Places.find().fetch();
   }
 });
+
+Template.home.events({
+  'click .goup': function() {
+    $('html, body').animate({ scrollTop: 0 }, 'slow');
+  }
+});
