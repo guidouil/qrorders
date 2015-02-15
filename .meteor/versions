@@ -21,7 +21,7 @@ callback-hook@1.0.2
 cfs:http-methods@0.0.27
 check@1.0.4
 coffeescript@1.0.5
-d3js:d3@3.5.3
+d3js:d3@3.5.5
 ddp@1.0.14
 deps@1.0.6
 doctorpangloss:admin@1.0.1
@@ -55,13 +55,13 @@ iron:location@1.0.7
 iron:middleware-stack@1.0.7
 iron:router@1.0.7
 iron:url@1.0.7
-jeremy:selectize@0.3.0
-jonblum:jquery-cropper@0.7.7
+jeremy:selectize@0.12.0
+jonblum:jquery-cropper@0.7.8
 joshowens:accounts-entry@1.0.3
 joshowens:simple-form@0.2.2
 jquery@1.11.3
 json@1.0.2
-kevohagan:sweetalert@0.3.4
+kevohagan:sweetalert@0.4.2
 launch-screen@1.0.1
 less@1.0.12
 livedata@1.0.12
@@ -71,9 +71,8 @@ mdg:camera@1.1.4
 mdg:geolocation@1.0.2
 meteor@1.1.4
 meteor-platform@1.2.1
-meteorhacks:kadira@2.17.5
-meteorhacks:kadira-binary-deps@1.3.1
-meteorhacks:meteorx@1.2.1
+meteorhacks:kadira@2.19.2
+meteorhacks:meteorx@1.3.1
 minifiers@1.1.3
 minimongo@1.0.6
 mizzao:bootboxjs@4.3.0
@@ -102,7 +101,7 @@ reactive-dict@1.0.5
 reactive-var@1.0.4
 reload@1.1.2
 retry@1.0.2
-reywood:iron-router-ga@0.4.1
+reywood:iron-router-ga@0.5.3
 routepolicy@1.0.4
 rzymek:moment-locale-fr@2.8.4
 schnie:uploader@2.0.3
@@ -115,7 +114,7 @@ spacebars-compiler@1.0.4
 srp@1.0.2
 standard-app-packages@1.0.4
 steeve:jquery-qrcode@0.2.2
-tap:i18n@1.3.2
+tap:i18n@1.4.0
 templating@1.0.11
 tracker@1.0.5
 twbs:bootstrap-noglyph@3.3.2
