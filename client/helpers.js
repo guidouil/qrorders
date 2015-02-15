@@ -123,7 +123,7 @@ UI.registerHelper('showTags', function (tags) {
   if (tags && tags.length > 0) {
     var tagsString = '';
     $.each(tags, function(index, tag) {
-      tagsString += '<span class="label label-info">'+tag+'</span> ';
+      tagsString += '<span class="label label-primary">'+tag+'</span> ';
     });
     return tagsString;
   }
