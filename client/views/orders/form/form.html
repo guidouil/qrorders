@@ -134,7 +134,7 @@
                   <th>Photo</th>
                   <th>Produit</th>
                   <th class="text-right">Prix</th>
-                  <th class="hidden-xs text-center">Quantité</th>
+                  <!-- <th class="hidden-xs text-center">Quantité</th> -->
                   <th class="text-right">&nbsp;</th>
                 </tr>
               </thead>
@@ -145,7 +145,7 @@
                   <td>{{#if image}}<img src="{{getImage image}}" alt="{{name}}" class="img-jecmd">{{/if}}</td>
                   <td><a href="" class="setModal" id="{{_id}}">{{name}}</a></td>
                   <td class="text-right">{{formatPrice price}}</td>
-                  <td class="hidden-xs text-center">
+                  <!-- <td class="hidden-xs text-center">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <button class="btn btn-link btn-sm decQty" type="button" id="{{_id}}"><span class="fa fa-minus-circle"></span></button>
@@ -155,7 +155,7 @@
                         <button class="btn btn-link btn-sm incQty" type="button" id="{{_id}}"><span class="fa fa-plus-circle"></span></button>
                       </span>
                     </div>
-                  </td>
+                  </td> -->
                   <td>
                     {{#if isLoggedIn}}
                     {{#unless order.paid}}
@@ -171,7 +171,7 @@
                   <td>{{#if image}}<img src="{{getImage image}}" alt="{{name}}" class="img-jecmd">{{/if}}</td>
                   <td><a href="" class="productModal" id="{{_id}}">{{name}}</a></td>
                   <td class="text-right">{{formatPrice price}}</td>
-                  <td class="hidden-xs text-center">
+                  <!-- <td class="hidden-xs text-center">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <button class="btn btn-link btn-sm decQty" type="button" id="{{_id}}"><span class="fa fa-minus-circle"></span></button>
@@ -181,7 +181,7 @@
                         <button class="btn btn-link btn-sm incQty" type="button" id="{{_id}}"><span class="fa fa-plus-circle"></span></button>
                       </span>
                     </div>
-                  </td>
+                  </td> -->
                   <td>
                     {{#if isLoggedIn}}
                     {{#unless order.paid}}

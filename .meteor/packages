@@ -47,3 +47,5 @@ twbs:bootstrap-noglyph
 tap:i18n
 guidouil:bootswatch-paper-noglyph
 raix:push
+useraccounts:core
+useraccounts:bootstrap
